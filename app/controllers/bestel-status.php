@@ -10,10 +10,11 @@ if ($user && isset($user['id'])) {
     $userId = $user['id'];
 
     // Bereid de SQL-query voor
-    $temp = $db->query('SELECT status FROM bestellingen WHERE klant_id = ?', [$userId])->fetch();
-    $orderStatus = $temp['status'];
+    $orderStatus = $db->query('SELECT status FROM bestellingen WHERE klant_id = ?', [$userId])->fetch();
 
-    if (!$orderStatus) {
+    if ($orderStatus) {
+        $orderStatus = $orderStatus['status'];
+    } else {
         $orderStatus = 'Geen status beschikbaar'; // Standaardwaarde als er geen resultaten zijn
     }
 } else {
