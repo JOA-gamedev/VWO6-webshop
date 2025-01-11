@@ -34,7 +34,7 @@ if (hasRole('admin')) {
     $route->get('api/productbeheer-search', "controllers/api/productbeheer-search.php");
     $route->get('productbeheer', "views/productbeheer.view.php");
     $route->get('product-edit', "controllers/product-edit.php");
-    $route->post('product-edit', "controllers/product-edit.php");
+    $route->post('product-update', "controllers/product-update.php");
     $route->get('admin-dashboard', "views/admin-dashboard.view.php");
 }
 
