@@ -24,6 +24,7 @@ $route->get('api/productbeheer-search', "controllers/api/productbeheer-search.ph
 $route->get('productbeheer', "views/productbeheer.view.php");
 $route->get('product-edit', "controllers/product-edit.php");
 $route->post('product-edit', "controllers/product-edit.php");
+$route->get('admin-dashboard', "views/admin-dashboard.view.php");
 
 if (auth()) { //alleen als je ingelogd bent kan je dit doen
     $route->get('api/users-search', "controllers/api/users-search.php");
