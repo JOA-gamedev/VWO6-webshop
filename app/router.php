@@ -19,13 +19,6 @@ $route->get('logout', "controllers/logout.php");
 $route->get('registreer-create', "controllers/registreer-create.php");
 $route->post('registreer-store',"controllers/registreer-store.php");
 
-//admin
-$route->get('api/productbeheer-search', "controllers/api/productbeheer-search.php");
-$route->get('productbeheer', "views/productbeheer.view.php");
-$route->get('product-edit', "controllers/product-edit.php");
-$route->post('product-edit', "controllers/product-edit.php");
-$route->get('admin-dashboard', "views/admin-dashboard.view.php");
-
 if (auth()) { //alleen als je ingelogd bent kan je dit doen
     $route->get('api/users-search', "controllers/api/users-search.php");
     $route->get('users', "views/users-search.view.php");
@@ -38,6 +31,11 @@ if (auth()) { //alleen als je ingelogd bent kan je dit doen
 //alleen toegankelijk als administrator
 if (hasRole('admin')) {
     //hier komen de routes die alleen toegankelijk zijn voor een admin
+    $route->get('api/productbeheer-search', "controllers/api/productbeheer-search.php");
+    $route->get('productbeheer', "views/productbeheer.view.php");
+    $route->get('product-edit', "controllers/product-edit.php");
+    $route->post('product-edit', "controllers/product-edit.php");
+    $route->get('admin-dashboard', "views/admin-dashboard.view.php");
 }
 
 http_response_code(404);
