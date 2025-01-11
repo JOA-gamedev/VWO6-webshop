@@ -1,13 +1,26 @@
-<?php
+<?php 
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     // Handle form submission (e.g., update the database)
 
-    //todo: data in database zetten
+    $id = $_POST['id'] ?? null;
+    $naam = $_POST['naam'] ?? null;
+    $prijs = $_POST['prijs'] ?? null;
+    $beschrijving = $_POST['beschrijving'] ?? null;
 
+    if (!$id || !$naam || !$prijs || !$beschrijving) {
+        die("Alle velden zijn verplicht.");
+    }
 
-    flash("Wijzigingen Opgeslagen" . $user['name'], true);
+    $db = new Database();
+    $db->query('UPDATE producten SET naam = ?, prijs = ?, beschrijving = ? WHERE id = ?', [
+        $naam, $prijs, $beschrijving, $id
+    ]);
+
+    flash("Wijzigingen Opgeslagen: " . htmlspecialchars($naam), true);
     header("Location: /");
+    exit;
+
 } else {
     // Handle GET request (e.g., fetch the product details)
     $id = $_GET['id'] ?? null;

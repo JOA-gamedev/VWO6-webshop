@@ -1,24 +1,19 @@
 <?php
-
-view('parts/header', ['title' => 'Klant gegevens aanpassen']); 
-view('parts/navigatie-menu');  
+view("parts/header", ['title' => 'product-pagina']);
+view("parts/navigatie-menu");
 ?>
-    <form method="post" action="/profiel-edit/<?= $klant['id'] ?>">
-    
-        <?= csrf(); ?>
-        Volledige naam:
-        <input type="text" name="name" value="<?= $klant['name'] ?>" required><br>
-        <?php if (isset($errors['name'])): ?>
-            <p class="text-red-500 text-sm my-2"><?= $errors['name'] ?></p>
-        <?php endif; ?>
+    <div class="sm:mx-10">
+        <h1 class="text-3xl my-4">Productpagina</h1>
 
-       Achternaam:
-        <input type="text" name="email" value="<?= $klant['email'] ?>" required><br>
-        <?php if (isset($errors['email'])): ?>
-            <p class="text-red-500 text-sm my-2"><?= $errors['email'] ?></p>
-        <?php endif; ?>
-       </form>
-
-
+        <div class="border border-1 rounded p-4 bg-gray-50 my-4">
+            <form action="product-edit" method="post">
+                <?= csrf() ?>
+                <input type="text" name="naam" value="<?= $product["naam"]?>">
+                <input type="text" name="prijs" value="<?= $product["prijs"]?>">
+                <textarea name="beschrijving"><?= $product["beschrijving"]?></textarea>
+                <input type="submit" value="Wijzigingen Opslaan">
+            </form>
+        </div>
+    </div>
 <?php
-view('parts/footer'); 
+view("parts/footer");
