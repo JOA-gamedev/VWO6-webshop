@@ -48,6 +48,11 @@ class Database
         return $this->connection->lastInsertId();
     }
 
+    public function getPdo()
+    {
+        return $this->connection;
+    }
+
     //tonen van een mislukking
     private function showException($exception)
     {
