@@ -59,7 +59,10 @@ $requestUri = $_SERVER['REQUEST_URI'];
 
 if ($requestUri === '/' || $requestUri === '/index.php') {
     // Load the main view
-    include 'views/producten.view.php';
+    include __DIR__ . '/../app/views/producten.view.php';
+} elseif (strpos($requestUri, '/product-detail') !== false) {
+    // Load the product detail view
+    include __DIR__ . '/../app/views/product-detail.view.php';
 } else {
     // Handle other routes (if necessary)
     http_response_code(404);
