@@ -1,3 +1,9 @@
+<?php
+function isAdmin() {
+    // Implement your logic to check if the user is an admin
+    return isset($_SESSION['user']) && $_SESSION['user']['role'] === 'admin';
+}
+?>
 <nav class="bg-gray-500">
     <div class="flex justify-between items-center">
         <div class="flex justify-start items-center text-xl space-x-4">
@@ -13,17 +19,18 @@
                 class="<?= isUri("about") ? 'underline ' : '' ?>text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md font-medium">About</a>
             <a href="/items/items-index"
                 class="<?= isUri("items/items-index") ? 'underline ' : '' ?>text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md font-medium">Producten</a>
-            <?php if (auth()): ?> <a href="/bestel-status"
+            <?php if (auth()): ?> 
+            <a href="/bestel-status"
                 class="<?= isUri("bestel-status") ? 'underline ' : '' ?>text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md font-medium">Bestelstatus</a>
             <?php endif; ?>
             <a href="/create-product"
                 class="<?= isUri("create-product") ? 'underline ' : '' ?>text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md font-medium">Test</a>
             <?php if (auth()): ?>
             <a href="/besteld-show"
-       class="<?= isUri("besteld-show") ? 'underline ' : '' ?>text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md font-medium"> Uw bestellingen</a>
+                class="<?= isUri("besteld-show") ? 'underline ' : '' ?>text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md font-medium"> Uw bestellingen</a>
             <?php endif; ?>
+            <a href="/cart" 
             <?php if (auth()): ?>
-            <a href="/cart"
                 class="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md font-medium">Cart</a>
         </div>
         <div class="justify-end">
@@ -76,20 +83,14 @@
                             </svg>
                             Sign out</a>
 
-                        <!-- admin only -->
-                        <a href="/admin-dashboard"
-                            class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 w-full inline-flex items-center"
-                            role="menuitem" tabindex="-1" id="menu-item-admin-dashboard">
-                            Admin Dashboard
-                        </a>
+                        <?php if (function_exists('isAdmin') && isAdmin()): ?>
+                            <a href="/admin-dashboard" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Admin Dashboard</a>
+                        <?php endif; ?>
                     </div>
                 </div>
-            </div>
             <?php else: ?>
-            <a href="/registreer-create"
-                class="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md font-medium">Registreren</a>
-            <a href="/login"
-                class="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md font-medium">Login</a>
+                <a href="/registreer-create" class="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md font-medium">Registreren</a>
+                <a href="/login" class="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md font-medium">Login</a>
             <?php endif; ?>
         </div>
     </div>
