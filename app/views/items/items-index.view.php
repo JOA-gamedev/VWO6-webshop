@@ -15,7 +15,7 @@ view("parts/navigatie-menu");
             <span class="font-semibold"><?= $item['id'] ?> - <?= htmlspecialchars($item['naam']) ?></span><br>
             <span class="text-gray-700"><?= htmlspecialchars($item['beschrijving']) ?></span><br>
             <span class="text-green-600 font-bold"><?= htmlspecialchars($item['prijs']) ?></span><br>
-            <a href="/controllers/items/items-show.php/"
+            <a href="/items/items-show/<?= $item['id'] ?>"
                 class="font-medium text-blue-600 dark:text-blue-500 hover:underline">Link
                 naar
                 item

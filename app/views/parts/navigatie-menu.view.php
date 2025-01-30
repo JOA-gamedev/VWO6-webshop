@@ -18,10 +18,10 @@
             <?php endif; ?>
             <a href="/create-product"
                 class="<?= isUri("create-product") ? 'underline ' : '' ?>text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md font-medium">Test</a>
-            <?php if (auth()): ?> <a href="/bestel-status"
-                class="<?= isUri("bestel-status") ? 'underline ' : '' ?>text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md font-medium">Bestelstatus</a>
+            <?php if (auth()): ?>
+    <a href="/besteld-show"
+       class="<?= isUri("besteld-show") ? 'underline ' : '' ?>text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md font-medium"> Uw bestellingen</a>
             <?php endif; ?>
-
         </div>
         <div class="justify-end">
             <?php if (auth()): ?>

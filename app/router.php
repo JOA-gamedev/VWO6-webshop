@@ -8,6 +8,7 @@ $route->get('index', "controllers/home.php");
 $route->get('contact', "controllers/contact.php");
 $route->post('contact', "controllers/contact.php");
 $route->get('about', "controllers/about.php");
+$route->get('items/items-show/{id}', "controllers/items/items-show.php");
 $route->get('items/items-index', "controllers/items/items-index.php");
 $route->get('items/product-detail', "controllers/items/product-detail.php");
 
@@ -26,6 +27,10 @@ if (auth()) { //alleen als je ingelogd bent kan je dit doen
     $route->post('profiel-update', "controllers/profiel-update.php"); // Voeg de ontbrekende route toe
     $route->post('profiel-delete', "controllers/profiel-delete.php"); // Voeg de route voor profiel verwijderen toe
     $route->get('bestel-status', "controllers/bestel-status.php");
+    $route->get('bestellingen', "controllers/besteld-index.php");
+    $route->get('bestellingen/{id}', "controllers/besteld-show.php");
+    $route->get('besteld-index', "views/besteld-index.view.php");
+    $route->get('besteld-show', "views/besteld/besteld-show.view.php");
 }
 
 //alleen toegankelijk als administrator
