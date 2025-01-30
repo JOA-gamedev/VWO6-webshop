@@ -19,9 +19,12 @@
             <a href="/create-product"
                 class="<?= isUri("create-product") ? 'underline ' : '' ?>text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md font-medium">Test</a>
             <?php if (auth()): ?>
-    <a href="/besteld-show"
+            <a href="/besteld-show"
        class="<?= isUri("besteld-show") ? 'underline ' : '' ?>text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md font-medium"> Uw bestellingen</a>
             <?php endif; ?>
+            <?php if (auth()): ?>
+            <a href="/cart"
+                class="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md font-medium">Cart</a>
         </div>
         <div class="justify-end">
             <?php if (auth()): ?>
@@ -87,9 +90,7 @@
                 class="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md font-medium">Registreren</a>
             <a href="/login"
                 class="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md font-medium">Login</a>
-            <a href="/cart"
-                class="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md font-medium">Mandje</a>
             <?php endif; ?>
         </div>
     </div>
-</nav>
+</nav>  <?php endif; ?>

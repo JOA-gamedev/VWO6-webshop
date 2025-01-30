@@ -20,7 +20,12 @@ view("parts/navigatie-menu");
                 naar
                 item
             </a>
-            </span>
+            <!-- Add to cart form -->
+            <form action="/cart/add" method="post" class="mt-2">
+            <?= csrf() ?>
+                <input type="hidden" name="id" value="<?= $item['id'] ?>">
+                <button type="submit" class="bg-blue-500 text-white px-4 py-2 rounded">Add to Cart</button>
+            </form>
             <?php
                 view('parts/delete-button', [
                     'action' => "/items/{$item['id']}",

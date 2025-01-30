@@ -40,7 +40,12 @@ if (isset($_GET['id'])) {
             <p class="text-gray-700 mb-4"><?php echo $product['beschrijving']; ?></p>
             <p class="text-gray-900 font-bold text-2xl mb-4">Price: $<?php echo number_format($product['prijs'], 2); ?>
             </p>
-            <!-- Add more product details here if available -->
+            <!-- Add to cart form -->
+            <form action="/cart/add" method="post">
+            <?= csrf() ?>
+                <input type="hidden" name="id" value="<?php echo $product['id']; ?>">
+                <button type="submit" class="bg-blue-500 text-white px-4 py-2 rounded">Add to Cart</button>
+            </form>
         </div>
         <?php else: ?>
         <p class="text-red-500">Product not found.</p>

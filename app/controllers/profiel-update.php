@@ -10,13 +10,11 @@ if (session_status() === PHP_SESSION_NONE) {
 // Controleer of de aanvraag een POST-verzoek is
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     // Controleer het CSRF-token
-
-    
-    // if (!isset($_POST['csrf_token']) || $_POST['csrf_token'] !== ($_SESSION['csrf_token'] ?? '')) {
-    //     http_response_code(401);
-    //     view('401', ['error' => 'CSRF-token mismatch error.']);
-    //     die();
-    // }
+    if (!isset($_POST['csrf_token']) || $_POST['csrf_token'] !== ($_SESSION['csrf_token'] ?? '')) {
+        http_response_code(401);
+        view('401', ['error' => 'CSRF-token mismatch error.']);
+        die();
+    }
 
     // Haal het ingelogde gebruikers-ID op (bijvoorbeeld uit de sessie)
     $user = $_SESSION['user'] ?? null;

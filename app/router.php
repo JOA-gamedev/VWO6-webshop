@@ -20,6 +20,11 @@ $route->get('logout', "controllers/logout.php");
 $route->get('registreer-create', "controllers/registreer-create.php");
 $route->post('registreer-store', "controllers/registreer-store.php");
 
+$route->get('cart', "controllers/cart/cart-show.php");
+$route->post('cart/add', "controllers/cart/cart-add.php");
+$route->post('cart/remove', "controllers/cart/cart-remove.php");
+$route->post('cart/bestel', "controllers/cart/cart-bestel.php");
+
 if (auth()) { //alleen als je ingelogd bent kan je dit doen
     $route->get('api/users-search', "controllers/api/users-search.php");
     $route->get('users', "views/users-search.view.php");
