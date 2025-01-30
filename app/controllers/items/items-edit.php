@@ -1,6 +1,22 @@
 <?php
-$db = new Database();
+//geadapteerd van product-edit.php
+//haalt item op die ID in GET matched
+//ADMIN-FUNCTIE
 
-view('items-edit', [
-    'item' => $db->query("SELECT * FROM items WHERE id=?", [$_GET['id']])->fetch()
+$id = $_GET['id'] ?? null;
+
+if (!$id) {
+    die("Geen product-ID opgegeven.");
+}
+
+$db = new Database();
+$item = $db->query('SELECT * FROM producten WHERE id = ?', [$id])->fetch();
+
+if (!$item) {
+    die("Product niet gevonden.");
+}
+
+//item niet items want we kijken maar naar één item nu
+view("items-edit", [
+    'item' => $item,
 ]);

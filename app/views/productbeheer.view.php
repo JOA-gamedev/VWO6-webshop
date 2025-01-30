@@ -1,4 +1,8 @@
 <?php
+
+//KORTE UITLEG: dit bestand gebruikt axios om dynamisch te zoeken in de producten
+//ONDERDEEL VAN ADMIN FUNCTIES
+
 view("parts/header", ['title' => 'Zoek gebruikers']);
 view("parts/navigatie-menu");
 ?>
@@ -62,7 +66,7 @@ view("parts/navigatie-menu");
                 },
                 goto(id) {
                     //Deze url bestaat nog niet maar kan je zelf aanmaken
-                    location.href = '/product-edit?id=' + id;
+                    location.href = '/items-edit?id=' + id;
                 },
                 // dlt(id) { //afkorting want delete werkt niet
                 //     //Deze url bestaat nog niet maar kan je zelf aanmaken                delete functionaleit kan beter verwerkt worden in de productpagina

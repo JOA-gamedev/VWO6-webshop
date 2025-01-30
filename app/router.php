@@ -44,11 +44,18 @@ if (auth()) { //alleen als je ingelogd bent kan je dit doen
 //alleen toegankelijk als administrator
 if (hasRole('admin')) {
     //hier komen de routes die alleen toegankelijk zijn voor een admin
+
+    $route->get('admin-dashboard', "views/admin-dashboard.view.php");
+
     $route->get('api/productbeheer-search', "controllers/api/productbeheer-search.php");
     $route->get('productbeheer', "views/productbeheer.view.php");
-    $route->get('product-edit', "controllers/product-edit.php");
-    $route->post('product-update', "controllers/product-update.php");
-    $route->get('admin-dashboard', "views/admin-dashboard.view.php");
+
+    
+    //ADMIN-only "items" bestanden
+    $route->get('items-edit', "controllers/items/items-edit.php");
+    //TODO items-update
+
+
 }
 
 http_response_code(404);
