@@ -27,8 +27,8 @@ if (!empty($errors)) {
 $db = new Database();
 $db->query('UPDATE producten SET naam = ?, prijs = ?, beschrijving = ? WHERE id = ?', [
     $_POST['naam'],
+    floatval($_POST['prijs']),
     $_POST['beschrijving'],
-    $_POST['prijs'],
     $_POST['id']
 ]);
 
