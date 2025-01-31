@@ -36,6 +36,10 @@ view("parts/navigatie-menu");
         <label for="postcode" class="block text-sm font-medium text-gray-700">Postcode:</label>
         <input type="text" id="postcode" name="postcode" value="<?= htmlspecialchars($profile['postcode'] ?? '') ?>" required class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
     </div>
+    <div class="mb-4">
+        <label for="plaats" class="block text-sm font-medium text-gray-700">Plaats:</label>
+        <input type="text" id="plaats" name="plaats" value="<?= htmlspecialchars($profile['plaats'] ?? '') ?>" required class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
+    </div>
     <button type="submit" class="w-full bg-indigo-600 text-white py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">Opslaan</button>
 </form>
 

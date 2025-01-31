@@ -24,10 +24,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $straat = trim($_POST['straat'] ?? '');
         $huisnr = trim($_POST['huisnr'] ?? '');
         $postcode = trim($_POST['postcode'] ?? '');
+        $plaats = trim($_POST['plaats'] ?? '');
         $password = $_POST['password'] ?? '';
         $password_confirmation = $_POST['password_confirmation'] ?? '';
 
-        if ($name === '' || !$email || $straat === '' || $huisnr === '' || $postcode === '') {
+        if ($name === '' || !$email || $straat === '' || $huisnr === '' || $postcode === '' || $plaats === '') {
             flash('Ongeldige invoer. Controleer uw gegevens.', false, 3000);
             view('profiel-edit', [
                 'profile' => [
@@ -35,7 +36,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                     'email' => htmlspecialchars($email),
                     'straat' => htmlspecialchars($straat),
                     'huisnr' => htmlspecialchars($huisnr),
-                    'postcode' => htmlspecialchars($postcode)
+                    'postcode' => htmlspecialchars($postcode),
+                    'plaats' => htmlspecialchars($plaats)
                 ],
                 'csrfToken' => $_SESSION['csrf_token']
             ]);
@@ -44,8 +46,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
         // Werk de gebruikersgegevens bij in de database
         $db->query(
-            'UPDATE users SET name = ?, email = ?, straat = ?, huisnr = ?, postcode = ? WHERE id = ?',
-            [$name, $email, $straat, $huisnr, $postcode, $userId]
+            'UPDATE users SET name = ?, email = ?, straat = ?, huisnr = ?, postcode = ?, plaats = ? WHERE id = ?',
+            [$name, $email, $straat, $huisnr, $postcode, $plaats, $userId]
         );
         flash('Profiel succesvol bijgewerkt.', true, 3000);
 

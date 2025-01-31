@@ -11,7 +11,7 @@ if ($user && isset($user['id'])) {
     $userId = $user['id'];
 
     // Haal de gebruikersgegevens op uit de database
-    $profile = $db->query('SELECT id, email, password, name, straat, huisnr, postcode, role, created_at, updated_at, deleted_at FROM jel_bestelt.users WHERE id = ?', [$userId])->fetch();
+    $profile = $db->query('SELECT id, email, password, name, straat, huisnr, postcode, plaats, role, created_at, updated_at, deleted_at FROM jel_bestelt.users WHERE id = ?', [$userId])->fetch();
 
     if (!$profile) {
         // Standaardwaarden als er geen profiel gevonden wordt
@@ -20,7 +20,8 @@ if ($user && isset($user['id'])) {
             'name' => 'Onbekend',
             'straat' => 'Niet beschikbaar',
             'huisnr' => 'Niet beschikbaar',
-            'postcode' => 'Niet beschikbaar'
+            'postcode' => 'Niet beschikbaar',
+            'plaats' => 'Niet beschikbaar'
         ];
     }
 } else {
@@ -30,7 +31,8 @@ if ($user && isset($user['id'])) {
         'name' => 'Niet beschikbaar',
         'straat' => 'Niet beschikbaar',
         'huisnr' => 'Niet beschikbaar',
-        'postcode' => 'Niet beschikbaar'
+        'postcode' => 'Niet beschikbaar',
+        'plaats' => 'Niet beschikbaar'
     ];
 }
 
