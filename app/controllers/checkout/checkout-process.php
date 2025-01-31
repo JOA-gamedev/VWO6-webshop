@@ -11,6 +11,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $kaartnummer = $_POST['kaartnummer'] ?? '';
     $vervaldatum = $_POST['vervaldatum'] ?? '';
     $cvv = $_POST['cvv'] ?? '';
+    $kortingscode = $_POST['kortingscode'] ?? '';
 
     // Validate the form data
     $errors = [];
@@ -47,6 +48,16 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $errors[] = 'CVV is verplicht';
     }
 
+    // Validate kortingscode if provided
+    $kortingscodeData = null;
+    if (!empty($kortingscode)) {
+        $database = new Database();
+        $kortingscodeData = $database->query('SELECT * FROM kortingscodes WHERE code = ?', [$kortingscode])->fetch();
+        if (!$kortingscodeData) {
+            $errors[] = 'Ongeldige kortingscode';
+        }
+    }
+
     if (!empty($errors)) {
         // Handle errors (e.g., display them to the user)
         foreach ($errors as $error) {
@@ -71,13 +82,27 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     // Retrieve the order ID
     $bestelling_id = $database->lastInsertId();
 
+    // Calculate the total amount
+    $totaalbedrag = 0;
+    foreach ($_SESSION['winkelwagen'] as $id => $aantal) {
+        $product = $database->query('SELECT prijs FROM producten WHERE id = ?', [$id])->fetch();
+        $totaalbedrag += $product['prijs'] * $aantal;
+    }
+
+    // Apply the discount if a valid kortingscode is provided
+    if ($kortingscodeData) {
+        $percentage = $kortingscodeData['percentage'] / 100;
+        $totaalbedrag *= (1 - $percentage);
+    }
+
     // Loop through the cart items and save the order lines
     foreach ($_SESSION['winkelwagen'] as $id => $aantal) {
         $product = $database->query('SELECT prijs FROM producten WHERE id = ?', [$id])->fetch();
-        $database->query('INSERT INTO bestelregels (bestelling_id, product_id, prijs) VALUES (?, ?, ?)', [
+        $database->query('INSERT INTO bestelregels (bestelling_id, product_id, prijs, aantal) VALUES (?, ?, ?, ?)', [
             $bestelling_id,
             $id,
             $product['prijs'],
+            $aantal
         ]);
     }
 
@@ -85,7 +110,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     unset($_SESSION['winkelwagen']);
 
     // Provide a confirmation to the user
-    flash('Bedankt voor uw bestelling');
+    flash('Bedankt voor uw bestelling. Totaal bedrag: €' . number_format($totaalbedrag, 2, ',', '.'));
 
     // Redirect the user to the order confirmation page
     redirect('/bestel-status');
