@@ -54,10 +54,12 @@ if (hasRole('admin')) {
 
 
     //ADMIN-only "items" bestanden
-    $route->get('items/items-edit',
-        "controllers/items/items-edit.php"
-    );
+    $route->get('items/items-edit', "controllers/items/items-edit.php");
     $route->post('items/items-update', "controllers/items/items-update.php");
+    
+    //prod
+    $route->get('prod-img-edit', "controllers/images/prod-img-edit.php");
+    $route->post('prod-img-update', "controllers/images/prod-img-update.php");
 
 
 }
