@@ -52,11 +52,12 @@ if (hasRole('admin')) {
     $route->get('api/productbeheer-search', "controllers/api/productbeheer-search.php");
     $route->get('productbeheer', "views/productbeheer.view.php");
 
-    
+
     //ADMIN-only "items" bestanden
-    $route->get('items-edit', "controllers/items/items-edit.php");
-    $route->post('items-update', "controllers/items/items-update.php");
-    //TODO items-update
+    $route->get('items/items-edit',
+        "controllers/items/items-edit.php"
+    );
+    $route->post('items/items-update', "controllers/items/items-update.php");
 
 
 }
