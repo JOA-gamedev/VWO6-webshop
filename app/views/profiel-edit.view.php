@@ -18,23 +18,23 @@ view("parts/navigatie-menu");
     <?= csrf() ?>
     <div class="mb-4">
         <label for="name" class="block text-sm font-medium text-gray-700">Naam:</label>
-        <input type="text" id="name" name="name" value="<?= htmlspecialchars($profile['name']) ?>" required class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
+        <input type="text" id="name" name="name" value="<?= htmlspecialchars($profile['name'] ?? '') ?>" required class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
     </div>
     <div class="mb-4">
         <label for="email" class="block text-sm font-medium text-gray-700">E-mail:</label>
-        <input type="email" id="email" name="email" value="<?= htmlspecialchars($profile['email']) ?>" required class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
+        <input type="email" id="email" name="email" value="<?= htmlspecialchars($profile['email'] ?? '') ?>" required class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
     </div>
     <div class="mb-4">
         <label for="straat" class="block text-sm font-medium text-gray-700">Straat:</label>
-        <input type="text" id="straat" name="straat" value="<?= htmlspecialchars($profile['straat']) ?>" required class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
+        <input type="text" id="straat" name="straat" value="<?= htmlspecialchars($profile['straat'] ?? '') ?>" required class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
     </div>
     <div class="mb-4">
         <label for="huisnr" class="block text-sm font-medium text-gray-700">Huisnummer:</label>
-        <input type="text" id="huisnr" name="huisnr" value="<?= htmlspecialchars($profile['huisnr']) ?>" required class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
+        <input type="text" id="huisnr" name="huisnr" value="<?= htmlspecialchars($profile['huisnr'] ?? '') ?>" required class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
     </div>
     <div class="mb-4">
         <label for="postcode" class="block text-sm font-medium text-gray-700">Postcode:</label>
-        <input type="text" id="postcode" name="postcode" value="<?= htmlspecialchars($profile['postcode']) ?>" required class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
+        <input type="text" id="postcode" name="postcode" value="<?= htmlspecialchars($profile['postcode'] ?? '') ?>" required class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
     </div>
     <button type="submit" class="w-full bg-indigo-600 text-white py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">Opslaan</button>
 </form>
