@@ -10,17 +10,18 @@ view("parts/navigatie-menu");
     <h1 class="text-3xl my-4">Productbeheer</h1>
 </div>
 
-<div x-data="searchProducts()" class="m-10 p-4 flex flex-col justify-center items-center">
-    Zoek Producten: <input type="text" placeholder="begin te typen..." @keyup="fetchProducts()" x-model="searchfield">
+<div x-data="searchProducts()" class="max-w-4xl mx-auto bg-white p-8 rounded-lg shadow-md">
+    <label for="searchfield" class="block text-sm font-medium text-gray-700">Zoek Producten:</label>
+    <input type="text" id="searchfield" placeholder="Begin met typen..." @keyup="fetchProducts()" x-model="searchfield" class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
     <!-- indien er resultaten gevonden zijn dan tonen -->
     <template x-if="products.length">
-        <table class="border border-slate-400 dark:border-slate-300 mt-6 w-1/2">
+        <table class="border border-slate-400 dark:border-slate-300 mt-6 w-full">
             <thead>
                 <tr>
-                    <th class="font-bold">Naam</th>
-                    <th class="font-bold">Id</th>
-                    <th class="font-bold">Prijs</th>
-                    <th class="font-bold">beschrijving</td>
+                    <th class="font-bold text-left p-2">Naam</th>
+                    <th class="font-bold text-left p-2">Id</th>
+                    <th class="font-bold text-left p-2">Prijs</th>
+                    <th class="font-bold text-left p-2">Beschrijving</th>
                 </tr>
             </thead>
             <tbody>
@@ -44,7 +45,7 @@ view("parts/navigatie-menu");
     </template>
     <!-- Geen resultaten -->
     <template x-if="!products.length">
-        <div class="mt-10">Geen producten gevonden</div>
+        <div class="mt-10 text-gray-500">Geen producten gevonden</div>
     </template>
 </div>
 
@@ -82,3 +83,4 @@ view("parts/navigatie-menu");
 
 <?php
 view("parts/footer");
+?>
