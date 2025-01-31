@@ -8,24 +8,21 @@ view("parts/navigatie-menu");
         <form action="/registreer-store" method="POST" class="space-y-6 mt-6">
             <?= csrf()?>
             <div class="relative">
-                <input type="text" name="name" placeholder="Voor- en achternaam" class="block w-full rounded-md border border-gray-300 py-1.5 text-gray-900 shadow-sm placeholder-transparent peer">
-                <label class="absolute left-2 top-2 text-sm text-gray-500 peer-placeholder-shown:text-base peer-placeholder-shown:text-gray-400 peer-placeholder-shown:top-2 transition-all peer-focus:-top-2.5 peer-focus:text-sm peer-focus:text-gray-500">Voor- en achternaam</label>
+                <input type="text" name="name" placeholder="Voor- en achternaam" class="block w-full rounded-md border border-gray-300 py-1.5 text-gray-900 shadow-sm">
                 <?php if (errors('name')): ?>
                 <p class="text-red-500 text-sm my-2"><?= errors('name') ?></p>
                 <?php endif; ?>
             </div>
             
             <div class="relative">
-                <input type="email" name="email" placeholder="E-mailadres" class="block w-full rounded-md border border-gray-300 py-1.5 text-gray-900 shadow-sm placeholder-transparent peer">
-                <label class="absolute left-2 top-2 text-sm text-gray-500 peer-placeholder-shown:text-base peer-placeholder-shown:text-gray-400 peer-placeholder-shown:top-2 transition-all peer-focus:-top-2.5 peer-focus:text-sm peer-focus:text-gray-500">E-mailadres</label>
+                <input type="email" name="email" placeholder="E-mailadres" class="block w-full rounded-md border border-gray-300 py-1.5 text-gray-900 shadow-sm">
                 <?php if (errors('email')): ?>
                 <p class="text-red-500 text-sm my-2"><?= errors('email') ?></p>
                 <?php endif; ?>
             </div>
             
             <div class="relative">
-                <input type="password" name="password" placeholder="Wachtwoord" class="block w-full rounded-md border border-gray-300 py-1.5 text-gray-900 shadow-sm placeholder-transparent peer">
-                <label class="absolute left-2 top-2 text-sm text-gray-500 peer-placeholder-shown:text-base peer-placeholder-shown:text-gray-400 peer-placeholder-shown:top-2 transition-all peer-focus:-top-2.5 peer-focus:text-sm peer-focus:text-gray-500">Wachtwoord</label>
+                <input type="password" name="password" placeholder="Wachtwoord" class="block w-full rounded-md border border-gray-300 py-1.5 text-gray-900 shadow-sm">
                 <?php if (errors('password')): ?>
                 <p class="text-red-500 text-sm my-2"><?= errors('password') ?></p>
                 <?php endif; ?>

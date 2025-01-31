@@ -11,13 +11,11 @@ view("parts/navigatie-menu");
         <form class="space-y-6 mt-6" action="/login" method="POST">
             <?= csrf() ?>
             <div class="relative">
-                <input id="email" name="email" type="email" placeholder="Email address" autocomplete="email" required class="block w-full rounded-md border border-gray-300 py-1.5 text-gray-900 shadow-sm placeholder-transparent peer">
-                <label for="email" class="absolute left-2 top-2 text-sm text-gray-500 peer-placeholder-shown:text-base peer-placeholder-shown:text-gray-400 peer-placeholder-shown:top-2 transition-all peer-focus:-top-2.5 peer-focus:text-sm peer-focus:text-gray-500">Email address</label>
+                <input id="email" name="email" type="email" placeholder="Email address" autocomplete="email" required class="block w-full rounded-md border border-gray-300 py-1.5 text-gray-900 shadow-sm">
             </div>
 
             <div class="relative">
-                <input id="password" name="password" type="password" placeholder="Password" autocomplete="current-password" required class="block w-full rounded-md border border-gray-300 py-1.5 text-gray-900 shadow-sm placeholder-transparent peer">
-                <label for="password" class="absolute left-2 top-2 text-sm text-gray-500 peer-placeholder-shown:text-base peer-placeholder-shown:text-gray-400 peer-placeholder-shown:top-2 transition-all peer-focus:-top-2.5 peer-focus:text-sm peer-focus:text-gray-500">Password</label>
+                <input id="password" name="password" type="password" placeholder="Password" autocomplete="current-password" required class="block w-full rounded-md border border-gray-300 py-1.5 text-gray-900 shadow-sm">
                 <div class="text-sm mt-2">
                     <a href="#" class="font-semibold text-indigo-600 hover:text-indigo-500">Forgot password?</a>
                 </div>
