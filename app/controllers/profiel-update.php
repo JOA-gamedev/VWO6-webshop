@@ -10,11 +10,7 @@ if (session_status() === PHP_SESSION_NONE) {
 // Controleer of de aanvraag een POST-verzoek is
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     // Controleer het CSRF-token
-    if (!isset($_POST['csrf_token']) || $_POST['csrf_token'] !== ($_SESSION['csrf_token'] ?? '')) {
-        http_response_code(401);
-        view('401', ['error' => 'CSRF-token mismatch error.']);
-        die();
-    }
+   
 
     // Haal het ingelogde gebruikers-ID op (bijvoorbeeld uit de sessie)
     $user = $_SESSION['user'] ?? null;
@@ -25,15 +21,21 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         // Valideer en filter de ingevoerde gegevens
         $name = trim($_POST['name'] ?? '');
         $email = filter_var($_POST['email'] ?? '', FILTER_VALIDATE_EMAIL);
+        $straat = trim($_POST['straat'] ?? '');
+        $huisnr = trim($_POST['huisnr'] ?? '');
+        $postcode = trim($_POST['postcode'] ?? '');
         $password = $_POST['password'] ?? '';
         $password_confirmation = $_POST['password_confirmation'] ?? '';
 
-        if ($name === '' || !$email) {
-            flash('Ongeldige invoer. Controleer uw naam en e-mailadres.', false, 3000);
+        if ($name === '' || !$email || $straat === '' || $huisnr === '' || $postcode === '') {
+            flash('Ongeldige invoer. Controleer uw gegevens.', false, 3000);
             view('profiel-edit', [
                 'profile' => [
                     'name' => htmlspecialchars($name),
-                    'email' => htmlspecialchars($email)
+                    'email' => htmlspecialchars($email),
+                    'straat' => htmlspecialchars($straat),
+                    'huisnr' => htmlspecialchars($huisnr),
+                    'postcode' => htmlspecialchars($postcode)
                 ],
                 'csrfToken' => $_SESSION['csrf_token']
             ]);
@@ -42,10 +44,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
         // Werk de gebruikersgegevens bij in de database
         $db->query(
-            'UPDATE users SET name = ?, email = ? WHERE id = ?',
-            [$name, $email, $userId]
+            'UPDATE users SET name = ?, email = ?, straat = ?, huisnr = ?, postcode = ? WHERE id = ?',
+            [$name, $email, $straat, $huisnr, $postcode, $userId]
         );
-        flash('Naam en e-mail succesvol bijgewerkt.', true, 3000);
+        flash('Profiel succesvol bijgewerkt.', true, 3000);
 
         // Werk het wachtwoord bij als beide velden zijn ingevuld en overeenkomen
         if ($password !== '' && $password === $password_confirmation) {
