@@ -25,11 +25,11 @@ if (!empty($errors)) {
 
 //wijzigen doorvoeren
 $db = new Database();
-$db->query("UPDATE producten SET naam = :naam, beschrijving = :beschrijving, prijs = :prijs WHERE id = :id", [
-    'naam' => $_POST['naam'],
-    'beschrijving' => $_POST['beschrijving'],
-    'prijs' => $_POST['prijs'],
-    'id' => $_POST['id']
+$db->query('UPDATE producten SET naam = ?, prijs = ?, beschrijving = ? WHERE id = ?', [
+    $_POST['naam'],
+    $_POST['beschrijving'],
+    $_POST['prijs'],
+    $_POST['id']
 ]);
 
 flash("Item " . htmlspecialchars($_POST['naam']) . " is gewijzigd");

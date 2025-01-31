@@ -17,6 +17,6 @@ if (!$item) {
 }
 
 //item niet items want we kijken maar naar één item nu
-view("items-edit", [
+view("items/items-edit", [
     'item' => $item,
 ]);
