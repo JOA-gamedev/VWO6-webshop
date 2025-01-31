@@ -1,6 +1,11 @@
 <?php
 require "../src/Validator.php";
 
+// Start de sessie (indien nog niet gestart)
+if (session_status() === PHP_SESSION_NONE) {
+    session_start();
+}
+
 if (!Validator::required($_POST['email'])) {
     $errors['login'] = "Email mag niet leeg zijn";
 }
@@ -18,13 +23,21 @@ if (empty($errors)) {
         //wachtwoord controleren
         if (password_verify($_POST['password'], $user['password'])) {
 
+            // Controleer of het profiel is verwijderd
+            if ($user['deleted_at'] !== null) {
+                flash('Uw account is gedeactiveerd. Neem contact op met de beheerder.', false, 3000);
+                header('Location: /login');
+                exit;
+            }
+
             //gebruiker in session zetten, maar het wachtwoord laten we weg
             unset($user['password']);
             $_SESSION['user'] = $user;
 
             flash("Welkom terug " . $user['name'], true);
-            //doorsturen naar de home pagina (of pas aan
+            //doorsturen naar de home pagina (of pas aan)
             header("Location: /");
+            exit;
         } else {
             $errors['login'] = "Inloggegevens zijn niet correct";
         }
