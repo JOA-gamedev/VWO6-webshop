@@ -6,35 +6,40 @@
 view("parts/header", ['title' => 'Zoek gebruikers']);
 view("parts/navigatie-menu");
 ?>
-<h1 class="font-2xl font-bold m-10">Zoek Producten</h1>
+<div class="sm:mx-10">
+    <h1 class="text-3xl my-4">Productbeheer</h1>
+</div>
 
-<div x-data="searchProducts()" class="m-10">
-    Zoek Producten: <input type="text" @keyup="fetchProducts()" x-model="searchfield">
+<div x-data="searchProducts()" class="m-10 p-4 flex flex-col justify-center items-center">
+    Zoek Producten: <input type="text" placeholder="begin te typen..." @keyup="fetchProducts()" x-model="searchfield">
     <!-- indien er resultaten gevonden zijn dan tonen -->
     <template x-if="products.length">
-        <table class="w-1/2">
-            <!-- <tr>
-                    <td class="font-bold">Naam</td>
-                    <td class="font-bold">Id</td>
-                     <td class="font-bold">Prijs</td>
-                    <td class="font-bold">Edit</td>
-                </tr> -->
-            <!-- Loop door alle gevonden products -->
-            <template x-for="product in products">
-                <tr @click="goto(product.id)" class="hover:cursor-pointer hover:bg-blue-50">
-                    <!-- <tr> -->
-                    <td x-text="product.naam"></td>
-                    <td x-text="product.id"></td>
-
-                    <!-- <td @click="goto(product.id)">Edit</td> kan beter niet-->
-                    <!-- <td @click="dlt(product.id)">Delete</td> -->
-                    <!-- <td x-text="product.prijs"></td>
-                        <td x-text="product.type_id"></td>
-                        <td x-text="product.beschrijving"></td> -->
-
-                    <!-- edit button -->
+        <table class="border border-slate-400 dark:border-slate-300 mt-6 w-1/2">
+            <thead>
+                <tr>
+                    <th class="font-bold">Naam</th>
+                    <th class="font-bold">Id</th>
+                    <th class="font-bold">Prijs</th>
+                    <th class="font-bold">beschrijving</td>
                 </tr>
-            </template>
+            </thead>
+            <tbody>
+                <!-- Loop door alle gevonden products -->
+                <template x-for="product in products">
+
+                    <tr @click="goto(product.id)" class="bg-slate-200 hover:bg-slate-400 border border-slate-300">
+
+                        <td class="p-4" x-text="product.naam"></td>
+                        <td class="p-4" x-text="product.id"></td>
+                        <td class="p-4" x-text="product.prijs"></td>
+
+                        <td x-text="product.beschrijving.length >= 50 ? product.beschrijving.substring(0, 50) + '...' : product.beschrijving"
+                            class="p-4">
+                        </td>
+                    </tr>
+
+                </template>
+            </tbody>
         </table>
     </template>
     <!-- Geen resultaten -->
