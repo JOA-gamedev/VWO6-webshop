@@ -21,8 +21,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
         // Voer een hard delete uit door de gebruiker volledig te verwijderen
         $db->query(
-            'UPDATE jel_bestelt.users SET deleted_at = ? WHERE id = ?',
-            ['2025-01-31 16:49:26', $userId]
+            'UPDATE jel_bestelt.users SET deleted_at = NOW() WHERE id = ?',
+            [$userId]
         );
 
         // Log de gebruiker uit
