@@ -25,7 +25,7 @@ if (!empty($errors)) {
 
 //wijzigen doorvoeren
 $db = new Database();
-$db->query("UPDATE items SET naam = :naam, beschrijving = :beschrijving, prijs = :prijs WHERE id = :id", [
+$db->query("UPDATE producten SET naam = :naam, beschrijving = :beschrijving, prijs = :prijs WHERE id = :id", [
     'naam' => $_POST['naam'],
     'beschrijving' => $_POST['beschrijving'],
     'prijs' => $_POST['prijs'],
@@ -34,4 +34,4 @@ $db->query("UPDATE items SET naam = :naam, beschrijving = :beschrijving, prijs =
 
 flash("Item " . htmlspecialchars($_POST['naam']) . " is gewijzigd");
 //terugsturen naar de detail pagina van het item
-header("location: /items/" . $_POST['id']);
+header("location: /productbeheer");
