@@ -3,12 +3,12 @@ view("parts/header", ['title' => 'Bestelstatus']);
 view("parts/navigatie-menu");
 ?>
 <div class="bg-gray-100 min-h-screen flex items-center justify-center">
-    <div class="max-w-lg mx-auto mt-10 p-6 bg-white rounded-lg shadow-md">
+    <div class="max-w-7xl mx-auto mt-10 p-6 bg-white rounded-lg shadow-md">
         <h1 class="text-2xl font-bold mb-4">Uw bestellingen</h1>
         <?php if (!empty($orders)): ?>
-            <ul class="divide-y divide-gray-300">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
                 <?php foreach ($orders as $order): ?>
-                    <li class="py-4">
+                    <div class="p-4 bg-gray-200 rounded-lg shadow-md">
                         <p class="text-lg text-gray-700"><strong>Status:</strong> <?php echo htmlspecialchars($order['status'] ?? 'Onbekend'); ?></p>
                         <p class="text-lg text-gray-700"><strong>Straat:</strong> <?php echo htmlspecialchars($order['straat'] ?? 'Onbekend'); ?></p>
                         <p class="text-lg text-gray-700"><strong>Huisnummer:</strong> <?php echo htmlspecialchars($order['huisnr'] ?? 'Onbekend'); ?></p>
@@ -16,9 +16,9 @@ view("parts/navigatie-menu");
                         <p class="text-lg text-gray-700"><strong>Plaats:</strong> <?php echo htmlspecialchars($order['plaats'] ?? 'Onbekend'); ?></p>
                         <p class="text-lg text-gray-700"><strong>Besteldatum:</strong> <?php echo htmlspecialchars($order['created_at'] ?? 'Onbekend'); ?></p>
                         <p class="text-lg text-gray-700"><strong>Kortingcode:</strong> <?php echo htmlspecialchars($order['kortingcode_id'] ?? 'Geen'); ?></p>
-                    </li>
+                    </div>
                 <?php endforeach; ?>
-            </ul>
+            </div>
         <?php else: ?>
             <p class="text-lg text-gray-700">Geen bestellingen gevonden.</p>
         <?php endif; ?>

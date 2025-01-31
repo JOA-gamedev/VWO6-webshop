@@ -25,12 +25,15 @@ function isAdmin() {
             <?php if (auth()): ?>
             <a href="/besteld-show"
                 class="<?= isUri("besteld-show") ? 'underline ' : '' ?>text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md font-medium"> Uw bestellingen</a>
-                <a href="/cart" class="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md font-medium">Cart</a>        
             <?php endif; ?>
-            </div>
-        <div class="justify-end">
+        </div>
+        <div class="flex items-center space-x-4">
             <?php if (auth()): ?>
-
+                <a href="/cart" class="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md font-medium">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13l-1.6 8H19M7 13L5.4 5M7 13h10m-6 8a2 2 0 100-4 2 2 0 000 4zm6 0a2 2 0 100-4 2 2 0 000 4z" />
+                    </svg>
+                </a>
                 <div class="mr-2 py-1" x-data="{open: false}" @click="open = true" @mouseleave="open = false">
                     <div class="relative flex items-center space-x-1 cursor-pointer text-gray-700 hover:bg-pink-500 hover:text-gray-900 px-3 py-2 rounded-md text-sm font-medium">
                         <!-- Items waarop je kan klikken om uit te klappen -->
