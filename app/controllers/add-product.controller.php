@@ -4,12 +4,7 @@ require __DIR__ . '/../../src/Database.php';
 require __DIR__ . '/../../src/csrf.php'; // Include CSRF functions
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    if (!verify_csrf_token($_POST['csrf_token'])) {
-        http_response_code(403);
-        echo 'CSRF token mismatch.';
-        exit;
-    }
-
+    
     $naam = filter_input(INPUT_POST, 'naam', FILTER_SANITIZE_STRING);
     $beschrijving = filter_input(INPUT_POST, 'beschrijving', FILTER_SANITIZE_STRING);
     $prijs = filter_input(INPUT_POST, 'prijs', FILTER_VALIDATE_FLOAT);

@@ -27,6 +27,7 @@ $route->post('cart/bestel', "controllers/cart/cart-bestel.php");
 
 $route->get('checkout', "controllers/checkout/checkout-index.php");
 $route->post('checkout/process', "controllers/checkout/checkout-process.php");
+$route->post('checkout/apply-discount', "controllers/checkout/apply-discount.php");
 
 if (auth()) { //alleen als je ingelogd bent kan je dit doen
     $route->get('api/users-search', "controllers/api/users-search.php");
