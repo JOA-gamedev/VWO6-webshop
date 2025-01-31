@@ -34,6 +34,8 @@ if (auth()) { //alleen als je ingelogd bent kan je dit doen
     $route->get('profiel-edit', "controllers/profiel-edit.php"); // moet naar auth() maar voor nu is het hier makkelijker
     $route->post('profiel-update', "controllers/profiel-update.php"); // Voeg de ontbrekende route toe
     $route->post('profiel-delete', "controllers/profiel-delete.php"); // Voeg de route voor profiel verwijderen toe
+    $route->get('wachtwoord-aanpassen', "views/wachtwoord-aanpassen.view.php");
+    $route->post('wachtwoord-aanpassen', "controllers/wachtwoord-aanpassen.php");
     $route->get('bestel-status', "controllers/bestel-status.php");
     $route->get('bestellingen', "controllers/besteld-index.php");
     $route->get('bestellingen/{id}', "controllers/besteld-show.php");
