@@ -55,6 +55,7 @@ if (hasRole('admin')) {
     
     //ADMIN-only "items" bestanden
     $route->get('items-edit', "controllers/items/items-edit.php");
+    $route->post('items-update', "controllers/items/items-update.php");
     //TODO items-update
 
 
