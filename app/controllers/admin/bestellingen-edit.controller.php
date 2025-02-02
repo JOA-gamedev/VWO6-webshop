@@ -1,5 +1,4 @@
 <?php
-session_start();
 if (!class_exists('Database')) {
     require __DIR__ . '/../../../src/Database.php';
 }
@@ -20,10 +19,13 @@ if ($id) {
     $stmt->execute([$id]);
     $bestelling = $stmt->fetch(PDO::FETCH_ASSOC);
     if ($bestelling) {
-        $stmt = $pdo->prepare("SELECT product_id FROM `jel_bestelt`.`bestelregels` WHERE bestelling_id = ? LIMIT 1000");
+        $stmt = $pdo->prepare("SELECT product_id, prijs FROM `jel_bestelt`.`bestelregels` WHERE bestelling_id = ? LIMIT 1000");
         $stmt->execute([$id]);
-        $product_ids = $stmt->fetchAll(PDO::FETCH_COLUMN);
+        $bestelregels = $stmt->fetchAll(PDO::FETCH_ASSOC);
+        $product_ids = array_column($bestelregels, 'product_id');
+        $prijzen = array_column($bestelregels, 'prijs');
         $bestelling['product_ids'] = $product_ids;
+        $bestelling['prijzen'] = $prijzen;
     } else {
         $bestelling = [
             'id' => 'Niet beschikbaar',
@@ -31,7 +33,8 @@ if ($id) {
             'producten' => 'Niet beschikbaar',
             'totaalprijs' => 'Niet beschikbaar',
             'status' => 'Niet beschikbaar',
-            'product_ids' => []
+            'product_ids' => [],
+            'prijzen' => []
         ];
     }
 } else {
@@ -41,7 +44,8 @@ if ($id) {
         'producten' => 'Niet beschikbaar',
         'totaalprijs' => 'Niet beschikbaar',
         'status' => 'Niet beschikbaar',
-        'product_ids' => []
+        'product_ids' => [],
+        'prijzen' => []
     ];
 }
 

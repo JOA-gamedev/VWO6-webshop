@@ -61,18 +61,19 @@ function isAdmin() {
                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/>
                                 </svg>
                                 Berichten</a>
-                            <a href="/logout" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 w-full inline-flex items-center" role="menuitem" tabindex="-1" id="user-menu-item-3">
+                            <?php if (hasRole('admin')): ?>
+                                <a href="/admin-dashboard" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 w-full inline-flex items-center" role="menuitem" tabindex="-1" id="user-menu-item-3">
+                                    <svg xmlns="http://www.w3.org/2000/svg" class="-ml-1 mr-2 h-5 w-5 text-gray-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 3h18M3 9h18M3 15h18M3 21h18"/>
+                                    </svg>
+                                    Dashboard
+                                </a>
+                            <?php endif; ?>
+                            <a href="/logout" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 w-full inline-flex items-center" role="menuitem" tabindex="-1" id="user-menu-item-4">
                                 <svg xmlns="http://www.w3.org/2000/svg" class="-ml-1 mr-2 h-5 w-5 text-gray-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1"/>
                                 </svg>
                                 Sign out</a>
-
-                            <!-- checkt of user ADMIN is en geeft toegang tot dashboard -->
-                            <?php if (hasRole('admin')): ?>
-                                <a href="/admin-dashboard" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 w-full inline-flex items-center" role="menuitem" tabindex="-1" id="user-menu-item-3">
-                                Dashboard</a>
-                            <?php endif; ?>
-                            
                         </div>
                     </div>
                 </div>

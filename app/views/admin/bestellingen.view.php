@@ -15,7 +15,6 @@ view("parts/navigatie-menu");
                 <th class="font-bold text-left p-2">Klant ID</th>
                 <th class="font-bold text-left p-2">Producten</th>
                 <th class="font-bold text-left p-2">Prijzen</th>
-                <th class="font-bold text-left p-2">Totaalprijs</th>
                 <th class="font-bold text-left p-2">Status</th>
                 <th class="font-bold text-left p-2">Acties</th>
             </tr>
