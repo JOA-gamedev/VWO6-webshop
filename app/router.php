@@ -42,6 +42,10 @@ if (auth()) { //alleen als je ingelogd bent kan je dit doen
     $route->get('bestellingen/{id}', "controllers/besteld-show.php");
     $route->get('besteld-index', "views/besteld-index.view.php");
     $route->get('besteld-show', "views/besteld/besteld-show.view.php");
+    $route->get('user-management', "controllers/admin/user-management.controller.php");
+    $route->post('user-management/update', "controllers/admin/user-update.php");
+    $route->get('admin/user-edit', "controllers/admin/user-edit.controller.php");
+    $route->post('admin/user-delete', "controllers/admin/user-delete.controller.php");
 }
 
 //alleen toegankelijk als administrator
@@ -65,6 +69,9 @@ if (hasRole('admin')) {
     $route->get('admin/bestellingen', "controllers/admin/bestellingen.controller.php");
     $route->post('admin/bestellingen', "controllers/admin/bestellingen.controller.php");
     $route->get('admin/bestellingen-edit', "controllers/admin/bestellingen-edit.controller.php");
+    $route->post('admin/user-update', "controllers/admin/user-update.php");
+    $route->get('admin/user-management', "controllers/admin/user-management.controller.php");
+    $route->post('admin/user-restore', "controllers/admin/user-restore.controller.php");
 }
 
 http_response_code(404);
