@@ -72,6 +72,8 @@ if (hasRole('admin')) {
     $route->post('admin/user-update', "controllers/admin/user-update.php");
     $route->get('admin/user-management', "controllers/admin/user-management.controller.php");
     $route->post('admin/user-restore', "controllers/admin/user-restore.controller.php");
+    $route->post('admin/bestellingen-delete', "controllers/admin/bestellingen-delete.controller.php");
+    $route->post('admin/bestellingen-restore', "controllers/admin/bestellingen-restore.controller.php");
 }
 
 http_response_code(404);
