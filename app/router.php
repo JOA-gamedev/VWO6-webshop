@@ -53,7 +53,6 @@ if (hasRole('admin')) {
     $route->get('api/productbeheer-search', "controllers/api/productbeheer-search.php");
     $route->get('productbeheer', "views/productbeheer.view.php");
 
-
     //ADMIN-only "items" bestanden
     $route->get('items/items-edit', "controllers/items/items-edit.php");
     $route->post('items/items-update', "controllers/items/items-update.php");
@@ -62,7 +61,10 @@ if (hasRole('admin')) {
     $route->get('prod-img-edit', "controllers/images/prod-img-edit.php");
     $route->post('prod-img-update', "controllers/images/prod-img-update.php");
 
-
+    // Bestellingen management routes
+    $route->get('admin/bestellingen', "controllers/admin/bestellingen.controller.php");
+    $route->post('admin/bestellingen', "controllers/admin/bestellingen.controller.php");
+    $route->get('admin/bestellingen-edit', "controllers/admin/bestellingen-edit.controller.php");
 }
 
 http_response_code(404);

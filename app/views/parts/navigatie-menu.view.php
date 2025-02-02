@@ -68,10 +68,10 @@ function isAdmin() {
                                 Sign out</a>
 
                             <!-- checkt of user ADMIN is en geeft toegang tot dashboard -->
-                            <? if (hasRole('admin')): ?>
+                            <?php if (hasRole('admin')): ?>
                                 <a href="/admin-dashboard" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 w-full inline-flex items-center" role="menuitem" tabindex="-1" id="user-menu-item-3">
                                 Dashboard</a>
-                            <? endif; ?>
+                            <?php endif; ?>
                             
                         </div>
                     </div>
