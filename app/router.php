@@ -74,6 +74,9 @@ if (hasRole('admin')) {
     $route->post('admin/user-restore', "controllers/admin/user-restore.controller.php");
     $route->post('admin/bestellingen-delete', "controllers/admin/bestellingen-delete.controller.php");
     $route->post('admin/bestellingen-restore', "controllers/admin/bestellingen-restore.controller.php");
+
+    //kortingscodes routes
+    $route->get('kortingscodes', "controllers/kortingscodes/create.php");
 }
 
 http_response_code(404);
