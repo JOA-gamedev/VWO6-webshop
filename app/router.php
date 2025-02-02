@@ -76,7 +76,10 @@ if (hasRole('admin')) {
     $route->post('admin/bestellingen-restore', "controllers/admin/bestellingen-restore.controller.php");
 
     //kortingscodes routes
-    $route->get('kortingscodes', "controllers/kortingscodes/create.php");
+    $route->get('kortingscodes', "controllers/kortingscodes/index.php");
+    $route->post('kortingscodes/update', "controllers/kortingscodes/update.php");
+    
+
 }
 
 http_response_code(404);
