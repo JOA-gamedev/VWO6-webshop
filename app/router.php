@@ -78,6 +78,7 @@ if (hasRole('admin')) {
     //kortingscodes routes
     $route->get('kortingscodes', "controllers/kortingscodes/index.php");
     $route->post('kortingscodes/update', "controllers/kortingscodes/update.php");
+    $route->post('kortingscodes/create', "controllers/kortingscodes/create.php");
     
 
 }
