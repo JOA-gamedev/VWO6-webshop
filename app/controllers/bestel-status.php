@@ -9,7 +9,11 @@ $userId = $_SESSION['user']['id'] ?? null;
 // Haal de bestellingen op als de gebruiker is ingelogd
 $orders = [];
 if ($userId) {
-    $orders = $db->query('SELECT * FROM bestellingen WHERE klant_id = ?', [$userId])->fetchAll();
+    $orders = $db->query('
+        SELECT b.*, k.percentage 
+        FROM bestellingen b 
+        LEFT JOIN kortingcodes k ON b.kortingcode_id = k.id 
+        WHERE b.klant_id = ?', [$userId])->fetchAll();
 }
 
 // Toon de bestellingen in de view

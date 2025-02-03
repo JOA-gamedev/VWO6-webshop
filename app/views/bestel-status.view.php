@@ -15,7 +15,7 @@ view("parts/navigatie-menu");
             <p class="text-lg text-gray-700"><strong>Postcode:</strong> <?php echo htmlspecialchars($order['postcode'] ?? 'Onbekend'); ?></p>
             <p class="text-lg text-gray-700"><strong>Plaats:</strong> <?php echo htmlspecialchars($order['plaats'] ?? 'Onbekend'); ?></p>
             <p class="text-lg text-gray-700"><strong>Besteldatum:</strong> <?php echo htmlspecialchars($order['created_at'] ?? 'Onbekend'); ?></p>
-            <p class="text-lg text-gray-700"><strong>Kortingcode:</strong> <?php echo htmlspecialchars($order['kortingcode_id'] ?? 'Geen'); ?></p>
+            <p class="text-lg text-gray-700"><strong>Korting:</strong> <?php echo $order['percentage'] !== null ? htmlspecialchars($order['percentage']) . '%' : 'Geen'; ?></p>
         </div>
         <?php endforeach; ?>
     </div>

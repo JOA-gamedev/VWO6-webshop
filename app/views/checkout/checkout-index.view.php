@@ -55,13 +55,13 @@ view("parts/navigatie-menu");
                 <label for="cvv" class="block text-sm font-medium text-gray-700">CVV:</label>
                 <input type="text" id="cvv" name="cvv" class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm" required>
             </div>
-            <h2 class="text-2xl font-bold mt-4">Kortingscode</h2>
+            <h2 class="text-2xl font-bold mt-4">Kortingcode</h2>
             <div class="mb-4">
-                <label for="kortingscode" class="block text-sm font-medium text-gray-700">Kortingscode:</label>
-                <div class="flex items-center">
-                    <input type="text" id="kortingscode" name="kortingscode" class="mt-1 block w-1/7 px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
-                    <button type="button" class="ml-2 bg-blue-500 text-white px-2 py-1 rounded" onclick="applyDiscount()">Toevoegen</button>
-                </div>
+                <label for="kortingcode" class="block text-sm font-medium text-gray-700">Kortingcode:</label>
+                <form action="/checkout/apply-discount" method="post" class="flex items-center">
+                    <input type="text" id="kortingcode" name="kortingcode" class="mt-1 block w-1/7 px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
+                    <button type="submit" class="ml-2 bg-blue-500 text-white px-2 py-1 rounded">Toevoegen</button>
+                </form>
             </div>
             <div class="text-right">
                 <button type="submit" class="bg-green-500 text-white px-4 py-2 rounded">Bestelling plaatsen</button>
@@ -75,20 +75,5 @@ view("parts/navigatie-menu");
     <p class="text-center text-red-500">Uw winkelwagen is leeg.</p>
     <?php endif; ?>
 </div>
-<script>
-function applyDiscount() {
-    const kortingscode = document.getElementById('kortingscode').value;
-    const form = document.createElement('form');
-    form.method = 'post';
-    form.action = '/checkout/apply-discount';
-    const input = document.createElement('input');
-    input.type = 'hidden';
-    input.name = 'kortingscode';
-    input.value = kortingscode;
-    form.appendChild(input);
-    document.body.appendChild(form);
-    form.submit();
-}
-</script>
 <?php
 view("parts/footer");
