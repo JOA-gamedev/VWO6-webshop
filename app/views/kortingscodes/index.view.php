@@ -21,6 +21,7 @@ view("parts/navigatie-menu"); // Laad het navigatiemenu
             <!-- kortingscodes in de tabel -->
             <?php foreach ($kortingscodes as $kortingscode): ?>
             <tr class="hover:bg-slate-100">
+                <!-- UPDATE -->
                 <form action="/kortingscodes/update" method="POST" class="">
                 <?= csrf() ?>
                 <input type="hidden" name="id" value="<?= $kortingscode['id'] ?>">
@@ -29,7 +30,7 @@ view("parts/navigatie-menu"); // Laad het navigatiemenu
                         <input type="text" name="code" value="<?= htmlspecialchars($kortingscode['code']) ?>" class="border-0 bg-transparent">
                     </td>
 
-                    <td class="p-0 border-collapse border border-b-1 border-slate-300">
+                    <td class="p-0 pr-2 border-collapse border border-b-1 border-slate-300">
                         <input type="number" name="percentage" max="100" value="<?= htmlspecialchars($kortingscode['percentage']) ?>" class="border-0 bg-transparent text-right">
                         %
                     </td>
@@ -39,6 +40,14 @@ view("parts/navigatie-menu"); // Laad het navigatiemenu
                     </td>
 
                 </form>
+                <!-- DELETE -->
+                <td>
+                    <form action="kortingscodes/delete" method="post" class="inline-block">
+                        <?= csrf() ?>
+                        <input type="hidden" name="id" value="<?= $kortingscode['id'] ?>">
+                        <button type="submit" class="bg-red-200 hover:bg-red-100 text-red-700 font-bold py-2 px-4">Verwijderen</button>
+                    </form>
+                </td>
             </tr>
             <?php endforeach; ?>
 

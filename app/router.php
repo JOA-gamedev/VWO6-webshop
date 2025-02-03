@@ -79,8 +79,7 @@ if (hasRole('admin')) {
     $route->get('kortingscodes', "controllers/kortingscodes/index.php");
     $route->post('kortingscodes/update', "controllers/kortingscodes/update.php");
     $route->post('kortingscodes/create', "controllers/kortingscodes/create.php");
-    
-
+    $route->post('kortingscodes/delete', "controllers/kortingscodes/delete.php");
 }
 
 http_response_code(404);
