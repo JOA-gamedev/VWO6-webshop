@@ -1,15 +1,26 @@
 <?php
-view("parts/header", ['title' => 'item ' . $item['id']]);
+view("parts/header", ['title' => $item['id']]);
 view("parts/navigatie-menu");
 ?>
 <?php if ($item['deleted_at'] === null): ?>
-    <h1 class="text-3xl my-4">Item <?= htmlspecialchars($item['naam']) ?></h1>
-    <p class="my-4">Elke veld van 'item' kan hier nu worden gebruikt<br>
-        id: <?= $item['id'] ?><br>
-        naam: <?= htmlspecialchars($item['naam']) ?><br>
-        beschrijving: <?= htmlspecialchars($item['beschrijving']) ?><br>
-        prijs: <?= $item['prijs']; ?><br>
-    </p>
+    <div class="container mx-auto p-4">
+        <h1 class="text-3xl my-4 font-bold text-center"><?= htmlspecialchars($item['naam']) ?></h1>
+        <div class="flex flex-col md:flex-row items-center md:items-start">
+            <img src="/images/<?= htmlspecialchars($item['afbeelding']) ?>" alt="<?= htmlspecialchars($item['naam']) ?>" class="w-full md:w-1/2 h-64 object-contain mb-4 md:mb-0 md:mr-4 rounded">
+            <div class="md:w-1/2">
+                    naam: <?= htmlspecialchars($item['naam']) ?><br>
+                    beschrijving: <?= htmlspecialchars($item['beschrijving']) ?><br>
+                    prijs: <?= $item['prijs']; ?><br>
+                </p>
+                <!-- Add to cart form -->
+                <form action="/cart/add" method="post" class="mt-2">
+                <?= csrf() ?>
+                    <input type="hidden" name="id" value="<?= $item['id'] ?>">
+                    <button type="submit" class="bg-blue-500 text-white px-4 py-2 rounded">Add to Cart</button>
+                </form>
+            </div>
+        </div>
+    </div>
 <?php else: ?>
     <p class="text-red-500">This item has been deleted.</p>
 <?php endif; ?>

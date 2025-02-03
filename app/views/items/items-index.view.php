@@ -9,14 +9,18 @@ view("parts/navigatie-menu");
         <!-- loop door alle items heen -->
         <?php foreach ($items as $item) : ?>
         <?php if ($item['deleted_at'] === null): ?>
-        <div class="mb-2 p-4 border rounded shadow-sm">
-            <img src="/images/<?= htmlspecialchars($item['afbeelding']) ?>"
-                alt="<?= htmlspecialchars($item['naam']) ?>" class="w-full h-48 object-contain mb-2 rounded">
-            <span class="font-semibold"><?= $item['id'] ?> - <?= htmlspecialchars($item['naam']) ?></span><br>
-            <span class="text-gray-700"><?= htmlspecialchars($item['beschrijving']) ?></span><br>
-            <span class="text-green-600 font-bold"><?= htmlspecialchars($item['prijs']) ?></span><br>
-            <a href="/items/items-show/<?= $item['id'] ?>"
-                class="font-medium text-blue-600 dark:text-blue-500 hover:underline">Link naar item</a>
+        <div class="mb-2 p-4 border rounded shadow-sm flex flex-col justify-between">
+            <div>
+                <a href="/items/items-show/<?= $item['id'] ?>">
+                    <img src="/images/<?= htmlspecialchars($item['afbeelding']) ?>"
+                        alt="<?= htmlspecialchars($item['naam']) ?>" class="w-full h-48 object-contain mb-2 rounded">
+                </a>
+                <a href="/items/items-show/<?= $item['id'] ?>" class="font-semibold">
+                    <?= $item['id'] ?> - <?= htmlspecialchars($item['naam']) ?>
+                </a><br>
+                <span class="text-gray-700"><?= htmlspecialchars($item['beschrijving']) ?></span><br>
+                <span class="text-green-600 font-bold"><?= htmlspecialchars($item['prijs']) ?></span><br>
+            </div>
             <!-- Add to cart form -->
             <form action="/cart/add" method="post" class="mt-2">
             <?= csrf() ?>
