@@ -26,8 +26,11 @@ if ($id) {
             'straat' => 'Niet beschikbaar',
             'huisnr' => 'Niet beschikbaar',
             'postcode' => 'Niet beschikbaar',
-            'plaats' => 'Niet beschikbaar'
+            'plaats' => 'Niet beschikbaar',
+            'password' => ''
         ];
+    } else {
+        $user['password'] = ''; // Do not pass the hashed password to the view
     }
 } else {
     $user = [
@@ -37,7 +40,8 @@ if ($id) {
         'straat' => 'Niet beschikbaar',
         'huisnr' => 'Niet beschikbaar',
         'postcode' => 'Niet beschikbaar',
-        'plaats' => 'Niet beschikbaar'
+        'plaats' => 'Niet beschikbaar',
+        'password' => ''
     ];
 }
 
