@@ -8,8 +8,9 @@ view("parts/navigatie-menu");
     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
         <!-- loop door alle items heen -->
         <?php foreach ($items as $item) : ?>
+        <?php if ($item['deleted_at'] === null): ?>
         <div class="mb-2 p-4 border rounded shadow-sm">
-        <img src="/images/<?= htmlspecialchars($product['afbeelding']) ?>"
+            <img src="/images/<?= htmlspecialchars($item['afbeelding']) ?>"
                 alt="<?= htmlspecialchars($item['naam']) ?>" class="w-full h-48 object-contain mb-2 rounded">
             <span class="font-semibold"><?= $item['id'] ?> - <?= htmlspecialchars($item['naam']) ?></span><br>
             <span class="text-gray-700"><?= htmlspecialchars($item['beschrijving']) ?></span><br>
@@ -22,15 +23,8 @@ view("parts/navigatie-menu");
                 <input type="hidden" name="id" value="<?= $item['id'] ?>">
                 <button type="submit" class="bg-blue-500 text-white px-4 py-2 rounded">Add to Cart</button>
             </form>
-            <?php
-                view('parts/delete-button', [
-                    'action' => "/items/{$item['id']}",
-                    'titel' => 'Delete',
-                    'content' => 'Are you sure?',
-                    'class' => 'inline-block mt-2 text-red-600'
-                ]);
-                ?>
         </div>
+        <?php endif; ?>
         <?php endforeach; ?>
     </div>
 </div>

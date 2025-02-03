@@ -14,7 +14,7 @@ if (isset($_GET['id'])) {
         $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
         // Fetch product details from the database
-        $stmt = $db->prepare("SELECT * FROM producten WHERE id = :id");
+        $stmt = $db->prepare("SELECT * FROM producten WHERE id = :id AND deleted_at IS NULL");
         $stmt->execute(['id' => $productId]);
         $product = $stmt->fetch(PDO::FETCH_ASSOC);
     } catch (PDOException $e) {

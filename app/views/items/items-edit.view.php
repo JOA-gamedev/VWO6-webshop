@@ -2,6 +2,7 @@
 view("parts/header", ['title' => 'item toevoegen']);
 view("parts/navigatie-menu");
 ?>
+<?php if ($item['deleted_at'] === null): ?>
 <h1 class="text-3xl my-4">Item <?= htmlspecialchars($item['naam']) ?> wijzigen</h1>
 
 <form action="/items/items-update" method="post">
@@ -32,6 +33,8 @@ view("parts/navigatie-menu");
     <input name="id" type="hidden" value="<?= $_GET["id"] ?>">
 
     <input type="submit" value="Wijzigen" class="border b-gray-600 rounded py-1 px-2 hover:bg-gray-100 cursor-pointer">
-
-    <?php
-    view("parts/footer");
+<?php else: ?>
+    <p class="text-red-500">This item has been deleted and cannot be edited.</p>
+<?php endif; ?>
+<?php
+view("parts/footer");

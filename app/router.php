@@ -40,17 +40,17 @@ if (auth()) { //alleen als je ingelogd bent kan je dit doen
     $route->get('bestel-status', "controllers/bestel-status.php");
     $route->get('bestellingen', "controllers/besteld-index.php");
     $route->get('bestellingen/{id}', "controllers/besteld-show.php");
-    $route->get('besteld-index', "views/besteld-index.view.php");
-    $route->get('besteld-show', "views/besteld/besteld-show.view.php");
-    $route->get('user-management', "controllers/admin/user-management.controller.php");
-    $route->post('user-management/update', "controllers/admin/user-update.php");
-    $route->get('admin/user-edit', "controllers/admin/user-edit.controller.php");
-    $route->post('admin/user-delete', "controllers/admin/user-delete.controller.php");
 }
 
 //alleen toegankelijk als administrator
 if (hasRole('admin')) {
     //hier komen de routes die alleen toegankelijk zijn voor een admin
+    
+    //gebruikers aanpassen als admin
+    $route->get('user-management', "controllers/admin/user-management.controller.php");
+    $route->post('user-management/update', "controllers/admin/user-update.php");
+    $route->get('admin/user-edit', "controllers/admin/user-edit.controller.php");
+    $route->post('admin/user-delete', "controllers/admin/user-delete.controller.php");
 
     $route->get('admin-dashboard', "views/admin-dashboard.view.php");
 

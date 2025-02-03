@@ -8,7 +8,7 @@ view("parts/navigatie-menu");
     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
         <?php foreach ($producten as $product): ?>
         <div class="mb-2 p-4 border rounded shadow-sm">
-            <img src="/images/<?= htmlspecialchars($product['afbeelding'] ?? '') ?>"
+            <img src="<?= htmlspecialchars($base_url . '/images/' . ($product['afbeelding'] ?? 'default.png')) ?>"
                 alt="<?= htmlspecialchars($product['naam'] ?? '') ?>" class="w-full h-48 object-cover mb-2 rounded">
             <span class="font-semibold"><?= htmlspecialchars($product['naam'] ?? '') ?></span><br>
             <span class="text-gray-700"><?= htmlspecialchars($product['beschrijving'] ?? '') ?></span><br>
