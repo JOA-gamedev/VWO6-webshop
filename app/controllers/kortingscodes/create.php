@@ -33,8 +33,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         exit;
     } else {
         $_SESSION['errors'] = $errors;
-        var_dump($errors);
-        die();
         header("Location: /kortingscodes");
         exit;
     }
