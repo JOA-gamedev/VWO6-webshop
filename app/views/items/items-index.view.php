@@ -16,7 +16,7 @@ view("parts/navigatie-menu");
                         alt="<?= htmlspecialchars($item['naam']) ?>" class="w-full h-48 object-contain mb-2 rounded">
                 </a>
                 <a href="/items/items-show/<?= $item['id'] ?>" class="font-semibold">
-                    <?= $item['id'] ?> - <?= htmlspecialchars($item['naam']) ?>
+                    <?= htmlspecialchars($item['naam']) ?>
                 </a><br>
                 <span class="text-gray-700"><?= htmlspecialchars($item['beschrijving']) ?></span><br>
                 <span class="text-green-600 font-bold"><?= htmlspecialchars($item['prijs']) ?></span><br>
@@ -25,7 +25,9 @@ view("parts/navigatie-menu");
             <form action="/cart/add" method="post" class="mt-2">
             <?= csrf() ?>
                 <input type="hidden" name="id" value="<?= $item['id'] ?>">
-                <button type="submit" class="bg-blue-500 text-white px-4 py-2 rounded">Add to Cart</button>
+                <button type="submit" class="bg-gray-500 text-white px-4 py-2 rounded">
+                    <img src="/images/add-to-basket.png" alt="Add to Cart" class="inline-block w-6 h-6">
+                </button>
             </form>
         </div>
         <?php endif; ?>

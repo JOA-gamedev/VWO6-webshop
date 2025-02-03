@@ -32,12 +32,13 @@ if (isset($_SESSION['order'])) {
             $prijs *= (1 - $percentage);
         }
 
-        $database->query('INSERT INTO bestelregels (bestelling_id, product_id, prijs, aantal, kortingcode_id) VALUES (?, ?, ?, ?, ?)', [
+        $database->query('INSERT INTO bestelregels (bestelling_id, product_id, prijs, aantal, kortingcode_id, totaalbedrag) VALUES (?, ?, ?, ?, ?, ?)', [
             $bestelling_id,
             $id,
             $prijs,
             $aantal,
-            $order['kortingcode']['id'] ?? null
+            $order['kortingcode']['id'] ?? null,
+            $order['totaalbedrag']
         ]);
     }
 

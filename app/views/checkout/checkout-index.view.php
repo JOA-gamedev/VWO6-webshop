@@ -58,19 +58,44 @@ view("parts/navigatie-menu");
             <h2 class="text-2xl font-bold mt-4">Kortingcode</h2>
             <div class="mb-4">
                 <label for="kortingcode" class="block text-sm font-medium text-gray-700">Kortingcode:</label>
-                <form action="/checkout/apply-discount" method="post" class="flex items-center">
+                <div class="flex items-center">
                     <input type="text" id="kortingcode" name="kortingcode" class="mt-1 block w-1/7 px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
-                    <button type="submit" class="ml-2 bg-blue-500 text-white px-2 py-1 rounded">Toevoegen</button>
-                </form>
+                    <button type="button" class="ml-2 bg-blue-500 text-white px-2 py-1 rounded" onclick="applyDiscount()">Toevoegen</button>
+                </div>
             </div>
             <div class="text-right">
                 <button type="submit" class="bg-green-500 text-white px-4 py-2 rounded">Bestelling plaatsen</button>
             </div>
         </form>
         <div class="mt-4 text-center">
-            <span class="text-lg font-bold">Totaal bedrag: €<?= number_format($totaalbedrag, 2, ',', '.') ?></span>
+            <span class="text-lg font-bold" id="totaalbedrag">Totaal bedrag: €<?= number_format($totaalbedrag, 2, ',', '.') ?></span>
         </div>
     </div>
+    <script>
+    function applyDiscount() {
+        const kortingcode = document.getElementById('kortingcode').value;
+        if (kortingcode) {
+            fetch('/checkout/apply-discount', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'X-CSRF-TOKEN': '<?= csrf() ?>'
+                },
+                body: JSON.stringify({ kortingcode })
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.success) {
+                    document.getElementById('totaalbedrag').textContent = 'Totaal bedrag: €' + data.newTotal;
+                } else {
+                    alert(data.message);
+                }
+            });
+        } else {
+            alert('Kortingcode is verplicht.');
+        }
+    }
+    </script>
     <?php else: ?>
     <p class="text-center text-red-500">Uw winkelwagen is leeg.</p>
     <?php endif; ?>

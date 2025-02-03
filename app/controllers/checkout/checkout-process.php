@@ -66,6 +66,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         exit;
     }
 
+    $database = new Database(); // Initialize the database
+
     // Calculate the total amount
     $totaalbedrag = 0;
     foreach ($_SESSION['winkelwagen'] as $id => $aantal) {
