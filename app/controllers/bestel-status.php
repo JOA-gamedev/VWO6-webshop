@@ -12,7 +12,11 @@ if ($userId) {
     $orders = $db->query(
         '
         SELECT b.*, k.percentage, 
-        (SELECT SUM(br.prijs * br.aantal) FROM bestelregels br WHERE br.bestelling_id = b.id) as totaalbedrag 
+        (SELECT SUM(br.prijs * br.aantal) FROM bestelregels br WHERE br.bestelling_id = b.id) as totaalbedrag,
+        (SELECT GROUP_CONCAT(CONCAT(p.naam, " (", br.aantal, "x)") SEPARATOR ", ") 
+         FROM bestelregels br 
+         JOIN producten p ON br.product_id = p.id 
+         WHERE br.bestelling_id = b.id) as producten 
         FROM bestellingen b 
         LEFT JOIN kortingcodes k ON b.kortingcode_id = k.id 
         WHERE b.klant_id = ? 

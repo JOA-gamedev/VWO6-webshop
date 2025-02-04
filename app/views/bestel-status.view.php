@@ -41,6 +41,10 @@ view("parts/navigatie-menu");
                     <p class="text-lg text-gray-700"><strong>Totaalbedrag:</strong>
                         &euro;<?php echo htmlspecialchars(number_format($order['totaalbedrag'], 2, ',', '.')); ?></p>
                 <?php endif; ?>
+                <?php if (!empty($order['producten'])) : ?>
+                    <p class="text-lg text-gray-700"><strong>Producten:</strong>
+                        <?php echo htmlspecialchars($order['producten']); ?></p>
+                <?php endif; ?>
             </div>
         <?php endforeach; ?>
     </div>
