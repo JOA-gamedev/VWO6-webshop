@@ -1,7 +1,27 @@
 <?php
 
 // Retrieve the products from the GET request
-$producten = $_GET['producten'] ?? [];
+//$producten = $_GET['producten'] ?? [];
+
+//instead of retrieving the products from the GET request, we will retrieve the products from the session
+$producten = [];
+$totaal = 0;
+
+// Check if the cart exists in the session
+if (isset($_SESSION['winkelwagen'])) {
+    $database = new Database();
+    $winkelwagen = $_SESSION['winkelwagen'];
+
+    // Loop through the cart items
+    foreach ($winkelwagen as $id => $aantal) {
+        $product = $database->query('SELECT * FROM producten WHERE id = :id', [':id' => $id])->fetch();
+        $product['aantal'] = $aantal;
+        $product['totaal'] = $product['prijs'] * $aantal;
+        $producten[] = $product;
+        $totaal += $product['totaal'];
+    }
+    $totaal = number_format($totaal, 2, ',', '.');
+}
 
 // Retrieve the user's profile data
 $profile = [
@@ -12,21 +32,19 @@ $profile = [
     'plaats' => user()->plaats ?? '',
 ];
 
-// Calculate the total amount
-$totaalbedrag = 0;
-foreach ($producten as $product) {
-    $totaalbedrag += $product['totaal'] ?? 0;
-}
-
 // Apply the discount if a valid kortingscode is provided
 if (isset($_SESSION['kortingscode'])) {
     $percentage = $_SESSION['kortingscode']['percentage'] / 100;
-    $totaalbedrag *= (1 - $percentage);
+    $totaal = str_replace(',', '.', $totaal); // Convert to a float-compatible format
+    $totaal = floatval($totaal) * (1 - $percentage);
 }
+
+// Format the total amount
+$totaal = number_format($totaal, 2, ',', '.');
 
 // Pass the products, profile data, and total amount to the view
 view('checkout/checkout-index', [
     'producten' => $producten,
     'profile' => $profile,
-    'totaalbedrag' => $totaalbedrag
+    'totaalbedrag' => $totaal
 ]);
