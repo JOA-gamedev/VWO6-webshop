@@ -27,7 +27,7 @@ $route->post('cart/bestel', "controllers/cart/cart-bestel.php");
 
 $route->get('checkout', "controllers/checkout/checkout-index.php");
 $route->post('checkout/process', "controllers/checkout/checkout-process.php");
-$route->post('checkout/apply-discount', "controllers/kortingscodes/apply-discount.php");
+$route->post('checkout/apply-discount', "controllers/checkout/apply-discount.php");
 $route->get('checkout/confirm', "controllers/checkout/checkout-confirm.php");
 $route->post('checkout/complete', "controllers/checkout/checkout-complete.php");
 
