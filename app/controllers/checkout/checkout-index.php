@@ -39,9 +39,6 @@ if (isset($_SESSION['kortingscode'])) {
     $totaal = floatval($totaal) * (1 - $percentage);
 }
 
-// Format the total amount
-$totaal = number_format($totaal, 2, ',', '.');
-
 // Pass the products, profile data, and total amount to the view
 view('checkout/checkout-index', [
     'producten' => $producten,

@@ -4,6 +4,8 @@
 if (isset($_SESSION['order'])) {
     $order = $_SESSION['order'];
 
+    
+
     // Initialize the database
     $database = new Database();
 
@@ -15,7 +17,7 @@ if (isset($_SESSION['order'])) {
         $order['postcode'],
         $order['plaats'],
         'betaald',
-        $order['kortingcode']['id'] ?? null
+        $_SESSION['kortingscode']['id'] ?? null
     ]);
 
     // Retrieve the order ID
@@ -37,7 +39,7 @@ if (isset($_SESSION['order'])) {
             $id,
             $prijs,
             $aantal,
-            $order['kortingcode']['id'] ?? null,
+            $_SESSION['kortingscode']['id'],
             $order['totaalbedrag']
         ]);
     }
