@@ -82,6 +82,10 @@ if (hasRole('admin')) {
     $route->post('kortingscodes/update', "controllers/kortingscodes/update.php");
     $route->post('kortingscodes/create', "controllers/kortingscodes/create.php");
     $route->post('kortingscodes/delete', "controllers/kortingscodes/delete.php");
+
+    // Product toevoegen routes
+    $route->get('admin/product-add', "views/admin/product-add.view.php");
+    $route->post('admin/product-add', "controllers/admin/product-add.php");
 }
 
 http_response_code(404);

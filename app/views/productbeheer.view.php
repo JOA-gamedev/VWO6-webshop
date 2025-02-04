@@ -8,6 +8,8 @@ view("parts/navigatie-menu");
 ?>
 <div class="sm:mx-10">
     <h1 class="text-3xl my-4">Productbeheer</h1>
+    <a href="/admin-dashboard" class="bg-gray-600 text-white px-2 py-1 rounded">Terug</a>
+    <a href="/admin/product-add" class="bg-indigo-600 text-white px-2 py-1 rounded">Product toevoegen</a>
 </div>
 
 <div x-data="searchProducts()" class="max-w-4xl mx-auto bg-white p-8 rounded-lg shadow-md">

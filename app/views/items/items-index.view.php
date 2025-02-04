@@ -5,6 +5,12 @@ view("parts/navigatie-menu");
 <div class="container mx-auto p-4">
     <h1 class="text-3xl my-4 font-bold text-center">Producten</h1>
 
+    <!-- Zoekformulier -->
+    <form method="GET" action="" class="mb-4 flex justify-start">
+        <input type="text" name="search" placeholder="Zoek producten..." class="border p-1 rounded w-1/4" value="<?= htmlspecialchars($_GET['search'] ?? '') ?>">
+        <button type="submit" class="bg-blue-500 text-white px-2 py-1 rounded ml-2">Zoeken</button>
+    </form>
+
     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
         <!-- loop door alle items heen -->
         <?php foreach ($items as $item) : ?>

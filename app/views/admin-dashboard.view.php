@@ -16,3 +16,4 @@ view("parts/navigatie-menu");
 
 <?php
 view("parts/footer");
+?>

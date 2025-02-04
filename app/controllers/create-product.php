@@ -1,3 +1,0 @@
-<?php
-
-view("create-product");
