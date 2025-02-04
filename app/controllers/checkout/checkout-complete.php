@@ -9,8 +9,9 @@ if (isset($_SESSION['order'])) {
 
     // Calculate the total amount with discount if applicable
     $totalAmount = $order['totaalbedrag'];
-    if (isset($_SESSION['kortingscode'])) {
-        $percentage = $_SESSION['kortingscode']['percentage'] / 100;
+    $kortingscode = $order['kortingcode'] ?? null;
+    if ($kortingscode) {
+        $percentage = $kortingscode['percentage'] / 100;
         $totalAmount = $totalAmount * (1 - $percentage);
     }
 
@@ -22,7 +23,7 @@ if (isset($_SESSION['order'])) {
         $order['postcode'],
         $order['plaats'],
         'betaald',
-        $_SESSION['kortingscode']['id'] ?? null
+        $kortingscode['id'] ?? null
     ]);
 
     // Retrieve the order ID
@@ -34,19 +35,27 @@ if (isset($_SESSION['order'])) {
         $prijs = $product['prijs'];
         
         // Apply the discount to each product price if a valid kortingcode is provided
-        if (isset($_SESSION['kortingscode'])) {
-            $percentage = $_SESSION['kortingscode']['percentage'] / 100;
+        if ($kortingscode) {
+            $percentage = $kortingscode['percentage'] / 100;
             $prijs *= (1 - $percentage);
         }
 
         $totaalbedrag = $prijs * $aantal;
 
-        $database->query("INSERT INTO bestelregels (bestelling_id, product_id, prijs, aantal, kortingcode_id, totaalbedrag) VALUES ('$bestelling_id', '$id', '$prijs', '$aantal', '" . ($_SESSION['kortingscode']['id'] ?? 'NULL') . "', '$totaalbedrag')");
+        $database->query('INSERT INTO bestelregels (bestelling_id, product_id, prijs, aantal, kortingcode_id, totaalbedrag) VALUES (?, ?, ?, ?, ?, ?)', [
+            $bestelling_id,
+            $id,
+            $prijs,
+            $aantal,
+            $kortingscode['id'] ?? null,
+            $totaalbedrag
+        ]);
     }
 
     // Clear the cart and order details from the session
     unset($_SESSION['winkelwagen']);
     unset($_SESSION['order']);
+    unset($_SESSION['kortingscode']); // Clear the discount code from the session
 
     // Provide a confirmation to the user
     flash('Bedankt voor uw bestelling. Totaal bedrag: €' . number_format($totalAmount, 2, ',', '.'));
