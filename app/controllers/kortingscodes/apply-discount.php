@@ -2,6 +2,7 @@
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $kortingscode = $_POST['kortingscode'] ?? '';
+    //naam kwam niet overeen
 
     if (!empty($kortingscode)) {
         $database = new Database();
@@ -11,10 +12,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $_SESSION['kortingscode'] = $kortingscodeData;
             flash('Kortingscode toegepast.');
         } else {
-            flash('Ongeldige kortingscode.', 'error');
+            flash('Ongeldige kortingscode.', false);
         }
     } else {
-        flash('Kortingscode is verplicht.', 'error');
+        flash('Kortingscode is verplicht.', false);
     }
 
     redirect('/checkout');
