@@ -3,6 +3,7 @@ view("parts/header", ['title' => 'Afrekenen']);
 view("parts/navigatie-menu");
 ?>
 <div class="container mx-auto p-4">
+    <a href="javascript:history.back()" class="bg-gray-500 text-white px-2 py-1 rounded mb-4 inline-block">Terug</a>
     <h1 class="text-3xl my-4 font-bold text-center">Afrekenen</h1>
     <?php if (!empty($producten)): ?>
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
@@ -79,8 +80,7 @@ view("parts/navigatie-menu");
                 </div>
             </form>
             <!-- aparte form voor kortingscode -->
-
-            <form action="checkout/apply-discount" method="post" class="mt-4">
+            <form action="/checkout/apply-discount" method="post" class="mt-4">
                 <?= csrf() ?>
                 <h2 class="text-2xl font-bold mt-4">Kortingcode</h2>
                 <div class="mb-4">
@@ -92,10 +92,9 @@ view("parts/navigatie-menu");
                     </div>
                 </div>
             </form>
-
             <div class="mt-4 text-center">
                 <span class="text-lg font-bold" id="totaalbedrag">Totaal bedrag:
-                    €<?= $totaalbedrag ?></span>
+                    €<?= $totaalbedrag ?></span><br>
             </div>
         </div>
 
@@ -105,3 +104,4 @@ view("parts/navigatie-menu");
 </div>
 <?php
 view("parts/footer");
+?>

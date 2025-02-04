@@ -30,7 +30,8 @@ if (isset($_SESSION['order'])) {
         $totalAmount = $originalAmount;
     }
 
-    
+    $totalAmount = floatval(str_replace(',', '.', $totalAmount)); // Ensure it's a float
+    $totalAmount = number_format($totalAmount, 2, ',', '.'); // Ensure 2 decimal places
 
     // Display the order confirmation details
     view('checkout/checkout-confirm', [
