@@ -18,7 +18,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         flash('Kortingscode is verplicht.', false);
     }
 
-    redirect('Location: /checkout');
+    header('Location: /checkout');
 } else {
     http_response_code(405); // Method Not Allowed
     echo json_encode(['error' => 'Invalid request method']);
