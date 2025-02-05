@@ -13,6 +13,14 @@ view("parts/navigatie-menu");
                 naam: <?= htmlspecialchars($item['naam']) ?><br>
                 beschrijving: <?= htmlspecialchars($item['beschrijving']) ?><br>
                 prijs: <?= $item['prijs']; ?><br>
+                <label for="size" class="block text-sm font-medium text-gray-700">Maat:</label>
+                <select id="size" name="size" class="border border-gray-300 rounded-md">
+                    <option value="xs">XS</option>
+                    <option value="s">S</option>
+                    <option value="m">M</option>
+                    <option value="l">L</option>
+                    <option value="xl">XL</option>
+                </select>
                 <!-- Add to cart form -->
                 <form action="/cart/add" method="post" class="mt-2">
                 <?= csrf() ?>

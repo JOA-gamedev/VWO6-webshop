@@ -26,6 +26,14 @@ view("parts/navigatie-menu");
                 </a><br>
                 <span class="text-gray-700"><?= htmlspecialchars($item['beschrijving']) ?></span><br>
                 <span class="text-green-600 font-bold"><?= htmlspecialchars($item['prijs']) ?></span><br>
+                <label for="size" class="block text-sm font-medium text-gray-700">Maat:</label>
+                <select id="size" name="size" class="border border-gray-300 rounded-md">
+                    <option value="xs">XS</option>
+                    <option value="s">S</option>
+                    <option value="m">M</option>
+                    <option value="l">L</option>
+                    <option value="xl">XL</option>
+                </select>
             </div>
             <!-- Add to cart form -->
             <form action="/cart/add" method="post" class="mt-2">
@@ -43,3 +51,4 @@ view("parts/navigatie-menu");
 
 <?php
 view("parts/footer");
+?>
