@@ -17,7 +17,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET') {
             $_SESSION['kortingscode'] = $kortingscodeData; // zet kortingscode object in sessie
 
             //bereken totaalbedrag
-            $originalAmount = $_SESSION['order']['totaalbedrag'];
+            $originalAmount = $_SESSION['order']['totaalbedrag'] ?? $_SESSION['totaal'] ?? 0;
             $discountAmount = $originalAmount * ($kortingscodeData['percentage'] / 100);
             $totalAmount = $originalAmount - $discountAmount;
 
