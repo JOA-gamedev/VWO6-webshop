@@ -70,7 +70,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     // Calculate the total amount
     $totaalbedrag = 0;
-    foreach ($_SESSION['winkelwagen'] as $id => $aantal) {
+    foreach ($_SESSION['winkelwagen'] as $key => $aantal) {
+        list($id, $size) = explode('-', $key);
         $product = $database->query('SELECT prijs FROM producten WHERE id = ?', [$id])->fetch();
         $totaalbedrag += $product['prijs'] * $aantal;
     }

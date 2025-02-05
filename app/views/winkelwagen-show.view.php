@@ -16,6 +16,7 @@ view("parts/navigatie-menu");
                         <span class="text-gray-700"><?= htmlspecialchars($product['beschrijving']) ?></span><br>
                         <span class="text-green-600 font-bold">Prijs:
                             €<?= number_format($product['prijs'], 2, ',', '.') ?></span><br>
+                        <span class="text-gray-700">Maat: <?= htmlspecialchars($product['maat']) ?></span><br>
                         <span class="text-gray-700">Aantal: <?= $product['aantal'] ?></span><br>
                         <span class="text-gray-900 font-bold">Totaal:
                             €<?= number_format($product['totaal'], 2, ',', '.') ?></span><br>
@@ -23,6 +24,7 @@ view("parts/navigatie-menu");
                     <form action="/cart/remove" method="post" class="mt-2">
                         <?= csrf() ?>
                         <input type="hidden" name="id" value="<?= $product['id'] ?>">
+                        <input type="hidden" name="size" value="<?= $product['maat'] ?>">
                         <button type="submit" class="bg-red-500 text-white px-4 py-2 rounded">Verwijderen</button>
                     </form>
                 </div>

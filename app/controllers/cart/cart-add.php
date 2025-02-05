@@ -4,15 +4,17 @@
 // 2
 // het post request bevat de volgende data:
 // - id (van het product)
+// - size (van het product)
 // 3
 // Onze winkel wagen staat in de session variabele $_SESSION['winkelwagen'].
 
-//indien er een id en een aantal is
-if ($_POST['id'] ?? null) {
+//indien er een id en een maat is
+if ($_POST['id'] ?? null && $_POST['size'] ?? null) {
     //haal de winkelwagen op uit de sessie
     $winkelwagen = $_SESSION['winkelwagen'] ?? [];
     //voeg het product toe aan de winkelwagen (als het al bestaat, wordt er één opgeteld bij het aantal)
-    $winkelwagen[$_POST['id']] = ($winkelwagen[$_POST['id']] ?? 0) + 1;
+    $key = $_POST['id'] . '-' . $_POST['size'];
+    $winkelwagen[$key] = ($winkelwagen[$key] ?? 0) + 1;
     //sla de winkelwagen op in de sessie
     $_SESSION['winkelwagen'] = $winkelwagen;
 }

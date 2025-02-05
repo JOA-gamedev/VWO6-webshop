@@ -15,6 +15,7 @@ view("parts/navigatie-menu");
                     <span class="textalchy-700"><?= htmlspecialchars($product['beschrijving'] ?? '') ?></span><br>
                     <span class="text-green-600 font-bold">Prijs:
                         €<?= number_format($product['prijs'] ?? 0, 2, ',', '.') ?></span><br>
+                    <span class="text-gray-700">Maat: <?= htmlspecialchars($product['maat'] ?? '') ?></span><br>
                     <span class="text-gray-700">Aantal: <?= $product['aantal'] ?? 0 ?></span><br>
                     <span class="text-gray-900 font-bold">Totaal:
                         €<?= number_format($product['totaal'] ?? 0, 2, ',', '.') ?></span><br>

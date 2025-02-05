@@ -30,7 +30,8 @@ if (isset($_SESSION['order'])) {
     $bestelling_id = $database->lastInsertId();
 
     // Loop through the cart items and save the order lines
-    foreach ($_SESSION['winkelwagen'] as $id => $aantal) {
+    foreach ($_SESSION['winkelwagen'] as $key => $aantal) {
+        list($id, $size) = explode('-', $key);
         $product = $database->query('SELECT prijs FROM producten WHERE id = ?', [$id])->fetch();
         $prijs = $product['prijs'];
         
@@ -42,13 +43,14 @@ if (isset($_SESSION['order'])) {
 
         $totaalbedrag = $prijs * $aantal;
 
-        $database->query('INSERT INTO bestelregels (bestelling_id, product_id, prijs, aantal, kortingcode_id, totaalbedrag) VALUES (?, ?, ?, ?, ?, ?)', [
+        $database->query('INSERT INTO bestelregels (bestelling_id, product_id, prijs, aantal, kortingcode_id, totaalbedrag, maat) VALUES (?, ?, ?, ?, ?, ?, ?)', [
             $bestelling_id,
             $id,
             $prijs,
             $aantal,
             $kortingscode['id'] ?? null,
-            $totaalbedrag
+            $totaalbedrag,
+            $size
         ]);
     }
 

@@ -4,7 +4,7 @@
 
 //Maak een bestelling aan
 $database = new Database();
-$database->query('INSERT INTO bestellingen (klant_id, status) VALUES (?,?,?)', [
+$database->query('INSERT INTO bestellingen (klant_id, status) VALUES (?,?)', [
     user()->id,
     'betaald',
 ]);
@@ -13,12 +13,14 @@ $database->query('INSERT INTO bestellingen (klant_id, status) VALUES (?,?,?)', [
 $bestelling_id = $database->lastInsertId();
 
 //doorloop de winkelwagen en vul de bestelregels
-foreach ($_SESSION['winkelwagen'] as $id => $aantal) {
+foreach ($_SESSION['winkelwagen'] as $key => $aantal) {
+    list($id, $size) = explode('-', $key);
     //sla de bestelregel op
-    $database->query('INSERT INTO bestelregels (bestelling_id, product_id, aantal) VALUES (?,?,?)', [
+    $database->query('INSERT INTO bestelregels (bestelling_id, product_id, aantal, maat) VALUES (?,?,?,?)', [
         $bestelling_id,
         $id,
         $aantal,
+        $size,
     ]);
 }
 
@@ -29,4 +31,4 @@ unset($_SESSION['winkelwagen']);
 flash('Bedankt voor uw bestelling');
 
 //stuur de gebruiker naar een pagina
-redirect('...');
+redirect('/order-confirmation');

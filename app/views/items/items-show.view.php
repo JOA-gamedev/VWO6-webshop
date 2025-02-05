@@ -15,6 +15,7 @@ view("parts/navigatie-menu");
                 prijs: <?= $item['prijs']; ?><br>
                 <label for="size" class="block text-sm font-medium text-gray-700">Maat:</label>
                 <select id="size" name="size" class="border border-gray-300 rounded-md">
+                    <option value="">Kies uw maat</option>
                     <option value="xs">XS</option>
                     <option value="s">S</option>
                     <option value="m">M</option>
@@ -22,16 +23,30 @@ view("parts/navigatie-menu");
                     <option value="xl">XL</option>
                 </select>
                 <!-- Add to cart form -->
-                <form action="/cart/add" method="post" class="mt-2">
+                <form id="addToCartForm" action="/cart/add" method="post" class="mt-2">
                 <?= csrf() ?>
                     <input type="hidden" name="id" value="<?= $item['id'] ?>">
+                    <input type="hidden" name="size" id="selectedSize">
                     <button type="submit" class="bg-gray-500 text-white px-4 py-2 rounded">
                         <img src="/images/add-to-basket.png" alt="Add to Cart" class="inline-block w-6 h-6">
                     </button>
                 </form>
+                <p id="sizeError" class="text-red-500 hidden">Kies een maat</p>
             </div>
         </div>
     </div>
+    <script>
+        document.getElementById('addToCartForm').addEventListener('submit', function(event) {
+            const size = document.getElementById('size').value;
+            if (!size) {
+                event.preventDefault();
+                document.getElementById('sizeError').classList.remove('hidden');
+            } else {
+                document.getElementById('selectedSize').value = size;
+                document.getElementById('sizeError').classList.add('hidden');
+            }
+        });
+    </script>
 <?php else: ?>
     <p class="text-red-500">This item has been deleted.</p>
 <?php endif; ?>

@@ -14,9 +14,11 @@ if (isset($_SESSION['winkelwagen'])) {
     $winkelwagen = $_SESSION['winkelwagen'];
 
     // Loop through the cart items
-    foreach ($winkelwagen as $id => $aantal) {
+    foreach ($winkelwagen as $key => $aantal) {
+        list($id, $size) = explode('-', $key);
         $product = $database->query('SELECT * FROM producten WHERE id = :id', [':id' => $id])->fetch();
         $product['aantal'] = $aantal;
+        $product['maat'] = $size;
         $product['totaal'] = $product['prijs'] * $aantal;
         $producten[] = $product;
         $totaal += $product['totaal'];
