@@ -88,13 +88,12 @@ view("parts/navigatie-menu");
                     <label for="kortingcode" class="block text-sm font-medium text-gray-700">Kortingcode:</label>
                     <div class="flex items-center">
                         <input type="text" id="kortingcode" name="kortingscode"
-                            value="<?= htmlspecialchars($_SESSION['kortingscode']['code'] ?? '') ?>"
                             class="mt-1 block w-1/7 px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
                         <button type="button" id="apply-discount"
                             class="ml-2 bg-blue-500 text-white px-2 py-1 rounded">Toevoegen</button>
                     </div>
                 </div>
-                <div id="kortingscode-message" class="mt-2 text-green-700"></div>
+                <div id="kortingscode-message" class="mt-2"></div>
             </form>
             <div class="mt-4 text-center">
                 <span class="text-lg font-bold" id="totaalbedrag">Totaal bedrag:
@@ -111,15 +110,31 @@ view("parts/navigatie-menu");
         const formData = new FormData(form);
         axios.post('/checkout/apply-discount', formData)
             .then(response => {
-                document.getElementById('kortingscode-message').innerText = response.data.message;
+                const messageElement = document.getElementById('kortingscode-message');
                 if (response.data.success) {
+                    form.classList.remove('bg-red-100');
+                    form.classList.add('bg-green-100');
+                    messageElement.classList.remove('text-red-700');
+                    messageElement.classList.add('text-green-700');
                     document.getElementById('totaalbedrag').innerText = 'Totaal bedrag: €' + response.data
                         .totaal;
+                } else {
+                    form.classList.remove('bg-green-100');
+                    form.classList.add('bg-red-100');
+                    messageElement.classList.remove('text-green-700');
+                    messageElement.classList.add('text-red-700');
                 }
+                messageElement.innerText = response.data.message;
+                console.log(response.data);
             })
             .catch(error => {
                 console.error(error);
-                document.getElementById('kortingscode-message').innerText = 'Er is een fout opgetreden.';
+                const messageElement = document.getElementById('kortingscode-message');
+                form.classList.remove('bg-green-100');
+                form.classList.add('bg-red-100');
+                messageElement.classList.remove('text-green-700');
+                messageElement.classList.add('text-red-700');
+                messageElement.innerText = 'Er is een fout opgetreden.';
             });
     });
 </script>
