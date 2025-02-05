@@ -9,10 +9,11 @@ if (isset($_SESSION['order'])) {
 
     // Calculate the total amount with discount if applicable
     $totalAmount = $order['totaalbedrag'];
-    $kortingscode = $order['kortingcode'] ?? null;
+    $kortingscode = $_SESSION['kortingscode'] ?? null;
     if ($kortingscode) {
         $percentage = $kortingscode['percentage'] / 100;
         $totalAmount = $totalAmount * (1 - $percentage);
+        unset($_SESSION['kortingscode']); // Ensure the discount code is applied only once
     }
 
     // Create a new order
@@ -60,7 +61,11 @@ if (isset($_SESSION['order'])) {
     unset($_SESSION['kortingscode']); // Clear the discount code from the session
 
     // Provide a confirmation to the user
-    flash('Bedankt voor uw bestelling. Totaal bedrag: €' . number_format($totalAmount, 2, ',', '.'));
+    if ($kortingscode) {
+        flash('Bedankt voor uw bestelling. Uw kortingscode is toegepast. Totaal bedrag: €' . number_format($totalAmount, 2, ',', '.'));
+    } else {
+        flash('Bedankt voor uw bestelling. Totaal bedrag: €' . number_format($totalAmount, 2, ',', '.'));
+    }
 
     // Redirect the user to the order status page
     redirect('/bestel-status');

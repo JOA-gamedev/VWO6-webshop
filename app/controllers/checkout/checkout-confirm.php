@@ -22,6 +22,17 @@ if (isset($_SESSION['order'])) {
     $totalAmount = floatval(str_replace(',', '.', $totalAmount)); // Ensure it's a float
     $totalAmount = number_format($totalAmount, 2, ',', '.'); // Ensure 2 decimal places
 
+    // Retrieve the products from the session
+    $producten = [];
+    foreach ($_SESSION['winkelwagen'] as $key => $aantal) {
+        list($id, $size) = explode('-', $key);
+        $product = $database->query('SELECT * FROM producten WHERE id = :id', [':id' => $id])->fetch();
+        $product['aantal'] = $aantal;
+        $product['maat'] = $size;
+        $product['totaal'] = $product['prijs'] * $aantal;
+        $producten[] = $product;
+    }
+
     // Display the order confirmation details
     view('checkout/checkout-confirm', [
         'order' => $order,
@@ -29,7 +40,8 @@ if (isset($_SESSION['order'])) {
         'kortingscode' => $kortingscode,
         'originalAmount' => $originalAmount,
         'discountAmount' => $discountAmount,
-        'totalAmount' => $totalAmount
+        'totalAmount' => $totalAmount,
+        'producten' => $producten
     ]);
 } else {
     // If no order details are available, redirect to the checkout page

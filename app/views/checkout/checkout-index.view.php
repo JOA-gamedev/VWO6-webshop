@@ -9,10 +9,10 @@ view("parts/navigatie-menu");
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
             <?php foreach ($producten as $product): ?>
                 <div class="mb-2 p-4 border rounded shadow-sm">
-                    <img src="<?= htmlspecialchars($base_url . '/images/' . ($product['afbeelding'] ?? 'default.png')) ?>"
-                        alt="<?= htmlspecialchars($product['naam'] ?? '') ?>" class="w-full h-48 object-cover mb-2 rounded">
+                    <img src="<?= htmlspecialchars('/images/' . ($product['afbeelding'] ?? 'default.png')) ?>"
+                        alt="<?= htmlspecialchars($product['naam'] ?? '') ?>" class="w-full h-48 object-contain mb-2 rounded">
                     <span class="font-semibold"><?= htmlspecialchars($product['naam'] ?? '') ?></span><br>
-                    <span class="textalchy-700"><?= htmlspecialchars($product['beschrijving'] ?? '') ?></span><br>
+                    <span class="text-gray-700"><?= htmlspecialchars($product['beschrijving'] ?? '') ?></span><br>
                     <span class="text-green-600 font-bold">Prijs:
                         €<?= number_format($product['prijs'] ?? 0, 2, ',', '.') ?></span><br>
                     <span class="text-gray-700">Maat: <?= htmlspecialchars($product['maat'] ?? '') ?></span><br>
@@ -106,8 +106,7 @@ view("parts/navigatie-menu");
 <script>
     document.getElementById('apply-discount').addEventListener('click', function() {
         const kortingscode = document.getElementById('kc_input').value;
-        //zelfs zonder csrf werkte POST niet hier
-        axios.get('/checkout/apply-discount?kortingscode=' + kortingscode)
+        axios.get('/checkout/apply-discount?kortingscode=' + encodeURIComponent(kortingscode))
             .then(response => {
                 const messageElement = document.getElementById('kortingscode-message');
                 if (response.data.success) {
@@ -115,8 +114,7 @@ view("parts/navigatie-menu");
                     document.querySelector('.discount').classList.add('bg-green-100');
                     messageElement.classList.remove('text-red-700');
                     messageElement.classList.add('text-green-700');
-                    document.getElementById('totaalbedrag').innerText = 'Totaal bedrag: €' + response.data
-                        .totaal;
+                    document.getElementById('totaalbedrag').innerText = 'Totaal bedrag: €' + response.data.totaal;
                 } else {
                     document.querySelector('.discount').classList.remove('bg-green-100');
                     document.querySelector('.discount').classList.add('bg-red-100');
@@ -124,7 +122,6 @@ view("parts/navigatie-menu");
                     messageElement.classList.add('text-red-700');
                 }
                 messageElement.innerText = response.data.message;
-                console.log(response.data);
             })
             .catch(error => {
                 console.error(error);

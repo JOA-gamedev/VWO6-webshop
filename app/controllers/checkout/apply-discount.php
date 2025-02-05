@@ -14,22 +14,37 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET') {
         $kortingscodeData = $database->query('SELECT * FROM kortingcodes WHERE code = ?', [$kortingscode_in])->fetch();
 
         if ($kortingscodeData) {
+            // Check if the discount code has already been used
+            if ($kortingscodeData['used']) {
+                echo json_encode(['success' => false, 'message' => 'Deze kortingscode is al gebruikt.']);
+                exit;
+            }
+
             $_SESSION['kortingscode'] = $kortingscodeData; // zet kortingscode object in sessie
 
             //bereken totaalbedrag
-            $originalAmount = $_SESSION['order']['totaalbedrag'] ?? $_SESSION['totaal'] ?? 0;
-            $discountAmount = $originalAmount * ($kortingscodeData['percentage'] / 100);
-            $totalAmount = $originalAmount - $discountAmount;
+            $originalAmount = floatval(str_replace(',', '.', $_SESSION['totaal'] ?? 0));
+            if ($originalAmount > 0) {
+                $discountAmount = $originalAmount * ($kortingscodeData['percentage'] / 100);
+                $totalAmount = $originalAmount - $discountAmount;
 
-            //formatteer totaalbedrag
-            $totalAmount = floatval(str_replace(',', '.', $totalAmount)); // Ensure it's a float
-            $totalAmount = number_format($totalAmount, 2, ',', '.'); // Ensure 2 decimal places
+                //formatteer totaalbedrag
+                $totalAmount = number_format($totalAmount, 2, ',', '.'); // Ensure 2 decimal places
 
-            //bewaar totaal in sessie (optioneel)
-            $_SESSION['totaal'] = $totalAmount;
+                //bewaar totaal in sessie (optioneel)
+                $_SESSION['totaal'] = $totalAmount;
 
-            //geef totaalbedrag terug in json formaat
-            echo json_encode(['success' => true, 'message' => 'Kortingscode toegepast.', 'totaal' => $totalAmount]);
+                // Mark the discount code as used
+                $database->query('UPDATE kortingcodes SET used = 1 WHERE code = ?', [$kortingscode_in]);
+
+                //geef totaalbedrag terug in json formaat
+                echo json_encode(['success' => true, 'message' => 'Kortingscode toegepast.', 'totaal' => $totalAmount]);
+
+                // Ensure the discount code is applied only once
+                unset($_SESSION['kortingscode']);
+            } else {
+                echo json_encode(['success' => false, 'message' => 'Ongeldig totaalbedrag.']);
+            }
         } else {
             echo json_encode(['success' => false, 'message' => 'Ongeldige kortingscode.']);
         }

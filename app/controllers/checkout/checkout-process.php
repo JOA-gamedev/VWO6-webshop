@@ -11,7 +11,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $kaartnummer = $_POST['kaartnummer'] ?? '';
     $vervaldatum = $_POST['vervaldatum'] ?? '';
     $cvv = $_POST['cvv'] ?? '';
-    $kortingcode = $_POST['kortingcode'] ?? '';
+    $kortingcode = $_SESSION['kortingscode']['code'] ?? null;
 
     // Validate the form data
     $errors = [];
@@ -80,6 +80,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     if ($kortingcodeData) {
         $percentage = $kortingcodeData['percentage'] / 100;
         $totaalbedrag *= (1 - $percentage);
+        unset($_SESSION['kortingscode']); // Ensure the discount code is applied only once
+        $_SESSION['flash_message'] = 'Kortingcode toegepast!';
     }
 
     // Save the order details in the session

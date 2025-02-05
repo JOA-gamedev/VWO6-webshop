@@ -23,6 +23,7 @@ if (isset($_SESSION['winkelwagen'])) {
         $totaal += $product['totaal'];
     }
     $totaal = number_format($totaal, 2, ',', '.');
+    $_SESSION['totaal'] = $totaal; // Store the total amount in the session
 }
 
 // Remove the kortingscode from the session when starting the checkout process

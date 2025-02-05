@@ -24,6 +24,7 @@ $route->get('cart', "controllers/cart/cart-show.php");
 $route->post('cart/add', "controllers/cart/cart-add.php");
 $route->post('cart/remove', "controllers/cart/cart-remove.php");
 $route->post('cart/bestel', "controllers/cart/cart-bestel.php");
+$route->post('cart/update', "controllers/cart/cart-update.php");
 
 $route->get('checkout', "controllers/checkout/checkout-index.php");
 $route->post('checkout/process', "controllers/checkout/checkout-process.php");
