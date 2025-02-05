@@ -25,6 +25,8 @@ view("parts/navigatie-menu");
                     <?= htmlspecialchars($item['naam']) ?>
                 </a><br>
                 <span class="text-gray-700"><?= htmlspecialchars($item['beschrijving']) ?></span><br>
+                <span class="text-gray-700">Kleur: <?= htmlspecialchars($item['kleur'] ?? '-') ?></span><br>
+                <span class="text-gray-700">Geslacht: <?= htmlspecialchars($item['geslacht'] ?? '-') ?></span><br>
                 <span class="text-green-600 font-bold"><?= htmlspecialchars($item['prijs']) ?></span><br>
                 <label for="size-<?= $item['id'] ?>" class="block text-sm font-medium text-gray-700">Maat:</label>
                 <select id="size-<?= $item['id'] ?>" name="size" class="border border-gray-300 rounded-md">
@@ -41,6 +43,8 @@ view("parts/navigatie-menu");
             <?= csrf() ?>
                 <input type="hidden" name="id" value="<?= $item['id'] ?>">
                 <input type="hidden" name="size" id="selectedSize-<?= $item['id'] ?>">
+                <input type="hidden" name="color" value="<?= htmlspecialchars($item['kleur'] ?? '-') ?>">
+                <input type="hidden" name="gender" value="<?= htmlspecialchars($item['geslacht'] ?? '-') ?>">
                 <button type="submit" class="bg-gray-500 text-white px-4 py-2 rounded">
                     <img src="/images/add-to-basket.png" alt="Add to Cart" class="inline-block w-6 h-6">
                 </button>
@@ -50,12 +54,17 @@ view("parts/navigatie-menu");
         <script>
             document.getElementById('addToCartForm-<?= $item['id'] ?>').addEventListener('submit', function(event) {
                 const size = document.getElementById('size-<?= $item['id'] ?>').value;
+                let hasError = false;
                 if (!size) {
                     event.preventDefault();
                     document.getElementById('sizeError-<?= $item['id'] ?>').classList.remove('hidden');
+                    hasError = true;
                 } else {
                     document.getElementById('selectedSize-<?= $item['id'] ?>').value = size;
                     document.getElementById('sizeError-<?= $item['id'] ?>').classList.add('hidden');
+                }
+                if (hasError) {
+                    event.preventDefault();
                 }
             });
         </script>

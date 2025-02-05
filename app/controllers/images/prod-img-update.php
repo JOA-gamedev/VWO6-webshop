@@ -12,6 +12,13 @@ if (!Validator::length($_POST['naam'], 0, 50)) {
 if (!Validator::between($_POST['prijs'], 0.01, 1000000)) {
     $errors['naam'] = "De prijs moet tussen 0,01 en 1.000.000 liggen";
 }
+if (!Validator::required($_POST['kleur'])) {
+    $errors['kleur'] = "Kleur is verplicht";
+}
+if (!Validator::required($_POST['geslacht'])) {
+    $errors['geslacht'] = "Geslacht is verplicht";
+}
+
 //voor alle validatie regels zie cheat-sheet
 
 //indien niet oké terugsturen naar de create pagina met foutmeldingen
@@ -25,8 +32,10 @@ if (!empty($errors)) {
 
 //wijzigen doorvoeren
 $db = new Database();
-$db->query("UPDATE producten SET afbeelding = :afbeelding WHERE id = :id", [
+$db->query("UPDATE producten SET afbeelding = :afbeelding, kleur = :kleur, geslacht = :geslacht WHERE id = :id", [
     'afbeelding' => $_POST['afbeelding'],
+    'kleur' => $_POST['kleur'],
+    'geslacht' => $_POST['geslacht'],
     'id' => $_POST['id']
 ]);
 

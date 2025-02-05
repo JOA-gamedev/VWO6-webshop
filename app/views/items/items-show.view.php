@@ -12,6 +12,8 @@ view("parts/navigatie-menu");
             <div class="md:w-1/2">
                 naam: <?= htmlspecialchars($item['naam']) ?><br>
                 beschrijving: <?= htmlspecialchars($item['beschrijving']) ?><br>
+                kleur: <?= htmlspecialchars($item['kleur'] ?? '-') ?><br>
+                geslacht: <?= htmlspecialchars($item['geslacht'] ?? '-') ?><br>
                 prijs: <?= $item['prijs']; ?><br>
                 <label for="size" class="block text-sm font-medium text-gray-700">Maat:</label>
                 <select id="size" name="size" class="border border-gray-300 rounded-md">
@@ -27,6 +29,8 @@ view("parts/navigatie-menu");
                 <?= csrf() ?>
                     <input type="hidden" name="id" value="<?= $item['id'] ?>">
                     <input type="hidden" name="size" id="selectedSize">
+                    <input type="hidden" name="color" value="<?= htmlspecialchars($item['kleur'] ?? '-') ?>">
+                    <input type="hidden" name="gender" value="<?= htmlspecialchars($item['geslacht'] ?? '-') ?>">
                     <button type="submit" class="bg-gray-500 text-white px-4 py-2 rounded">
                         <img src="/images/add-to-basket.png" alt="Add to Cart" class="inline-block w-6 h-6">
                     </button>
@@ -38,12 +42,17 @@ view("parts/navigatie-menu");
     <script>
         document.getElementById('addToCartForm').addEventListener('submit', function(event) {
             const size = document.getElementById('size').value;
+            let hasError = false;
             if (!size) {
                 event.preventDefault();
                 document.getElementById('sizeError').classList.remove('hidden');
+                hasError = true;
             } else {
                 document.getElementById('selectedSize').value = size;
                 document.getElementById('sizeError').classList.add('hidden');
+            }
+            if (hasError) {
+                event.preventDefault();
             }
         });
     </script>

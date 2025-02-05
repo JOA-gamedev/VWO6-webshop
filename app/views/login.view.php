@@ -11,11 +11,11 @@ view("parts/navigatie-menu");
         <form class="space-y-6 mt-6" action="/login" method="POST">
             <?= csrf() ?>
             <div class="relative">
-                <input id="email" name="email" type="email" placeholder="Email address" autocomplete="email" required class="block w-full rounded-md border border-gray-300 py-1.5 text-gray-900 shadow-sm">
+                <input id="email" name="email" type="email" placeholder="E-mailaddres" autocomplete="email" required class="block w-full rounded-md border border-gray-300 py-1.5 text-gray-900 shadow-sm">
             </div>
 
             <div class="relative">
-                <input id="password" name="password" type="password" placeholder="Password" autocomplete="current-password" required class="block w-full rounded-md border border-gray-300 py-1.5 text-gray-900 shadow-sm">
+                <input id="password" name="password" type="password" placeholder="Wachtwoord" autocomplete="current-password" required class="block w-full rounded-md border border-gray-300 py-1.5 text-gray-900 shadow-sm">
                 <div class="text-sm mt-2">
                     <a href="#" class="font-semibold text-indigo-600 hover:text-indigo-500">Forgot password?</a>
                 </div>
