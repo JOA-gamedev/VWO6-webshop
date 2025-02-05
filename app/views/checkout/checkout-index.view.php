@@ -80,21 +80,19 @@ view("parts/navigatie-menu");
                 </div>
             </form>
             <!-- aparte form voor kortingscode -->
-            <form id="kortingscode-form"
-                class="mt-4 <?= isset($_SESSION['kortingscode']) ? 'bg-green-100' : '' ?> p-4 rounded-md">
-                <?= csrf() ?>
-                <h2 class="text-2xl font-bold mt-4">Kortingcode</h2>
+            <div class="mt-4 discount <?= isset($_SESSION['kortingscode']) ? 'bg-green-100' : '' ?> p-4 rounded-md">
+                <h2 class="text-2xl font-bold mt-4">Kortingscode</h2>
                 <div class="mb-4">
-                    <label for="kortingcode" class="block text-sm font-medium text-gray-700">Kortingcode:</label>
+                    <label for="kc_input" class="block text-sm font-medium text-gray-700">Kortingscode:</label>
                     <div class="flex items-center">
-                        <input type="text" id="kortingcode" name="kortingscode"
+                        <input type="text" id="kc_input" name="kortingscode"
                             class="mt-1 block w-1/7 px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
                         <button type="button" id="apply-discount"
                             class="ml-2 bg-blue-500 text-white px-2 py-1 rounded">Toevoegen</button>
                     </div>
                 </div>
                 <div id="kortingscode-message" class="mt-2"></div>
-            </form>
+            </div>
             <div class="mt-4 text-center">
                 <span class="text-lg font-bold" id="totaalbedrag">Totaal bedrag:
                     €<?= $totaalbedrag ?></span><br>
@@ -106,21 +104,21 @@ view("parts/navigatie-menu");
 </div>
 <script>
     document.getElementById('apply-discount').addEventListener('click', function() {
-        const form = document.getElementById('kortingscode-form');
-        const formData = new FormData(form);
-        axios.post('/checkout/apply-discount', formData)
+        const kortingscode = document.getElementById('kc_input').value;
+        //zelfs zonder csrf werkte POST niet hier
+        axios.get('/checkout/apply-discount?kortingscode=' + kortingscode)
             .then(response => {
                 const messageElement = document.getElementById('kortingscode-message');
                 if (response.data.success) {
-                    form.classList.remove('bg-red-100');
-                    form.classList.add('bg-green-100');
+                    document.querySelector('.discount').classList.remove('bg-red-100');
+                    document.querySelector('.discount').classList.add('bg-green-100');
                     messageElement.classList.remove('text-red-700');
                     messageElement.classList.add('text-green-700');
                     document.getElementById('totaalbedrag').innerText = 'Totaal bedrag: €' + response.data
                         .totaal;
                 } else {
-                    form.classList.remove('bg-green-100');
-                    form.classList.add('bg-red-100');
+                    document.querySelector('.discount').classList.remove('bg-green-100');
+                    document.querySelector('.discount').classList.add('bg-red-100');
                     messageElement.classList.remove('text-green-700');
                     messageElement.classList.add('text-red-700');
                 }
@@ -130,8 +128,8 @@ view("parts/navigatie-menu");
             .catch(error => {
                 console.error(error);
                 const messageElement = document.getElementById('kortingscode-message');
-                form.classList.remove('bg-green-100');
-                form.classList.add('bg-red-100');
+                document.querySelector('.discount').classList.remove('bg-green-100');
+                document.querySelector('.discount').classList.add('bg-red-100');
                 messageElement.classList.remove('text-green-700');
                 messageElement.classList.add('text-red-700');
                 messageElement.innerText = 'Er is een fout opgetreden.';
