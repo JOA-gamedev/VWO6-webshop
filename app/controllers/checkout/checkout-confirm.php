@@ -10,17 +10,6 @@ if (isset($_SESSION['order'])) {
     $kortingscode = $_SESSION['kortingscode'] ?? null;
 
     if (isset($kortingscode['percentage'])) {
-        // de code hieronder heb ik niet geschreven maar van jens gekregen
-
-        //hier word de prijs berekend van alle items in de kart
-        //dat is dus overbodig want we hebben al de totaalprijs van de order
-        // $originalAmount = array_reduce(array_keys($_SESSION['winkelwagen']), function ($carry, $id) use ($database) {
-        //     $product = $database->query('SELECT prijs FROM producten WHERE id = ?', [$id])->fetch();
-        //     return $carry + ($product ? $product['prijs'] * $_SESSION['winkelwagen'][$id] : 0);
-        // }, 0);
-        // $discountAmount = $originalAmount - $order['totaalbedrag'];
-
-        //deze code is van mij
         $originalAmount = $order['totaalbedrag'];
         $discountAmount = $originalAmount * ($kortingscode['percentage'] / 100);
         $totalAmount = $originalAmount - $discountAmount;

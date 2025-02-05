@@ -23,6 +23,9 @@ if (isset($_SESSION['winkelwagen'])) {
     $totaal = number_format($totaal, 2, ',', '.');
 }
 
+// Remove the kortingscode from the session when starting the checkout process
+unset($_SESSION['kortingscode']);
+
 // Retrieve the user's profile data
 $profile = [
     'naam' => user()->name ?? '',
@@ -31,14 +34,6 @@ $profile = [
     'postcode' => user()->postcode ?? '',
     'plaats' => user()->plaats ?? '',
 ];
-
-// Apply the discount if a valid kortingscode is provided
-if (isset($_SESSION['kortingscode'])) {
-    $percentage = $_SESSION['kortingscode']['percentage'] / 100;
-    $totaal = str_replace(',', '.', $totaal); // Convert to a float-compatible format
-    $totaal = floatval($totaal) * (1 - $percentage);
-    $totaal = number_format($totaal, 2, ',', '.'); // Ensure 2 decimal places
-}
 
 // Pass the products, profile data, and total amount to the view
 view('checkout/checkout-index', [
