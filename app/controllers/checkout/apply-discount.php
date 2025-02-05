@@ -1,10 +1,13 @@
 <?php
 
-//INPUT: kortingscode (POST)
-//OUTPUT: tot
+//INPUT: kortingscode (GET)
+//OUTPUT: totalAmount (JSON)
 
-if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    $kortingscode_in = $_POST['kortingscode'] ?? '';
+//moest het veranderen in een GET request omdat het anders niet werkte en we halen eigenlijk alleen data op
+//ook evenveel informatie op dan dat we posten dus
+
+if ($_SERVER['REQUEST_METHOD'] === 'GET') {
+    $kortingscode_in = $_GET['kortingscode'] ?? '';
 
     if (!empty($kortingscode_in)) {
         $database = new Database();
