@@ -11,7 +11,7 @@ $orders = [];
 if ($userId) {
     $orders = $db->query(
         '
-        SELECT br.*, p.naam, p.beschrijving, p.kleur, p.geslacht, b.status, b.straat, b.huisnr, b.postcode, b.plaats, b.created_at, k.percentage,
+        SELECT br.*, p.naam, p.beschrijving, p.kleur, p.geslacht, p.afbeelding, b.status, b.straat, b.huisnr, b.postcode, b.plaats, b.created_at, k.percentage,
         (br.prijs * br.aantal) as totaal, 
         (SELECT SUM(br2.prijs * br2.aantal) FROM bestelregels br2 WHERE br2.bestelling_id = br.bestelling_id) as totaalbedrag
         FROM bestelregels br
@@ -19,6 +19,7 @@ if ($userId) {
         JOIN bestellingen b ON br.bestelling_id = b.id
         LEFT JOIN kortingcodes k ON b.kortingcode_id = k.id
         WHERE b.klant_id = ?
+        ORDER BY b.created_at DESC
         LIMIT 1000',
         [$userId]
     )->fetchAll();
@@ -30,6 +31,7 @@ foreach ($orders as $order) {
     $bestellingId = $order['bestelling_id'];
     if (!isset($groupedOrders[$bestellingId])) {
         $groupedOrders[$bestellingId] = [
+            'bestelling_id' => $bestellingId,
             'status' => $order['status'],
             'straat' => $order['straat'],
             'huisnr' => $order['huisnr'],
@@ -47,6 +49,7 @@ foreach ($orders as $order) {
         'beschrijving' => $order['beschrijving'],
         'kleur' => $order['kleur'],
         'geslacht' => $order['geslacht'],
+        'afbeelding' => $order['afbeelding'],
         'prijs' => $order['prijs'],
         'aantal' => $order['aantal'],
         'totaal' => $order['totaal']
