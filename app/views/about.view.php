@@ -1,5 +1,5 @@
 <?php
-view("parts/header", ['title' => 'about']);
+view("parts/header", ['title' => 'Over ons']);
 view("parts/navigatie-menu");
 
 ?>

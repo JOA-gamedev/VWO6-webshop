@@ -62,11 +62,7 @@ if (isset($_SESSION['order'])) {
     unset($_SESSION['kortingscode']); // Clear the discount code from the session
 
     // Provide a confirmation to the user
-    if ($kortingscode) {
-        flash('Bedankt voor uw bestelling. Uw kortingscode is toegepast. Totaal bedrag: €' . number_format($totalAmount, 2, ',', '.'));
-    } else {
-        flash('Bedankt voor uw bestelling. Totaal bedrag: €' . number_format($totalAmount, 2, ',', '.'));
-    }
+    flash('Bedankt voor uw bestelling. Totaal bedrag: €' . number_format($totaalbedrag, 2, ',', '.'));
 
     // Redirect the user to the order status page
     redirect('/bestel-status');

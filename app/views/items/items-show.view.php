@@ -1,5 +1,5 @@
 <?php
-view("parts/header", ['title' => $item['id']]);
+view("parts/header", ['title' => $item['naam']]);
 view("parts/navigatie-menu");
 ?>
 <?php if ($item['deleted_at'] === null): ?>

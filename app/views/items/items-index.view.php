@@ -1,5 +1,5 @@
 <?php
-view("parts/header", ['title' => 'items']);
+view("parts/header", ['title' => 'Producten']);
 view("parts/navigatie-menu");
 ?>
 <div class="container mx-auto p-4">
