@@ -25,21 +25,18 @@ view("parts/navigatie-menu");
         <div class="md:w-1/4">
             <h2 class="text-2xl font-bold mt-4">Totaal bedrag</h2>
             <p>Origineel bedrag (incl. BTW):</p>
-            <p class="text-right">€<?= number_format(floatval(str_replace(',', '.', $originalAmount)), 2, ',', '.') ?></p>
-            </p>
+            <p class="text-right">€<?= $originalAmount ?></p>
 
             <?php if (isset($kortingscode)): ?>
                 <p>
                     Korting: <?= htmlspecialchars($kortingscode['percentage']) ?>% (Code:
                     <b><?= $kortingscode['code']; ?></b>):
                 </p>
-
-                <p class="text-right">−€<?= number_format(floatval(str_replace(',', '.', $discountAmount)), 2, ',', '.') ?></p>
-
+                <p class="text-right">−€<?= $discountAmount ?></p>
             <?php endif; ?>
 
             <p class="text-lg font-bold">Totaal bedrag: </p>
-            <p class="text-right font-bold">€<?= number_format(floatval(str_replace(',', '.', $totalAmount)), 2, ',', '.') ?></p>
+            <p class="text-right font-bold">€<?= $totalAmount ?></p>
         </div>
     </div>
 
