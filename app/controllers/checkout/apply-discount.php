@@ -32,7 +32,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET') {
                 $totalAmount = number_format($totalAmount, 2, ',', '.'); // Ensure 2 decimal places
 
                 //bewaar totaal in sessie (optioneel)
-                $_SESSION['totaal'] = $totalAmount;
+                $_SESSION['nieuwTotaal'] = $totalAmount;
 
                 // Mark the discount code as used
                 $database->query('UPDATE kortingcodes SET used = 1 WHERE code = ?', [$kortingscode_in]);
