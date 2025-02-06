@@ -18,6 +18,7 @@ $user = isset($_SESSION['user']) ? $_SESSION['user'] : null; // Replace with act
 
     <form action="/contact" method="post" class="max-w-lg mx-auto bg-white p-8 rounded-lg shadow-md space-y-4">
         <?= csrf() ?>
+        <input type="hidden" name="message_id" value="<?= htmlspecialchars($message['id'] ?? '') ?>">
         <div class="mb-4">
             <label for="name" class="block text-gray-700">Naam</label>
             <input type="text" id="name" name="name" placeholder="Vul je naam in" value="<?php echo !empty($user['name']) ? $user['name'] : ''; ?>" class="border border-gray-300 rounded-md p-2 w-full" required>

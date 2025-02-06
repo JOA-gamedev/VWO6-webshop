@@ -32,9 +32,30 @@ $messages = getMessages(); // Assume this function fetches messages from the dat
                 <?php foreach ($messages as $message): ?>
                     <li class="p-4 bg-white shadow rounded-md">
                         <strong class="block text-lg">Gebruiker ID:</strong> <?= htmlspecialchars($message['klant_id'] ?? 'Anonieme gebruiker') ?><br>
+                        <strong class="block text-lg">Naam:</strong> <?= htmlspecialchars($message['klant_naam'] ?? 'Onbekend') ?><br>
                         <strong class="block text-lg">Onderwerp:</strong> <?= htmlspecialchars($message['onderwerp']) ?><br>
                         <strong class="block text-lg">Bericht:</strong> <?= htmlspecialchars($message['bericht']) ?><br>
                         <em class="block text-sm text-gray-500">Gemaakt op: <?= htmlspecialchars($message['created_at']) ?></em>
+                        <?php if (!empty($message['reacties'])): ?>
+                            <?php foreach ($message['reacties'] as $reactie): ?>
+                                <div class="mt-4 p-4 bg-gray-100 rounded-md">
+                                    <strong class="block text-lg">Uw Reactie:</strong>
+                                    <p><?= htmlspecialchars($reactie['reactie']) ?></p>
+                                    <em class="block text-sm text-gray-500">Gereageerd op: <?= htmlspecialchars($reactie['created_at']) ?></em>
+                                </div>
+                            <?php endforeach; ?>
+                        <?php endif; ?>
+                        <form action="/admin/berichten-reply" method="post" class="mt-4">
+                            <?= csrf() ?>
+                            <input type="hidden" name="message_id" value="<?= htmlspecialchars($message['id']) ?>">
+                            <div class="mb-4">
+                                <label for="reply" class="block text-gray-700">Reactie</label>
+                                <textarea id="reply" name="reply" placeholder="Typ je reactie hier" class="border border-gray-300 rounded-md p-2 w-full" required></textarea>
+                            </div>
+                            <div class="text-center">
+                                <input type="submit" value="Verstuur" class="bg-blue-500 text-white rounded-md px-4 py-2 hover:bg-blue-600 cursor-pointer">
+                            </div>
+                        </form>
                     </li>
                 <?php endforeach; ?>
             </ul>

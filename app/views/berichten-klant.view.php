@@ -26,10 +26,18 @@ $messages = getCustomerMessages(); // Assume this function fetches messages for 
             <ul class="space-y-4">
                 <?php foreach ($messages as $message): ?>
                     <li class="p-4 bg-white shadow rounded-md">
-                        <strong class="block text-lg">Gebruiker ID:</strong> <?= htmlspecialchars($message['klant_id'] ?? 'Anonieme gebruiker') ?><br>
                         <strong class="block text-lg">Onderwerp:</strong> <?= htmlspecialchars($message['onderwerp']) ?><br>
                         <strong class="block text-lg">Bericht:</strong> <?= htmlspecialchars($message['bericht']) ?><br>
                         <em class="block text-sm text-gray-500">Gemaakt op: <?= htmlspecialchars($message['created_at']) ?></em>
+                        <?php if (!empty($message['reacties'])): ?>
+                            <?php foreach ($message['reacties'] as $reactie): ?>
+                                <div class="mt-4 p-4 bg-gray-100 rounded-md">
+                                    <strong class="block text-lg">Reactie van Admin:</strong>
+                                    <p><?= htmlspecialchars($reactie['reactie']) ?></p>
+                                    <em class="block text-sm text-gray-500">Gereageerd op: <?= htmlspecialchars($reactie['created_at']) ?></em>
+                                </div>
+                            <?php endforeach; ?>
+                        <?php endif; ?>
                     </li>
                 <?php endforeach; ?>
             </ul>

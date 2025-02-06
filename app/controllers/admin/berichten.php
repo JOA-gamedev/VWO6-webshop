@@ -2,7 +2,22 @@
 
 function getMessages() {
     $db = new Database();
-    $messages = $db->query("SELECT id, klant_id, onderwerp, bericht, created_at, updated_at FROM jel_bestelt.berichten")->fetchAll(PDO::FETCH_ASSOC);
+    $messages = $db->query("
+        SELECT b.id, b.klant_id, u.name as klant_naam, b.onderwerp, b.bericht, b.created_at
+        FROM jel_bestelt.berichten b
+        LEFT JOIN jel_bestelt.users u ON b.klant_id = u.id
+        LIMIT 1000
+    ")->fetchAll(PDO::FETCH_ASSOC);
+
+    foreach ($messages as &$message) {
+        $message['reacties'] = $db->query("
+            SELECT reactie, created_at
+            FROM jel_bestelt.reactie
+            WHERE bericht_id = ?
+            ORDER BY created_at ASC
+        ", [$message['id']])->fetchAll(PDO::FETCH_ASSOC);
+    }
+
     return $messages;
 }
 

@@ -91,6 +91,7 @@ if (hasRole('admin')) {
     $route->post('admin/product-add', "controllers/admin/product-add.php");
 
     $route->get('admin/berichten', "controllers/admin/berichten.php");
+    $route->post('admin/berichten-reply', "controllers/admin/berichten-reply.php");
 }
 
 http_response_code(404);
