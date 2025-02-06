@@ -10,7 +10,7 @@ if (!$id) {
 }
 
 $db = new Database();
-$item = $db->query('SELECT * FROM producten WHERE id = ?', [$id])->fetch();
+$item = $db->query('SELECT * FROM producten WHERE id = ?', [$id])->fetch(PDO::FETCH_ASSOC);
 
 if (!$item) {
     die("Product niet gevonden.");

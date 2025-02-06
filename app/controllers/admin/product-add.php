@@ -26,10 +26,10 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
     // Sanitize the file name
     $afbeelding = preg_replace('/\.(?=.*\.)/', '', $afbeelding);
-    $target_dir = __DIR__ . "/../../../uploads/";
+    $target_dir = __DIR__ . "/../../../webroot/images/";
     $target_file = $target_dir . basename($afbeelding);
 
-    // Ensure the uploads directory exists
+    // Ensure the images directory exists
     if (!is_dir($target_dir)) {
         mkdir($target_dir, 0777, true);
     }
