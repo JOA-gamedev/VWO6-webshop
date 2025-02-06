@@ -7,24 +7,22 @@
 //ook evenveel informatie op dan dat we posten dus
 
 if ($_SERVER['REQUEST_METHOD'] === 'GET') {
-    $kortingscode_in = $_GET['kortingscode'] ?? '';
+    $kortingscode_in = $_GET['kortingscode'] ?? ''; // get input code
 
     if (!empty($kortingscode_in)) {
         $database = new Database();
+        //retrieve $kortingscodeData from row at CODE
         $kortingscodeData = $database->query('SELECT * FROM kortingcodes WHERE code = ?', [$kortingscode_in])->fetch();
 
         if ($kortingscodeData) {
-            // Check if the discount code has already been used
-            if ($kortingscodeData['used']) {
-                echo json_encode(['success' => false, 'message' => 'Deze kortingscode is al gebruikt.']);
-                exit;
-            }
-
-            $_SESSION['kortingscode'] = $kortingscodeData; // zet kortingscode object in sessie
-
+            
             //bereken totaalbedrag
             $originalAmount = floatval(str_replace(',', '.', $_SESSION['totaal'] ?? 0));
+            
             if ($originalAmount > 0) {
+
+                $_SESSION['kortingscode'] = $kortingscodeData; // zet kortingscode object in sessie
+
                 $discountAmount = $originalAmount * ($kortingscodeData['percentage'] / 100);
                 $totalAmount = $originalAmount - $discountAmount;
 
@@ -34,14 +32,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET') {
                 //bewaar totaal in sessie (optioneel)
                 $_SESSION['nieuwTotaal'] = $totalAmount;
 
-                // Mark the discount code as used
-                $database->query('UPDATE kortingcodes SET used = 1 WHERE code = ?', [$kortingscode_in]);
-
                 //geef totaalbedrag terug in json formaat
                 echo json_encode(['success' => true, 'message' => 'Kortingscode toegepast.', 'totaal' => $totalAmount]);
 
-                // Ensure the discount code is applied only once
-                unset($_SESSION['kortingscode']);
             } else {
                 echo json_encode(['success' => false, 'message' => 'Ongeldig totaalbedrag.']);
             }

@@ -9,7 +9,8 @@ if (isset($_SESSION['order'])) {
 
     // Calculate the total amount with discount if applicable
     $totalAmount = $order['totaalbedrag'];
-    $kortingscode = $_SESSION['kortingscode'] ?? null;
+    $kortingscode = $order['kortingcode'] ?? null;
+
     if ($kortingscode) {
         $percentage = $kortingscode['percentage'] / 100;
         $totalAmount = $totalAmount * (1 - $percentage);
