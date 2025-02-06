@@ -44,6 +44,7 @@ if (auth()) { //alleen als je ingelogd bent kan je dit doen
     $route->get('bestel-status', "controllers/bestel-status.php");
     $route->get('bestellingen', "controllers/besteld-index.php");
     $route->get('bestellingen/{id}', "controllers/besteld-show.php");
+    $route->get('berichten-klant', "controllers/berichten-klant.php");
 }
 
 //alleen toegankelijk als administrator
@@ -88,6 +89,8 @@ if (hasRole('admin')) {
     // Product toevoegen routes
     $route->get('admin/product-add', "views/admin/product-add.view.php");
     $route->post('admin/product-add', "controllers/admin/product-add.php");
+
+    $route->get('admin/berichten', "controllers/admin/berichten.php");
 }
 
 http_response_code(404);

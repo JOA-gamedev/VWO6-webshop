@@ -17,7 +17,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $user = $_SESSION['user'];
         $klant_id = $user['id'];
     } else {
-        $klant_id = 1; // Default klant_id for non-logged-in users
+        $klant_id = NULL; // Default klant_id for non-logged-in users
     }
 
     // Database connection
@@ -28,9 +28,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $params = [$klant_id, $subject, $message];
 
     if ($db->query($query, $params)) {
-        $_SESSION['flash_message'] = "Bericht succesvol opgeslagen!";
+        $_SESSION['flash_message'] = "Bericht succesvol verstuurd!";
     } else {
-        $_SESSION['flash_message'] = "Er is een fout opgetreden bij het opslaan van het bericht.";
+        $_SESSION['flash_message'] = "Er is een fout opgetreden bij het versturen van het bericht.";
     }
 
     header("Location: /contact");
