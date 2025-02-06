@@ -16,6 +16,12 @@ view("parts/navigatie-menu");
         </div>
         <?php unset($_SESSION['flash']); ?>
     <?php endif; ?>
+    <?php if (isset($_SESSION['error'])): ?>
+        <div class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative mb-4" role="alert">
+            <span class="block sm:inline"><?= $_SESSION['error'] ?></span>
+        </div>
+        <?php unset($_SESSION['error']); ?>
+    <?php endif; ?>
     <form action="/admin/product-add" method="post" enctype="multipart/form-data" class="space-y-4">
         <?= csrf() ?>
         <div>
@@ -27,19 +33,31 @@ view("parts/navigatie-menu");
             <textarea id="beschrijving" name="beschrijving" required class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"></textarea>
         </div>
         <div>
-            <label for="prijs" class="block text-sm font-medium text-gray-700">Prijs(2 decimalen):</label>
+            <label for="prijs" class="block text-sm font-medium text-gray-700">Prijs (2 decimalen):</label>
             <input type="number" id="prijs" name="prijs" step="0.01" required class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
-        </div>
-        <div>
-            <label for="afbeelding" class="block text-sm font-medium text-gray-700">Afbeelding:</label>
-            <input type="file" id="afbeelding" name="afbeelding" required class="mt-1 block w-full text-sm text-gray-500">
         </div>
         <div>
             <label for="afbeelding_naam" class="block text-sm font-medium text-gray-700">Afbeeldingnaam (zonder jpg!):</label>
             <input type="text" id="afbeelding_naam" name="afbeelding_naam" required class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
         </div>
         <div>
-            <input type="submit" value="Add Product" class="inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
+            <label for="kleur" class="block text-sm font-medium text-gray-700">Kleur:</label>
+            <input type="text" id="kleur" name="kleur" required class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
+        </div>
+        <div>
+            <label for="geslacht" class="block text-sm font-medium text-gray-700">Geslacht:</label>
+            <select id="geslacht" name="geslacht" required class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
+                <option value="man">Man</option>
+                <option value="vrouw">Vrouw</option>
+                <option value="unisex">Unisex</option>
+            </select>
+        </div>
+        <div>
+            <label for="afbeelding" class="block text-sm font-medium text-gray-700">Afbeelding:</label>
+            <input type="file" id="afbeelding" name="afbeelding" accept="image/*" required class="mt-1 block w-full text-sm text-gray-500">
+        </div>
+        <div>
+            <input type="submit" value="Toevoegen" class="inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
         </div>
     </form>
 </div>

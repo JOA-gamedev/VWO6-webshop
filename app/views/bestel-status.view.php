@@ -21,7 +21,7 @@ function getProductImage($productId) {
     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
         <!-- loop door alle bestellingen heen -->
         <?php foreach ($orders as $order) : ?>
-            <div class="mb-4 p-4 border rounded shadow-sm bg-gray-200 flex flex-col">
+            <div class="mb-4 p-4 border rounded shadow-sm bg-gray-200 flex flex-col h-full">
                 <h2 class="text-2xl font-bold mb-2">Uw bestel nummer: <?= htmlspecialchars($order['bestelling_id'] ?? '') ?></h2>
                 <div class="mb-2">
                     <?php if (!empty($order['status'])) : ?>
@@ -51,9 +51,9 @@ function getProductImage($productId) {
                 </div>
                 <?php if (!empty($order['producten']) && is_array($order['producten'])) : ?>
                     <p class="text-lg text-gray-700"><strong>Producten:</strong></p>
-                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4 flex-grow">
                         <?php foreach ($order['producten'] as $product) : ?>
-                            <div class="mb-2 p-4 border rounded shadow-sm bg-white">
+                            <a href="/items/items-show?id=<?= htmlspecialchars($product['id']) ?>&from=bestel-status" class="mb-2 p-4 border rounded shadow-sm bg-white flex flex-col h-full">
                                 <?php
                                 $imagePath = '/images/' . htmlspecialchars($product['afbeelding'] ?? 'default.png');
                                 if (!file_exists($_SERVER['DOCUMENT_ROOT'] . $imagePath)) {
@@ -66,10 +66,10 @@ function getProductImage($productId) {
                                 <p class="text-gray-700 text-sm"><?= htmlspecialchars($product['beschrijving'] ?? '') ?></p>
                                 <p class="text-gray-700 text-sm">Kleur: <?= htmlspecialchars($product['kleur'] ?? '-') ?></p>
                                 <p class="text-gray-700 text-sm">Geslacht: <?= htmlspecialchars($product['geslacht'] ?? '-') ?></p>
-                                <p class="text-green-600 font-bold text-sm">Prijs: €<?= number_format((float)$product['prijs'], 2, ',', '.') ?></p>
+                                <p class="text-gray-700 text-sm">Maat: <?= htmlspecialchars($product['maat'] ?? '-') ?></p>
+                                <p class="text-green-600 font-bold text-sm">Prijs: &euro;<?= number_format((float)$product['prijs'], 2, ',', '.') ?></p>
                                 <p class="text-gray-700 text-sm">Aantal: <?= $product['aantal'] ?? 0 ?></p>
-                                <p class="text-gray-900 font-bold text-sm">Totaal: €<?= number_format((float)$product['totaal'], 2, ',', '.') ?></p>
-                            </div>
+                            </a>
                         <?php endforeach; ?>
                     </div>
                 <?php endif; ?>

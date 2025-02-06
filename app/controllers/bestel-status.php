@@ -50,9 +50,9 @@ foreach ($orders as $order) {
         'kleur' => $order['kleur'],
         'geslacht' => $order['geslacht'],
         'afbeelding' => $order['afbeelding'],
+        'maat' => $order['maat'],
         'prijs' => $order['prijs'],
-        'aantal' => $order['aantal'],
-        'totaal' => $order['totaal']
+        'aantal' => $order['aantal']
     ];
 }
 

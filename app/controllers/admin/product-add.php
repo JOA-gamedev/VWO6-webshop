@@ -8,13 +8,15 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $naam = $_POST['naam'];
     $beschrijving = $_POST['beschrijving'];
     $prijs = number_format((float)$_POST['prijs'], 2, '.', ''); // Ensure price is formatted to two decimal places
+    $kleur = $_POST['kleur'];
+    $geslacht = $_POST['geslacht'];
     $type_id = 1; // Always set type_id to 1
     $afbeelding = $_FILES['afbeelding']['name'];
     $afbeelding_naam = $_POST['afbeelding_naam'];
 
-    // Validate the afbeelding_naam field
-    if (empty($afbeelding_naam)) {
-        $_SESSION['flash'] = "Afbeeldingnaam is verplicht!";
+    // Validate required fields
+    if (empty($naam) || empty($beschrijving) || empty($prijs) || empty($kleur) || empty($geslacht) || empty($afbeelding_naam)) {
+        $_SESSION['error'] = "Alle velden zijn verplicht!";
         header("Location: /admin/product-add");
         exit;
     }
@@ -38,9 +40,9 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         $updated_at = date('Y-m-d H:i:s');
 
         // Insert product into the database
-        $sql = "INSERT INTO `producten` (`naam`, `beschrijving`, `prijs`, `type_id`, `afbeelding`, `created_at`, `updated_at`) 
-                VALUES (?, ?, ?, ?, ?, ?, ?)";
-        $params = [$naam, $beschrijving, $prijs, $type_id, $afbeelding, $created_at, $updated_at];
+        $sql = "INSERT INTO `producten` (`naam`, `beschrijving`, `prijs`, `kleur`, `geslacht`, `type_id`, `afbeelding`, `created_at`, `updated_at`) 
+                VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
+        $params = [$naam, $beschrijving, $prijs, $kleur, $geslacht, $type_id, $afbeelding, $created_at, $updated_at];
 
         if ($db->query($sql, $params)) {
             $_SESSION['flash'] = "Product successfully added!";

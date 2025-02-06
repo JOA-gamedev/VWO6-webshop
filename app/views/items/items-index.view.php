@@ -49,11 +49,11 @@ view("parts/navigatie-menu");
             <?php if ($item['deleted_at'] === null): ?>
             <div class="mb-2 p-4 border rounded shadow-sm flex flex-col justify-between">
                 <div>
-                    <a href="/items/items-show/<?= $item['id'] ?>">
+                    <a href="/items/items-show/<?= htmlspecialchars($item['id']) ?>">
                         <img src="/images/<?= htmlspecialchars($item['afbeelding']) ?>"
                             alt="<?= htmlspecialchars($item['naam']) ?>" class="w-full h-48 object-contain mb-2 rounded">
                     </a>
-                    <a href="/items/items-show/<?= $item['id'] ?>" class="font-semibold">
+                    <a href="/items/items-show/<?= htmlspecialchars($item['id']) ?>" class="font-semibold">
                         <?= htmlspecialchars($item['naam']) ?>
                     </a><br>
                     <span class="text-gray-700"><?= htmlspecialchars($item['beschrijving']) ?></span><br>

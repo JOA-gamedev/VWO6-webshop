@@ -5,16 +5,16 @@ view("parts/navigatie-menu");
 <?php if ($item['deleted_at'] === null): ?>
     <div class="container mx-auto p-4">
         <!-- Back to products button -->
-        <a href="/items/items-index" class="bg-gray-500 text-white px-4 py-2 rounded mb-2 inline-block">Terug</a>
+        <a href="<?= isset($_GET['from']) && $_GET['from'] === 'bestel-status' ? '/bestel-status' : '/items/items-index' ?>" class="bg-gray-500 text-white px-4 py-2 rounded mb-2 inline-block">Terug</a>
         <h1 class="text-3xl my-4 font-bold text-center"><?= htmlspecialchars($item['naam']) ?></h1>
         <div class="flex flex-col md:flex-row items-center md:items-start">
             <img src="/images/<?= htmlspecialchars($item['afbeelding']) ?>" alt="<?= htmlspecialchars($item['naam']) ?>" class="w-full md:w-1/2 h-64 object-contain mb-4 md:mb-0 md:mr-4 rounded">
             <div class="md:w-1/2">
-                naam: <?= htmlspecialchars($item['naam']) ?><br>
-                beschrijving: <?= htmlspecialchars($item['beschrijving']) ?><br>
-                kleur: <?= htmlspecialchars($item['kleur'] ?? '-') ?><br>
-                geslacht: <?= htmlspecialchars($item['geslacht'] ?? '-') ?><br>
-                prijs: <?= $item['prijs']; ?><br>
+                <p class="text-lg text-gray-700"><strong>Naam:</strong> <?= htmlspecialchars($item['naam']) ?></p>
+                <p class="text-lg text-gray-700"><strong>Beschrijving:</strong> <?= htmlspecialchars($item['beschrijving']) ?></p>
+                <p class="text-lg text-gray-700"><strong>Kleur:</strong> <?= htmlspecialchars($item['kleur'] ?? '-') ?></p>
+                <p class="text-lg text-gray-700"><strong>Geslacht:</strong> <?= htmlspecialchars($item['geslacht'] ?? '-') ?></p>
+                <p class="text-lg text-gray-700"><strong>Prijs:</strong> &euro;<?= number_format((float)$item['prijs'], 2, ',', '.') ?></p>
                 <label for="size" class="block text-sm font-medium text-gray-700">Maat:</label>
                 <select id="size" name="size" class="border border-gray-300 rounded-md">
                     <option value="">Kies uw maat</option>

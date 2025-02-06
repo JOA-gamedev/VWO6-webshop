@@ -8,6 +8,7 @@ $route->get('index', "controllers/home.php");
 $route->get('contact', "controllers/contact.php");
 $route->post('contact', "controllers/contact.php");
 $route->get('about', "controllers/about.php");
+$route->get('items/items-show', "controllers/items/items-show.php");
 $route->get('items/items-show/{id}', "controllers/items/items-show.php");
 $route->get('items/items-index', "controllers/items/items-index.php");
 $route->get('items/product-detail', "controllers/items/product-detail.php");
