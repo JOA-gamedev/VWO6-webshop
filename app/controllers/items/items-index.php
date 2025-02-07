@@ -38,11 +38,6 @@ if ($filter_gender) {
     }
 }
 
-$total_query = "SELECT COUNT(*) FROM producten WHERE 1=1";
-$total_params = $params;
-$total_items = $db->query($total_query, $total_params)->fetchColumn();
-
-$total_pages = ceil($total_items / $items_per_page);
 
 switch ($sort) {
     case 'naam_asc':
@@ -80,7 +75,6 @@ $query .= " LIMIT $offset, $items_per_page";
 view('items/items-index', [
     'items' => $db->query($query, $params)->fetchAll(),
     'current_page' => $page,
-    'total_items' => $total_items,
-    'total_pages' => $total_pages
+
 ]);
 ?>
