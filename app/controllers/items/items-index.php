@@ -9,8 +9,8 @@ $filter_price = isset($_GET['filter_price']) ? $_GET['filter_price'] : '';
 $filter_gender = isset($_GET['filter_gender']) ? $_GET['filter_gender'] : '';
 $sort = isset($_GET['sort']) ? $_GET['sort'] : 'naam_asc';
 $page = isset($_GET['page']) ? (int)$_GET['page'] : 1;
-$items_per_page = 12;
-$offset = ($page - 1) * $items_per_page;
+//$items_per_page = 12;
+//$offset = ($page - 1) * $items_per_page;
 
 $query = "SELECT * FROM producten WHERE 1=1";
 $params = [];
@@ -37,6 +37,14 @@ if ($filter_gender) {
         $params['filter_gender'] = $filter_gender;
     }
 }
+
+// $total_query = "SELECT COUNT(*) FROM producten WHERE 1=1";
+// $total_params = $params;
+// $total_items = $db->query($total_query, $total_params)->fetchColumn();
+
+// $total_pages = ceil($total_items / $items_per_page);
+
+
 
 
 switch ($sort) {
@@ -69,12 +77,15 @@ switch ($sort) {
         break;
 }
 
-$query .= " LIMIT $offset, $items_per_page";
+//$query .= " LIMIT $offset, $items_per_page";
 
 //view met item teruggegeven
 view('items/items-index', [
     'items' => $db->query($query, $params)->fetchAll(),
     'current_page' => $page,
+    //weggehaald
+    //'total_items' => $total_items,
+    //'total_pages' => $total_pages
 
 ]);
 ?>
