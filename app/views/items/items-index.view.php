@@ -7,40 +7,49 @@ view("parts/navigatie-menu");
 
     <!-- Zoekformulier -->
     <form method="GET" action="" class="mb-4 flex justify-start">
-        <input type="text" name="search" placeholder="Zoek producten..." class="border p-2 rounded w-1/3" value="<?= htmlspecialchars($_GET['search'] ?? '') ?>">
-        <button type="submit" class="bg-blue-500 text-white px-4 py-2 rounded ml-2">Zoeken</button>
+        <input type="text" name="search" placeholder="Zoek producten..." class="border p-1 rounded w-1/5" value="<?= htmlspecialchars($_GET['search'] ?? '') ?>">
+        <button type="submit" class="bg-blue-500 text-white px-3 py-0.5 rounded ml-2">Zoeken</button>
     </form>
 
     <!-- Filter knop -->
-    <button id="toggleFilters" class="bg-blue-500 text-white px-3 py-1 rounded mb-4">Toon filters</button>
+    <button id="toggleFilters" class="bg-blue-500 text-white px-2 py-0.5 rounded mb-4">Toon filters</button>
 
     <!-- Filteropties -->
     <form id="filterForm" method="GET" action="" class="mb-4 flex flex-wrap justify-start hidden bg-gray-100 p-4 rounded shadow">
         <select name="filter_color" class="border p-1 rounded w-1/4 ml-2">
             <option value="">Filter op kleur</option>
-            <option value="bruin">Bruin</option>
-            <option value="roze">Roze</option>
-            <option value="beige">Beige</option>
-            <option value="grijs">Grijs</option>
-            <option value="zwart">Zwart</option>
-            <option value="wit">Wit</option>
+            <option value="bruin" <?= isset($_GET['filter_color']) && $_GET['filter_color'] == 'bruin' ? 'selected' : '' ?>>Bruin</option>
+            <option value="roze" <?= isset($_GET['filter_color']) && $_GET['filter_color'] == 'roze' ? 'selected' : '' ?>>Roze</option>
+            <option value="beige" <?= isset($_GET['filter_color']) && $_GET['filter_color'] == 'beige' ? 'selected' : '' ?>>Beige</option>
+            <option value="grijs" <?= isset($_GET['filter_color']) && $_GET['filter_color'] == 'grijs' ? 'selected' : '' ?>>Grijs</option>
+            <option value="zwart" <?= isset($_GET['filter_color']) && $_GET['filter_color'] == 'zwart' ? 'selected' : '' ?>>Zwart</option>
+            <option value="wit" <?= isset($_GET['filter_color']) && $_GET['filter_color'] == 'wit' ? 'selected' : '' ?>>Wit</option>
         </select>
         <select name="filter_price" class="border p-1 rounded w-1/4 ml-2">
             <option value="">Filter op prijs</option>
-            <option value="0-50">0 - 50</option>
-            <option value="51-100">51 - 100</option>
-            <option value="101-200">101 - 200</option>
-            <!-- Voeg meer prijsklassen toe indien nodig -->
+            <option value="0-50" <?= isset($_GET['filter_price']) && $_GET['filter_price'] == '0-50' ? 'selected' : '' ?>>0 - 50</option>
+            <option value="51-100" <?= isset($_GET['filter_price']) && $_GET['filter_price'] == '51-100' ? 'selected' : '' ?>>51 - 100</option>
+            <option value="101-200" <?= isset($_GET['filter_price']) && $_GET['filter_price'] == '101-200' ? 'selected' : '' ?>>101 - 200</option>
         </select>
         <select name="filter_gender" class="border p-1 rounded w-1/4 ml-2">
             <option value="">Filter op geslacht</option>
-            <option value="male">Man</option>
-            <option value="female">Vrouw</option>
-            <option value="unisex">Unisex</option>
-            <!-- Voeg meer geslachten toe indien nodig -->
+            <option value="male" <?= isset($_GET['filter_gender']) && $_GET['filter_gender'] == 'male' ? 'selected' : '' ?>>Man</option>
+            <option value="female" <?= isset($_GET['filter_gender']) && $_GET['filter_gender'] == 'female' ? 'selected' : '' ?>>Vrouw</option>
+            <option value="unisex" <?= isset($_GET['filter_gender']) && $_GET['filter_gender'] == 'unisex' ? 'selected' : '' ?>>Unisex</option>
         </select>
         <button type="submit" class="bg-blue-500 text-white px-2 py-1 rounded ml-2">Filteren</button>
         <a href="/items/items-index" class="bg-red-500 text-white px-2 py-1 rounded ml-2">Verwijder filters</a>
+    </form>
+
+    <!-- Sorteer menu -->
+    <form method="GET" action="" class="mb-4 flex justify-end">
+        <select name="sort" class="border p-0.5 rounded w-1/6 ml-2">
+            <option value="naam_asc" <?= isset($_GET['sort']) && $_GET['sort'] == 'naam_asc' ? 'selected' : '' ?>>Naam (A-Z)</option>
+            <option value="naam_desc" <?= isset($_GET['sort']) && $_GET['sort'] == 'naam_desc' ? 'selected' : '' ?>>Naam (Z-A)</option>
+            <option value="prijs_asc" <?= isset($_GET['sort']) && $_GET['sort'] == 'prijs_asc' ? 'selected' : '' ?>>Prijs (€-€€€)</option>
+            <option value="prijs_desc" <?= isset($_GET['sort']) && $_GET['sort'] == 'prijs_desc' ? 'selected' : '' ?>>Prijs (€€€-€)</option>
+        </select>
+        <button type="submit" class="bg-blue-500 text-white px-1 py-0.5 rounded ml-2">Sorteren</button>
     </form>
 
     <?php if (empty($items)) : ?>
@@ -109,14 +118,23 @@ view("parts/navigatie-menu");
 
         <!-- Paginatie -->
         <div class="flex justify-center mt-4">
-            <?php if ($current_page > 1): ?>
-                <a href="?page=<?= $current_page - 1 ?>" class="bg-blue-500 text-white px-3 py-1 rounded mr-2">Vorige</a>
+            <?php
+            $queryParams = $_GET;
+            if ($current_page > 1):
+                $queryParams['page'] = $current_page - 1;
+            ?>
+                <a href="?<?= http_build_query($queryParams) ?>" class="bg-blue-500 text-white px-3 py-1 rounded mr-2">Vorige</a>
             <?php endif; ?>
-            <?php for ($i = max(1, $current_page - 2); $i <= min($current_page + 2, ceil($total_items / 15)); $i++): ?>
-                <a href="?page=<?= $i ?>" class="bg-blue-500 text-white px-3 py-1 rounded mx-1 <?= $i == $current_page ? 'bg-blue-700' : '' ?>"><?= $i ?></a>
+            <?php for ($i = 1; $i <= $total_pages; $i++):
+                $queryParams['page'] = $i;
+            ?>
+                <a href="?<?= http_build_query($queryParams) ?>" class="bg-blue-500 text-white px-3 py-1 rounded mx-1 <?= $i == $current_page ? 'bg-blue-700' : '' ?>"><?= $i ?></a>
             <?php endfor; ?>
-            <?php if ($current_page < ceil($total_items / 15)): ?>
-                <a href="?page=<?= $current_page + 1 ?>" class="bg-blue-500 text-white px-3 py-1 rounded ml-2">Volgende</a>
+            <?php
+            if ($current_page < $total_pages):
+                $queryParams['page'] = $current_page + 1;
+            ?>
+                <a href="?<?= http_build_query($queryParams) ?>" class="bg-blue-500 text-white px-3 py-1 rounded ml-2">Volgende</a>
             <?php endif; ?>
         </div>
     <?php endif; ?>
