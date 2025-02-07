@@ -68,3 +68,5 @@ if ($requestUri === '/' || $requestUri === '/index.php') {
     http_response_code(404);
     echo "404 Not Found";
 }
+?>
+<link rel="stylesheet" href="style.css">
