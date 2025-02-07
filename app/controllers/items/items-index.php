@@ -15,8 +15,8 @@ if ($search) {
     $params['search'] = '%' . $search . '%';
 }
 if ($filter_color) {
-    $query .= " AND kleur = :filter_color";
-    $params['filter_color'] = $filter_color;
+    $query .= " AND kleur LIKE :filter_color";
+    $params['filter_color'] = '%' . $filter_color . '%';
 }
 if ($filter_price) {
     $price_range = explode('-', $filter_price);
@@ -27,8 +27,11 @@ if ($filter_price) {
     }
 }
 if ($filter_gender) {
-    $query .= " AND geslacht = :filter_gender";
-    $params['filter_gender'] = $filter_gender;
+    $allowed_genders = ['male', 'female', 'unisex'];
+    if (in_array($filter_gender, $allowed_genders)) {
+        $query .= " AND geslacht = :filter_gender";
+        $params['filter_gender'] = $filter_gender;
+    }
 }
 
 //view met item teruggegeven

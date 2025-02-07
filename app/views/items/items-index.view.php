@@ -18,10 +18,12 @@ view("parts/navigatie-menu");
     <form id="filterForm" method="GET" action="" class="mb-4 flex flex-wrap justify-start hidden bg-gray-100 p-4 rounded shadow">
         <select name="filter_color" class="border p-1 rounded w-1/4 ml-2">
             <option value="">Filter op kleur</option>
-            <option value="rood">Rood</option>
-            <option value="blauw">Blauw</option>
-            <option value="groen">Groen</option>
-            <!-- Voeg meer kleuren toe indien nodig -->
+            <option value="bruin">Bruin</option>
+            <option value="roze">Roze</option>
+            <option value="beige">Beige</option>
+            <option value="grijs">Grijs</option>
+            <option value="zwart">Zwart</option>
+            <option value="wit">Wit</option>
         </select>
         <select name="filter_price" class="border p-1 rounded w-1/4 ml-2">
             <option value="">Filter op prijs</option>
@@ -32,8 +34,9 @@ view("parts/navigatie-menu");
         </select>
         <select name="filter_gender" class="border p-1 rounded w-1/4 ml-2">
             <option value="">Filter op geslacht</option>
-            <option value="man">Man</option>
-            <option value="vrouw">Vrouw</option>
+            <option value="male">Man</option>
+            <option value="female">Vrouw</option>
+            <option value="unisex">Unisex</option>
             <!-- Voeg meer geslachten toe indien nodig -->
         </select>
         <button type="submit" class="bg-blue-500 text-white px-2 py-1 rounded ml-2">Filteren</button>

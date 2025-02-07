@@ -23,18 +23,11 @@ if (!empty($errors)) {
     exit();
 }
 
-//wijzigen doorvoeren
-$db = new Database();
-$afbeelding = $_FILES['afbeelding']['name'];
+// Handle file upload
 $afbeelding_naam = $_POST['afbeelding_naam'];
-
-// Use the provided filename
-$afbeelding = $afbeelding_naam . '.' . pathinfo($afbeelding, PATHINFO_EXTENSION);
-
-// Sanitize the file name
-$afbeelding = preg_replace('/\.(?=.*\.)/', '', $afbeelding);
+$afbeelding = $_FILES['afbeelding']['name'];
 $target_dir = __DIR__ . "/../../../webroot/images/";
-$target_file = $target_dir . basename($afbeelding);
+$target_file = $target_dir . basename($afbeelding_naam . '.' . pathinfo($afbeelding, PATHINFO_EXTENSION));
 
 // Ensure the images directory exists
 if (!is_dir($target_dir)) {
@@ -42,40 +35,24 @@ if (!is_dir($target_dir)) {
 }
 
 // Move the uploaded file to the target directory
-if (move_uploaded_file($_FILES['afbeelding']['tmp_name'], $target_file)) {
-    $updated_at = date('Y-m-d H:i:s');
-
-    // Update product in the database
-    $db->query('UPDATE producten SET naam = ?, prijs = ?, beschrijving = ?, kleur = ?, geslacht = ?, afbeelding = ?, updated_at = ? WHERE id = ?', [
-        $_POST['naam'],
-        floatval($_POST['prijs']),
-        $_POST['beschrijving'],
-        $_POST['kleur'],
-        $_POST['geslacht'],
-        $afbeelding,
-        $updated_at,
-        $_POST['id']
-    ]);
-
-    flash("Item " . htmlspecialchars($_POST['naam']) . " is gewijzigd");
-    //terugsturen naar de detail pagina van het item
-    header("location: /productbeheer");
-} else {
-    // Handle case where no new image is uploaded
-    $updated_at = date('Y-m-d H:i:s');
-
-    // Update product in the database without changing the image
-    $db->query('UPDATE producten SET naam = ?, prijs = ?, beschrijving = ?, kleur = ?, geslacht = ?, updated_at = ? WHERE id = ?', [
-        $_POST['naam'],
-        floatval($_POST['prijs']),
-        $_POST['beschrijving'],
-        $_POST['kleur'],
-        $_POST['geslacht'],
-        $updated_at,
-        $_POST['id']
-    ]);
-
-    flash("Item " . htmlspecialchars($_POST['naam']) . " is gewijzigd");
-    //terugsturen naar de detail pagina van het item
-    header("location: /productbeheer");
+if (!move_uploaded_file($_FILES['afbeelding']['tmp_name'], $target_file)) {
+    $_SESSION['error'] = "Sorry, there was an error uploading your file.";
+    header("Location: /items/items-edit?id=" . $_POST['id']);
+    exit();
 }
+
+//wijzigen doorvoeren
+$db = new Database();
+$db->query('UPDATE producten SET naam = ?, prijs = ?, beschrijving = ?, kleur = ?, geslacht = ?, afbeelding = ? WHERE id = ?', [
+    $_POST['naam'],
+    floatval($_POST['prijs']),
+    $_POST['beschrijving'],
+    $_POST['kleur'],
+    $_POST['geslacht'],
+    $afbeelding_naam,
+    $_POST['id']
+]);
+
+flash("Item " . htmlspecialchars($_POST['naam']) . " is gewijzigd");
+//terugsturen naar de detail pagina van het item
+header("location: /productbeheer");
