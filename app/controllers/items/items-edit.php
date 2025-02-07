@@ -10,7 +10,9 @@ if (!$id) {
 }
 
 $db = new Database();
-$item = $db->query('SELECT * FROM producten WHERE id = ?', [$id])->fetch(PDO::FETCH_ASSOC);
+
+// Fetch item details including kleur, geslacht, and afbeelding
+$item = $db->query('SELECT * FROM producten WHERE id = ?', [$id])->fetch();
 
 if (!$item) {
     die("Product niet gevonden.");
