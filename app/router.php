@@ -3,6 +3,8 @@
 $route = new Route();
 // Hier doen we een controle of een bepaalde URL bestaat en we verwijzen door naar een controller of een view
 
+$route->get('ui', "views/ui.view.php");
+
 $route->get('', "controllers/home.php");
 $route->get('index', "controllers/home.php");
 $route->get('contact', "controllers/contact.php");
