@@ -33,20 +33,140 @@ view("parts/navigatie-menu");
             <option value="wit" <?= isset($_GET['filter_color']) && $_GET['filter_color'] == 'wit' ? 'selected' : '' ?>>
                 Wit</option>
         </select>
-        <input type="number" name="filter_price_min" placeholder="Min. prijs" class="border p-1 rounded w-1/4 ml-2"
-            value="<?= htmlspecialchars($_GET['filter_price_min'] ?? '') ?>">
-        <input type="number" name="filter_price_max" placeholder="Max. prijs" class="border p-1 rounded w-1/4 ml-2"
-            value="<?= htmlspecialchars($_GET['filter_price_max'] ?? '') ?>">
+
+
+        <div class=" main">
+            <style>
+                /* Styles for the price input container */
+                .price-input-container {
+                    width: 100%;
+                }
+
+                .price-input .price-field {
+                    display: flex;
+                    margin-bottom: 22px;
+                }
+
+                .price-field span {
+                    margin-right: 10px;
+                    margin-top: 6px;
+                    font-size: 17px;
+                }
+
+                .price-field input {
+                    flex: 1;
+                    height: 35px;
+                    font-size: 15px;
+                    font-family: "DM Sans", sans-serif;
+                    border-radius: 9px;
+                    text-align: center;
+                    border: 0px;
+                    background: #e4e4e4;
+                }
+
+                .price-input {
+                    width: 100%;
+                    font-size: 19px;
+                    color: #555;
+                }
+
+                /* Remove Arrows/Spinners */
+                input::-webkit-outer-spin-button,
+                input::-webkit-inner-spin-button {
+                    -webkit-appearance: none;
+                    margin: 0;
+                }
+
+                .slider-container {
+                    width: 100%;
+                }
+
+                .slider-container {
+                    height: 6px;
+                    position: relative;
+                    background: #e4e4e4;
+                    border-radius: 5px;
+                }
+
+                .slider-container .price-slider {
+                    height: 100%;
+                    left: 25%;
+                    right: 15%;
+                    position: absolute;
+                    border-radius: 5px;
+                    background: #01940b;
+                }
+
+                .range-input {
+                    position: relative;
+                }
+
+                .range-input input {
+                    position: absolute;
+                    width: 100%;
+                    height: 5px;
+                    background: none;
+                    top: -5px;
+                    pointer-events: none;
+                    cursor: pointer;
+                    -webkit-appearance: none;
+                }
+
+                /* Styles for the range thumb in WebKit browsers */
+                input[type="range"]::-webkit-slider-thumb {
+                    height: 18px;
+                    width: 18px;
+                    border-radius: 70%;
+                    background: #555;
+                    pointer-events: auto;
+                    -webkit-appearance: none;
+                }
+            </style>
+
+            </style>
+            <div class="custom-wrapper">
+                <div class="price-input-container">
+                    <div class="price-input">
+                        <div class="price-field">
+                            <span>Minimum Price</span>
+                            <input type="number" class="min-input"
+                                value="<?= htmlspecialchars($_GET['filter_price_min'] ?? '') ?>">
+                        </div>
+                        <div class="price-field">
+                            <span>Maximum Price</span>
+                            <input type="number" class="max-input"
+                                value="<?= htmlspecialchars($_GET['filter_price_max'] ?? '') ?>">
+                        </div>
+                    </div>
+                    <div class="slider-container">
+                        <div class="price-slider">
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Slider -->
+                <div class="range-input">
+                    <input type="range" name="filter_price_min" class="min-range" min="1" max="300"
+                        value="<?= htmlspecialchars($_GET['filter_price_min'] ?? '') ?>" step="1">
+                    <input type="range" name="filter_price_max" class="max-range" min="1" max="300"
+                        value="<?= htmlspecialchars($_GET['filter_price_max'] ?? '') ?>" step="1">
+                </div>
+            </div>
+        </div>
+
 
         <select name="filter_gender" class="border p-1 rounded w-1/4 ml-2">
             <option value="">Filter op geslacht</option>
             <option value="male"
-                <?= isset($_GET['filter_gender']) && $_GET['filter_gender'] == 'male' ? 'selected' : '' ?>>Man</option>
+                <?= isset($_GET['filter_gender']) && $_GET['filter_gender'] == 'male' ? 'selected' : '' ?>>Man
+            </option>
             <option value="female"
-                <?= isset($_GET['filter_gender']) && $_GET['filter_gender'] == 'female' ? 'selected' : '' ?>>Vrouw
+                <?= isset($_GET['filter_gender']) && $_GET['filter_gender'] == 'female' ? 'selected' : '' ?>>
+                Vrouw
             </option>
             <option value="unisex"
-                <?= isset($_GET['filter_gender']) && $_GET['filter_gender'] == 'unisex' ? 'selected' : '' ?>>Unisex
+                <?= isset($_GET['filter_gender']) && $_GET['filter_gender'] == 'unisex' ? 'selected' : '' ?>>
+                Unisex
             </option>
         </select>
         <button type="submit" class="bg-blue-500 text-white px-2 py-1 rounded ml-2">Filteren</button>
@@ -112,95 +232,106 @@ view("parts/navigatie-menu");
                         <p id="sizeError-<?= $item['id'] ?>" class="text-red-500 hidden">Kies een maat</p>
                     </div>
                     <script>
-                        document.getElementById('addToCartForm-<?= $item['id'] ?>').addEventListener('submit', function(event) {
-                            const size = document.getElementById('size-<?= $item['id'] ?>').value;
-                            let hasError = false;
-                            if (!size) {
-                                event.preventDefault();
-                                document.getElementById('sizeError-<?= $item['id'] ?>').classList.remove('hidden');
-                                hasError = true;
-                            } else {
-                                document.getElementById('selectedSize-<?= $item['id'] ?>').value = size;
-                                document.getElementById('sizeError-<?= $item['id'] ?>').classList.add('hidden');
+                        document.addEventListener('DOMContentLoaded', function() {
+                            // Function to initialize the slider values and styles
+                            function initializeSlider() {
+                                const rangevalue = document.querySelector(".slider-container .price-slider");
+                                const rangeInputvalue = document.querySelectorAll(".range-input input");
+                                const priceInputvalue = document.querySelectorAll(".price-input input");
+
+                                let minVal = parseInt(rangeInputvalue[0].value);
+                                let maxVal = parseInt(rangeInputvalue[1].value);
+
+                                // Update price inputs and range progress
+                                priceInputvalue[0].value = minVal;
+                                priceInputvalue[1].value = maxVal;
+                                rangevalue.style.left = `${(minVal / rangeInputvalue[0].max) * 100}%`;
+                                rangevalue.style.right = `${100 - (maxVal / rangeInputvalue[1].max) * 100}%`;
                             }
-                            if (hasError) {
-                                event.preventDefault();
-                            }
-                        });
 
+                            // Call the initialize function when the page loads
+                            initializeSlider();
 
-                        const rangevalue =
-                            document.querySelector(".slider-container .price-slider");
-                        const rangeInputvalue =
-                            document.querySelectorAll(".range-input input");
-
-                        // Set the price gap
-                        let priceGap = 500;
-
-                        // Adding event listners to price input elements
-                        const priceInputvalue =
-                            document.querySelectorAll(".price-input input");
-                        for (let i = 0; i < priceInputvalue.length; i++) {
-                            priceInputvalue[i].addEventListener("input", e => {
-
-                                // Parse min and max values of the range input
-                                let minp = parseInt(priceInputvalue[0].value);
-                                let maxp = parseInt(priceInputvalue[1].value);
-                                let diff = maxp - minp
-
-                                if (minp < 0) {
-                                    alert("minimum price cannot be less than 0");
-                                    priceInputvalue[0].value = 0;
-                                    minp = 0;
+                            document.getElementById('addToCartForm-<?= $item['id'] ?>').addEventListener('submit', function(
+                                event) {
+                                const size = document.getElementById('size-<?= $item['id'] ?>').value;
+                                let hasError = false;
+                                if (!size) {
+                                    event.preventDefault();
+                                    document.getElementById('sizeError-<?= $item['id'] ?>').classList.remove('hidden');
+                                    hasError = true;
+                                } else {
+                                    document.getElementById('selectedSize-<?= $item['id'] ?>').value = size;
+                                    document.getElementById('sizeError-<?= $item['id'] ?>').classList.add('hidden');
                                 }
-
-                                // Validate the input values
-                                if (maxp > 10000) {
-                                    alert("maximum price cannot be greater than 10000");
-                                    priceInputvalue[1].value = 10000;
-                                    maxp = 10000;
+                                if (hasError) {
+                                    event.preventDefault();
                                 }
+                            });
 
-                                if (minp > maxp - priceGap) {
-                                    priceInputvalue[0].value = maxp - priceGap;
-                                    minp = maxp - priceGap;
+                            const rangevalue = document.querySelector(".slider-container .price-slider");
+                            const rangeInputvalue = document.querySelectorAll(".range-input input");
+
+                            // Set the price gap
+                            let priceGap = 20;
+
+                            // Adding event listeners to price input elements
+                            const priceInputvalue = document.querySelectorAll(".price-input input");
+                            for (let i = 0; i < priceInputvalue.length; i++) {
+                                priceInputvalue[i].addEventListener("input", e => {
+                                    // Parse min and max values of the range input
+                                    let minp = parseInt(priceInputvalue[0].value);
+                                    let maxp = parseInt(priceInputvalue[1].value);
+                                    let diff = maxp - minp;
 
                                     if (minp < 0) {
+                                        alert("minimum price cannot be less than 0");
                                         priceInputvalue[0].value = 0;
                                         minp = 0;
                                     }
-                                }
 
-                                // Check if the price gap is met 
-                                // and max price is within the range
-                                if (diff >= priceGap && maxp <= rangeInputvalue[1].max) {
-                                    if (e.target.className === "min-input") {
-                                        rangeInputvalue[0].value = minp;
-                                        let value1 = rangeInputvalue[0].max;
-                                        rangevalue.style.left = `${(minp / value1) * 100}%`;
-                                    } else {
-                                        rangeInputvalue[1].value = maxp;
-                                        let value2 = rangeInputvalue[1].max;
-                                        rangevalue.style.right =
-                                            `${100 - (maxp / value2) * 100}%`;
+                                    // Validate the input values
+                                    if (maxp > 300) {
+                                        alert("maximum price cannot be greater than 300");
+                                        priceInputvalue[1].value = 300;
+                                        maxp = 300;
                                     }
-                                }
-                            });
+
+                                    if (minp > maxp - priceGap) {
+                                        priceInputvalue[0].value = maxp - priceGap;
+                                        minp = maxp - priceGap;
+
+                                        if (minp < 0) {
+                                            priceInputvalue[0].value = 0;
+                                            minp = 0;
+                                        }
+                                    }
+
+                                    // Check if the price gap is met 
+                                    // and max price is within the range
+                                    if (diff >= priceGap && maxp <= rangeInputvalue[1].max) {
+                                        if (e.target.className === "min-input") {
+                                            rangeInputvalue[0].value = minp;
+                                            let value1 = rangeInputvalue[0].max;
+                                            rangevalue.style.left = `${(minp / value1) * 100}%`;
+                                        } else {
+                                            rangeInputvalue[1].value = maxp;
+                                            let value2 = rangeInputvalue[1].max;
+                                            rangevalue.style.right = `${100 - (maxp / value2) * 100}%`;
+                                        }
+                                    }
+                                });
+                            }
 
                             // Add event listeners to range input elements
                             for (let i = 0; i < rangeInputvalue.length; i++) {
                                 rangeInputvalue[i].addEventListener("input", e => {
-                                    let minVal =
-                                        parseInt(rangeInputvalue[0].value);
-                                    let maxVal =
-                                        parseInt(rangeInputvalue[1].value);
-
-
-                                    let diff = maxVal - minVal
+                                    let minVal = parseInt(rangeInputvalue[0].value);
+                                    let maxVal = parseInt(rangeInputvalue[1].value);
+                                    let diff = maxVal - minVal;
 
                                     // Check if the price gap is exceeded
                                     if (diff < priceGap) {
-
                                         // Check if the input is the min range input
                                         if (e.target.className === "min-range") {
                                             rangeInputvalue[0].value = maxVal - priceGap;
@@ -208,18 +339,15 @@ view("parts/navigatie-menu");
                                             rangeInputvalue[1].value = minVal + priceGap;
                                         }
                                     } else {
-
                                         // Update price inputs and range progress
                                         priceInputvalue[0].value = minVal;
                                         priceInputvalue[1].value = maxVal;
-                                        rangevalue.style.left =
-                                            `${(minVal / rangeInputvalue[0].max) * 100}%`;
-                                        rangevalue.style.right =
-                                            `${100 - (maxVal / rangeInputvalue[1].max) * 100}%`;
+                                        rangevalue.style.left = `${(minVal / rangeInputvalue[0].max) * 100}%`;
+                                        rangevalue.style.right = `${100 - (maxVal / rangeInputvalue[1].max) * 100}%`;
                                     }
                                 });
                             }
-                        }
+                        });
                     </script>
                 <?php endif; ?>
             <?php endforeach; ?>
