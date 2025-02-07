@@ -5,7 +5,9 @@ $db = new Database();
 // Zoek- en filterfunctie
 $search = isset($_GET['search']) ? $_GET['search'] : '';
 $filter_color = isset($_GET['filter_color']) ? $_GET['filter_color'] : '';
-$filter_price = isset($_GET['filter_price']) ? $_GET['filter_price'] : '';
+//$filter_price = isset($_GET['filter_price']) ? $_GET['filter_price'] : '';
+$filter_price_min = isset($_GET['filter_price_min']) ? $_GET['filter_price_min'] : '';
+$filter_price_max = isset($_GET['filter_price_max']) ? $_GET['filter_price_max'] : '';
 $filter_gender = isset($_GET['filter_gender']) ? $_GET['filter_gender'] : '';
 $sort = isset($_GET['sort']) ? $_GET['sort'] : 'naam_asc';
 $page = isset($_GET['page']) ? (int)$_GET['page'] : 1;
@@ -22,13 +24,10 @@ if ($filter_color) {
     $query .= " AND kleur LIKE :filter_color";
     $params['filter_color'] = '%' . $filter_color . '%';
 }
-if ($filter_price) {
-    $price_range = explode('-', $filter_price);
-    if (count($price_range) == 2) {
+if ($filter_price_min && $filter_price_max) {
         $query .= " AND prijs BETWEEN :price_min AND :price_max";
-        $params['price_min'] = $price_range[0];
-        $params['price_max'] = $price_range[1];
-    }
+    $params['price_min'] = $filter_price_min;
+    $params['price_max'] = $filter_price_max;
 }
 if ($filter_gender) {
     $allowed_genders = ['male', 'female', 'unisex'];
