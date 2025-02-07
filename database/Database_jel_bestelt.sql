@@ -132,7 +132,7 @@ CREATE TABLE IF NOT EXISTS `producten` (
   CONSTRAINT `FK_producten_types` FOREIGN KEY (`type_id`) REFERENCES `types` (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=50 DEFAULT CHARSET=utf8mb4;
 
--- Dumping data for table jel_bestelt.producten: ~29 rows (approximately)
+-- Dumping data for table jel_bestelt.producten: ~42 rows (approximately)
 DELETE FROM `producten`;
 INSERT INTO `producten` (`id`, `naam`, `beschrijving`, `prijs`, `kleur`, `geslacht`, `type_id`, `afbeelding`, `created_at`, `updated_at`, `deleted_at`) VALUES
 	(21, 'Hoodie', 'Comfortabele hoodie voor dagelijks gebruik.', 49.99, 'zwart', 'unisex', 1, 'hoodie.jpg', '2025-02-03 07:26:37', '2025-02-07 11:13:54', NULL),
@@ -150,20 +150,33 @@ INSERT INTO `producten` (`id`, `naam`, `beschrijving`, `prijs`, `kleur`, `geslac
 	(33, 'Trainingspak', 'Sportief trainingspak voor actieve dagen.', 69.95, 'grijs', 'unisex', 1, 'trainingspak.jpg', '2025-02-03 07:26:37', '2025-02-07 11:13:51', NULL),
 	(34, 'Jumpsuit', 'Trendy jumpsuit voor casual of chique momenten.', 59.99, 'blauw', 'vrouw', 1, 'jumpsuit.jpg', '2025-02-03 07:26:37', '2025-02-07 11:14:03', NULL),
 	(35, 'Cargo Broek', 'Stoere cargo broek met veel zakken.', 45.95, 'blauw', 'vrouw', 1, 'cargo.jpg', '2025-02-03 07:26:37', '2025-02-07 11:14:16', NULL),
-	(36, 'Gilet', 'Elegant gilet voor formele outfits.', 39.95, 'donker blauw', 'man', 1, 'gilet.jpg', '2025-02-03 07:26:37', '2025-02-07 11:14:32', NULL),
-	(37, 'Pyjama', 'Comfortabele pyjama voor een goede nachtrust.', 24.95, 'zwart, wit', 'unisex', 1, 'pyjama.jpg', '2025-02-03 07:26:37', '2025-02-07 11:14:51', NULL),
-	(38, 'Sokken', 'Set van 5 paar katoenen sokken.', 9.99, 'donker grijs', 'unisex', 1, 'sokken.jpg', '2025-02-03 07:26:37', '2025-02-07 11:15:08', NULL),
-	(39, 'Ondergoed', 'Comfortabel ondergoed van katoen.', 14.95, 'wit, beige, grijs', 'vrouw', 1, 'ondergoed.jpg', '2025-02-03 07:26:37', '2025-02-07 11:15:38', NULL),
+	(36, 'Gilet', 'Elegant gilet voor formele outfits.', 39.95, 'blauw', 'man', 1, 'gilet.jpg', '2025-02-03 07:26:37', '2025-02-07 14:31:46', NULL),
+	(37, 'Pyjama', 'Comfortabele pyjama voor een goede nachtrust.', 24.95, 'zwart', 'unisex', 1, 'pyjama.jpg', '2025-02-03 07:26:37', '2025-02-07 14:31:52', NULL),
+	(38, 'Sokken', 'Set van 5 paar katoenen sokken.', 9.99, 'grijs', 'unisex', 1, 'sokken.jpg', '2025-02-03 07:26:37', '2025-02-07 14:31:59', NULL),
+	(39, 'Ondergoed', 'Comfortabel ondergoed van katoen.', 14.95, 'wit', 'vrouw', 1, 'ondergoed.jpg', '2025-02-03 07:26:37', '2025-02-07 14:32:11', NULL),
 	(40, 'Handschoenen', 'Warme handschoenen voor de winter.', 19.99, 'zwart', 'unisex', 1, 'handschoenen.jpg', '2025-02-03 07:26:37', '2025-02-07 11:15:49', NULL),
-	(41, 'Muts', 'Gebreide muts voor koude dagen.', 12.99, 'blauw, bruin', 'unisex', 1, 'muts.jpg', '2025-02-03 07:26:37', '2025-02-07 11:16:00', NULL),
+	(41, 'Muts', 'Gebreide muts voor koude dagen.', 12.99, 'blauw', 'unisex', 1, 'muts.jpg', '2025-02-03 07:26:37', '2025-02-07 14:32:14', NULL),
 	(42, 'Sjaal', 'Zachte wollen sjaal voor extra warmte.', 24.95, 'rood', 'unisex', 1, 'sjaal.jpg', '2025-02-03 07:26:37', '2025-02-07 11:16:29', NULL),
 	(43, 'Blazer', 'Nette blazer voor zakelijke gelegenheden.', 89.95, 'zwart', 'man', 1, 'blazer.jpg', '2025-02-03 07:26:37', '2025-02-07 11:16:45', NULL),
-	(44, 'Tanktops', 'Set van 3 basic tanktops.', 19.99, 'wit, grijs, zwart', 'vrouw', 1, 'tanktops.jpg', '2025-02-03 07:26:37', '2025-02-07 11:17:06', NULL),
+	(44, 'Tanktops', 'Set van 3 basic tanktops.', 19.99, 'wit', 'vrouw', 1, 'tanktops.jpg', '2025-02-03 07:26:37', '2025-02-07 14:32:23', NULL),
 	(45, 'Regenjas', 'Waterdichte regenjas voor natte dagen.', 79.99, 'rood', 'unisex', 1, 'regenjas.jpg', '2025-02-03 07:26:37', '2025-02-07 11:17:22', NULL),
 	(46, 'Strandjurk', 'Lichte strandjurk voor zomervakanties.', 29.99, 'groen', 'vrouw', 1, 'strandjurk.jpg', '2025-02-03 07:26:37', '2025-02-07 11:17:32', NULL),
 	(47, 'Broekpak', 'Elegant broekpak voor formele gelegenheden.', 99.95, 'rood', 'vrouw', 1, 'broekpak.jpg', '2025-02-03 07:26:37', '2025-02-07 11:17:40', NULL),
 	(48, 'Legging', 'Elastische legging voor sport en casual outfits.', 22.95, 'roze', 'vrouw', 1, 'legging.jpg', '2025-02-03 07:26:37', '2025-02-07 11:17:49', NULL),
-	(49, 'Kostuum', 'Compleet kostuum voor zakelijke en formele gelegenheden.', 149.99, 'donker blauw', 'man', 1, 'kostuum.jpg', '2025-02-03 07:26:37', '2025-02-07 11:23:20', NULL);
+	(49, 'Kostuum', 'Compleet kostuum voor zakelijke en formele gelegenheden.', 149.99, 'blauw', 'man', 1, 'kostuum.jpg', '2025-02-03 07:26:37', '2025-02-07 14:32:35', NULL),
+	(65, 'Maxi Jurk', 'Lange en elegante jurk voor speciale gelegenheden.', 79.99, NULL, 'vrouw', 1, 'maxi_jurk.jpg', '2025-02-07 13:08:24', '2025-02-07 13:08:24', NULL),
+	(66, 'Blouse met Kant', 'Luchtige blouse met kanten details.', 39.95, NULL, 'vrouw', 1, 'blouse_kant.jpg', '2025-02-07 13:08:24', '2025-02-07 13:08:24', NULL),
+	(67, 'Denim Rok', 'Trendy spijkerrok met knoopsluiting.', 44.99, NULL, 'vrouw', 1, 'denim_rok.jpg', '2025-02-07 13:08:24', '2025-02-07 13:08:24', NULL),
+	(68, 'Flared Broek', 'Modieuze flared broek met hoge taille.', 49.99, NULL, 'vrouw', 1, 'flared_broek.jpg', '2025-02-07 13:08:24', '2025-02-07 13:08:24', NULL),
+	(71, 'Poncho', 'Warme poncho met franjes.', 39.99, NULL, 'unisex', 1, 'poncho.jpg', '2025-02-07 13:08:24', '2025-02-07 13:08:24', NULL),
+	(72, 'Satijnen Nachtjapon', 'Elegante satijnen nachtjapon.', 54.99, NULL, 'vrouw', 1, 'satijn_nachtjapon.jpg', '2025-02-07 13:08:24', '2025-02-07 13:08:24', NULL),
+	(73, 'Linnen Overhemd', 'Casual linnen overhemd voor warme dagen.', 42.95, NULL, 'man', 1, 'linnen_overhemd.jpg', '2025-02-07 13:08:24', '2025-02-07 13:08:24', NULL),
+	(75, 'Ribgebreide Trui', 'Warme ribgebreide trui voor koude dagen.', 49.95, NULL, 'unisex', 1, 'rib_trui.jpg', '2025-02-07 13:08:24', '2025-02-07 13:08:24', NULL),
+	(76, 'Sportlegging', 'Elastische sportlegging met compressie.', 39.99, NULL, 'unisex', 1, 'sportlegging.jpg', '2025-02-07 13:08:24', '2025-02-07 13:08:24', NULL),
+	(77, 'Espadrilles', 'Lichte zomerse schoenen met touwzool.', 59.99, NULL, 'unisex', 1, 'espadrilles.jpg', '2025-02-07 13:08:24', '2025-02-07 13:08:24', NULL),
+	(78, 'Gala Jurk', 'Chique gala jurk met glitters.', 129.99, NULL, 'vrouw', 1, 'gala_jurk.jpg', '2025-02-07 13:08:24', '2025-02-07 13:08:24', NULL),
+	(79, 'Corduroy Jas', 'Trendy corduroy jas met knopen.', 74.99, NULL, 'man', 1, 'corduroy_jas.jpg', '2025-02-07 13:08:24', '2025-02-07 13:08:24', NULL),
+	(80, 'Teddy Jas', 'Zachte en warme teddy jas voor koude dagen.', 89.99, NULL, 'vrouw', 1, 'teddy_jas.jpg', '2025-02-07 13:45:55', '2025-02-07 14:31:35', NULL);
 
 -- Dumping structure for table jel_bestelt.reactie
 DROP TABLE IF EXISTS `reactie`;
