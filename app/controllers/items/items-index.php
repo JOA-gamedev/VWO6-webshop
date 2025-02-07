@@ -7,6 +7,9 @@ $search = isset($_GET['search']) ? $_GET['search'] : '';
 $filter_color = isset($_GET['filter_color']) ? $_GET['filter_color'] : '';
 $filter_price = isset($_GET['filter_price']) ? $_GET['filter_price'] : '';
 $filter_gender = isset($_GET['filter_gender']) ? $_GET['filter_gender'] : '';
+$page = isset($_GET['page']) ? (int)$_GET['page'] : 1;
+$items_per_page = 15;
+$offset = ($page - 1) * $items_per_page;
 
 $query = "SELECT * FROM producten WHERE 1=1";
 $params = [];
@@ -34,7 +37,15 @@ if ($filter_gender) {
     }
 }
 
+$total_query = "SELECT COUNT(*) FROM producten WHERE 1=1";
+$total_params = $params;
+$total_items = $db->query($total_query, $total_params)->fetchColumn();
+
+$query .= " LIMIT $offset, $items_per_page";
+
 //view met item teruggegeven
 view('items/items-index', [
-    'items' => $db->query($query, $params)->fetchAll()
+    'items' => $db->query($query, $params)->fetchAll(),
+    'current_page' => $page,
+    'total_items' => $total_items
 ]);

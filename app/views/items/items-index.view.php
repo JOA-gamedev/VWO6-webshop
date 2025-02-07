@@ -106,6 +106,19 @@ view("parts/navigatie-menu");
             <?php endif; ?>
             <?php endforeach; ?>
         </div>
+
+        <!-- Paginatie -->
+        <div class="flex justify-center mt-4">
+            <?php if ($current_page > 1): ?>
+                <a href="?page=<?= $current_page - 1 ?>" class="bg-blue-500 text-white px-3 py-1 rounded mr-2">Vorige</a>
+            <?php endif; ?>
+            <?php for ($i = max(1, $current_page - 2); $i <= min($current_page + 2, ceil($total_items / 15)); $i++): ?>
+                <a href="?page=<?= $i ?>" class="bg-blue-500 text-white px-3 py-1 rounded mx-1 <?= $i == $current_page ? 'bg-blue-700' : '' ?>"><?= $i ?></a>
+            <?php endfor; ?>
+            <?php if ($current_page < ceil($total_items / 15)): ?>
+                <a href="?page=<?= $current_page + 1 ?>" class="bg-blue-500 text-white px-3 py-1 rounded ml-2">Volgende</a>
+            <?php endif; ?>
+        </div>
     <?php endif; ?>
 </div>
 
