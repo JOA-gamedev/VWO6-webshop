@@ -7,6 +7,9 @@ $user = isset($_SESSION['user']) ? $_SESSION['user'] : null; // Replace with act
 ?>
     <div class="sm:mx-10">
         <h1 class="text-3xl my-4">Contact</h1>
+        <div class="text-center">
+            <a href="/berichten-klant" class="bg-blue-500 text-white rounded-md px-4 py-2 hover:bg-blue-600">Mijn Berichten</a>
+        </div>
     </div>
 
     <?php if (isset($_SESSION['flash_message'])): ?>

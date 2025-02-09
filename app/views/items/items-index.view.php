@@ -157,10 +157,10 @@ view("parts/navigatie-menu");
 
         <select name="filter_gender" class="border p-1 rounded w-1/4 ml-2">
             <option value="">Filter op geslacht</option>
-            <option value="male"
+            <option value="man"
                 <?= isset($_GET['filter_gender']) && $_GET['filter_gender'] == 'male' ? 'selected' : '' ?>>Man
             </option>
-            <option value="female"
+            <option value="vrouw"
                 <?= isset($_GET['filter_gender']) && $_GET['filter_gender'] == 'female' ? 'selected' : '' ?>>
                 Vrouw
             </option>

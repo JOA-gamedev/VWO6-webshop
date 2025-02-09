@@ -13,14 +13,11 @@ $messages = getCustomerMessages(); // Assume this function fetches messages for 
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css">
 </head>
 <body>
-    <div class="container mx-auto mt-8">
-        <h1 class="text-2xl font-bold mb-4">Mijn Berichten</h1>
+    <div class="sm:mx-10">
+        <h1 class="text-3xl my-4">Mijn Berichten</h1>
         <?php if (empty($messages)): ?>
-            <div class="fixed inset-0 bg-gray-500 bg-opacity-75 flex items-center justify-center z-50">
-                <div class="bg-white p-6 rounded-lg shadow-lg text-center">
-                    <p class="mb-4">U heeft geen berichten.</p>
-                    <button onclick="closePopup()" class="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-700">Sluiten</button>
-                </div>
+            <div class="bg-gray-100 border border-gray-400 text-gray-700 px-4 py-3 rounded relative" role="alert">
+                <span class="block sm:inline">U heeft geen berichten.</span>
             </div>
         <?php else: ?>
             <ul class="space-y-4">
