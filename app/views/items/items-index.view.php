@@ -18,7 +18,7 @@ view("parts/navigatie-menu");
     <!-- Filteropties -->
     <form id="filterForm" method="GET" action=""
         class="mb-4 flex flex-wrap justify-start hidden bg-gray-100 p-4 rounded shadow">
-        <select name="filter_color" class="border p-1 rounded w-1/4 ml-2">
+        <select name="filter_color" class="border p-1 rounded w-1/5 ml-2">
             <option value="">Filter op kleur</option>
             <option value="bruin"
                 <?= isset($_GET['filter_color']) && $_GET['filter_color'] == 'bruin' ? 'selected' : '' ?>>Bruin</option>
@@ -36,126 +36,36 @@ view("parts/navigatie-menu");
 
 
         <div class=" main">
-            <style>
-                /* Styles for the price input container */
-                .price-input-container {
-                    width: 100%;
-                }
-
-                .price-input .price-field {
-                    display: flex;
-                    margin-bottom: 22px;
-                }
-
-                .price-field span {
-                    margin-right: 10px;
-                    margin-top: 6px;
-                    font-size: 17px;
-                }
-
-                .price-field input {
-                    flex: 1;
-                    height: 35px;
-                    font-size: 15px;
-                    font-family: "DM Sans", sans-serif;
-                    border-radius: 9px;
-                    text-align: center;
-                    border: 0px;
-                    background: #e4e4e4;
-                }
-
-                .price-input {
-                    width: 100%;
-                    font-size: 19px;
-                    color: #555;
-                }
-
-                /* Remove Arrows/Spinners */
-                input::-webkit-outer-spin-button,
-                input::-webkit-inner-spin-button {
-                    -webkit-appearance: none;
-                    margin: 0;
-                }
-
-                .slider-container {
-                    width: 100%;
-                }
-
-                .slider-container {
-                    height: 6px;
-                    position: relative;
-                    background: #e4e4e4;
-                    border-radius: 5px;
-                }
-
-                .slider-container .price-slider {
-                    height: 100%;
-                    left: 25%;
-                    right: 15%;
-                    position: absolute;
-                    border-radius: 5px;
-                    background: #01940b;
-                }
-
-                .range-input {
-                    position: relative;
-                }
-
-                .range-input input {
-                    position: absolute;
-                    width: 100%;
-                    height: 5px;
-                    background: none;
-                    top: -5px;
-                    pointer-events: none;
-                    cursor: pointer;
-                    -webkit-appearance: none;
-                }
-
-                /* Styles for the range thumb in WebKit browsers */
-                input[type="range"]::-webkit-slider-thumb {
-                    height: 18px;
-                    width: 18px;
-                    border-radius: 70%;
-                    background: #555;
-                    pointer-events: auto;
-                    -webkit-appearance: none;
-                }
-            </style>
-
-            </style>
             <div class="custom-wrapper">
                 <div class="price-input-container">
                     <div class="price-input">
-                        <div class="price-field">
-                            <span>Minimum Price</span>
-                            <input type="number" class="min-input"
-                                value="<?= htmlspecialchars($_GET['filter_price_min'] ?? '') ?>">
+                        <div class="price-field flex items-center mb-4">
+                            <span class="mr-2 text-lg">Minimum Price</span>
+                            <input type="number" class="min-input flex-1 h-10 text-base rounded-lg text-center border-0 bg-gray-200"
+                                value="<?= htmlspecialchars($_GET['filter_price_min'] ?? '1') ?>">
                         </div>
-                        <div class="price-field">
-                            <span>Maximum Price</span>
-                            <input type="number" class="max-input"
-                                value="<?= htmlspecialchars($_GET['filter_price_max'] ?? '') ?>">
+                        <div class="price-field flex items-center mb-4">
+                            <span class="mr-2 text-lg">Maximum Price</span>
+                            <input type="number" class="max-input flex-1 h-10 text-base rounded-lg text-center border-0 bg-gray-200"
+                                value="<?= htmlspecialchars($_GET['filter_price_max'] ?? '300') ?>">
                         </div>
                     </div>
-                    <div class="slider-container">
-                        <div class="price-slider">
-                        </div>
+                    <div class="slider-container relative h-2 bg-gray-200 rounded ml-2 mr-2">
+                        <div class="price-slider absolute h-full bg-green-600 rounded"></div>
                     </div>
                 </div>
 
                 <!-- Slider -->
-                <div class="range-input">
-                    <input type="range" name="filter_price_min" class="min-range" min="1" max="300"
-                        value="<?= htmlspecialchars($_GET['filter_price_min'] ?? '') ?>" step="1">
-                    <input type="range" name="filter_price_max" class="max-range" min="1" max="300"
-                        value="<?= htmlspecialchars($_GET['filter_price_max'] ?? '') ?>" step="1">
+                <div class="range-input relative mt-4 ml-2 mr-2">
+                    <input type="range" name="filter_price_min" class="min-range absolute w-full h-2 bg-transparent appearance-none pointer-events-auto"
+                        min="1" max="300" value="<?= htmlspecialchars($_GET['filter_price_min'] ?? '1') ?>" step="1">
+                    <input type="range" name="filter_price_max" class="max-range absolute w-full h-2 bg-transparent appearance-none pointer-events-auto"
+                        min="1" max="300" value="<?= htmlspecialchars($_GET['filter_price_max'] ?? '300') ?>" step="1">
                 </div>
             </div>
         </div>
 
-
-        <select name="filter_gender" class="border p-1 rounded w-1/4 ml-2">
+        <select name="filter_gender" class="border p-1 rounded w-1/5 ml-2">
             <option value="">Filter op geslacht</option>
             <option value="man"
                 <?= isset($_GET['filter_gender']) && $_GET['filter_gender'] == 'male' ? 'selected' : '' ?>>Man
@@ -175,6 +85,11 @@ view("parts/navigatie-menu");
 
     <!-- Sorteer menu -->
     <form method="GET" action="" class="mb-4 flex justify-end">
+        <input type="hidden" name="search" value="<?= htmlspecialchars($_GET['search'] ?? '') ?>">
+        <input type="hidden" name="filter_color" value="<?= htmlspecialchars($_GET['filter_color'] ?? '') ?>">
+        <input type="hidden" name="filter_price_min" value="<?= htmlspecialchars($_GET['filter_price_min'] ?? '1') ?>">
+        <input type="hidden" name="filter_price_max" value="<?= htmlspecialchars($_GET['filter_price_max'] ?? '300') ?>">
+        <input type="hidden" name="filter_gender" value="<?= htmlspecialchars($_GET['filter_gender'] ?? '') ?>">
         <select name="sort" class="border p-0.5 rounded w-1/6 ml-2">
             <option value="naam_asc" <?= isset($_GET['sort']) && $_GET['sort'] == 'naam_asc' ? 'selected' : '' ?>>Naam
                 (A-Z)</option>
@@ -353,28 +268,6 @@ view("parts/navigatie-menu");
             <?php endforeach; ?>
         </div>
 
-        <!-- Paginatie -->
-        <!-- <div class="flex justify-center mt-4">
-        <//?php
-            $queryParams = $_GET;
-            if ($current_page > 1):
-                $queryParams['page'] = $current_page - 1;
-            ?>
-        <a href="?<//?= http_build_query($queryParams) ?>"
-            class="bg-blue-500 text-white px-3 py-1 rounded mr-2">Vorige</a>
-        <//?php endif; ?>
-        <//?php for ($i = max(1, $current_page - 2); $i <= min($current_page + 2, ceil($total_items / 15)); $i++): ?>
-        <a href="?page=<//?= $i ?>"
-            class="bg-blue-500 text-white px-3 py-1 rounded mx-1 <//?= $i == $current_page ? 'bg-blue-700' : '' ?>"><//?= $i ?></a>
-        <//?php endfor; ?>
-        <//?php
-            if ($current_page < $total_pages):
-                $queryParams['page'] = $current_page + 1;
-            ?>
-        <a href="?<//?= http_build_query($queryParams) ?>"
-            class="bg-blue-500 text-white px-3 py-1 rounded ml-2">Volgende</a>
-        <//?php endif; ?>
-    </div> -->
     <?php endif; ?>
 </div>
 
