@@ -78,10 +78,14 @@ switch ($sort) {
 
 //$query .= " LIMIT $offset, $items_per_page";
 
+//get max price of all items
+$max_price = $db->query("SELECT MAX(prijs) as max_price FROM producten")->fetch()["max_price"];
+
 //view met item teruggegeven
 view('items/items-index', [
     'items' => $db->query($query, $params)->fetchAll(),
     'current_page' => $page,
+    'max_price' => $max_price,
     //weggehaald
     //'total_items' => $total_items,
     //'total_pages' => $total_pages

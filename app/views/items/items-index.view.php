@@ -34,36 +34,8 @@ view("parts/navigatie-menu");
                 Wit</option>
         </select>
 
-
-        <div class=" main">
-            <div class="custom-wrapper">
-                <div class="price-input-container">
-                    <div class="price-input">
-                        <div class="price-field flex items-center mb-4">
-                            <span class="mr-2 text-lg">Minimum Price</span>
-                            <input type="number" class="min-input flex-1 h-10 text-base rounded-lg text-center border-0 bg-gray-200"
-                                value="<?= htmlspecialchars($_GET['filter_price_min'] ?? '1') ?>">
-                        </div>
-                        <div class="price-field flex items-center mb-4">
-                            <span class="mr-2 text-lg">Maximum Price</span>
-                            <input type="number" class="max-input flex-1 h-10 text-base rounded-lg text-center border-0 bg-gray-200"
-                                value="<?= htmlspecialchars($_GET['filter_price_max'] ?? '300') ?>">
-                        </div>
-                    </div>
-                    <div class="slider-container relative h-2 bg-gray-200 rounded ml-2 mr-2">
-                        <div class="price-slider absolute h-full bg-green-600 rounded"></div>
-                    </div>
-                </div>
-
-                <!-- Slider -->
-                <div class="range-input relative mt-4 ml-2 mr-2">
-                    <input type="range" name="filter_price_min" class="min-range absolute w-full h-2 bg-transparent appearance-none pointer-events-auto"
-                        min="1" max="300" value="<?= htmlspecialchars($_GET['filter_price_min'] ?? '1') ?>" step="1">
-                    <input type="range" name="filter_price_max" class="max-range absolute w-full h-2 bg-transparent appearance-none pointer-events-auto"
-                        min="1" max="300" value="<?= htmlspecialchars($_GET['filter_price_max'] ?? '300') ?>" step="1">
-                </div>
-            </div>
-        </div>
+        <? // include the minmax-slider component and pass through the max price variable
+        view("parts/minmax-slider", ['max_price' => $max_price ?? 29.99]);  ?>
 
         <select name="filter_gender" class="border p-1 rounded w-1/5 ml-2">
             <option value="">Filter op geslacht</option>
@@ -88,7 +60,8 @@ view("parts/navigatie-menu");
         <input type="hidden" name="search" value="<?= htmlspecialchars($_GET['search'] ?? '') ?>">
         <input type="hidden" name="filter_color" value="<?= htmlspecialchars($_GET['filter_color'] ?? '') ?>">
         <input type="hidden" name="filter_price_min" value="<?= htmlspecialchars($_GET['filter_price_min'] ?? '1') ?>">
-        <input type="hidden" name="filter_price_max" value="<?= htmlspecialchars($_GET['filter_price_max'] ?? '300') ?>">
+        <input type="hidden" name="filter_price_max"
+            value="<?= htmlspecialchars($_GET['filter_price_max'] ?? '300') ?>">
         <input type="hidden" name="filter_gender" value="<?= htmlspecialchars($_GET['filter_gender'] ?? '') ?>">
         <select name="sort" class="border p-0.5 rounded w-1/6 ml-2">
             <option value="naam_asc" <?= isset($_GET['sort']) && $_GET['sort'] == 'naam_asc' ? 'selected' : '' ?>>Naam
