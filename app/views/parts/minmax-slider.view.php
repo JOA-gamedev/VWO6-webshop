@@ -5,8 +5,8 @@
 // check if max price is set if not then set to 300
 isset($max_price) ? $max_price : $max_price = 300;
 
-//format max price into price
-$max_price = number_format($max_price, 0, ',', '.');
+//round up max_price and convert to integer
+$max_price = (int)ceil($max_price);
 ?>
 
 <div class=" main">
@@ -135,9 +135,6 @@ $max_price = number_format($max_price, 0, ',', '.');
             let minVal = parseInt(rangeInputvalue[0].value);
             let maxVal = parseInt(rangeInputvalue[1].value);
 
-            // Update price inputs and range progress
-            priceInputvalue[0].value = minVal;
-            priceInputvalue[1].value = maxVal;
             rangevalue.style.left = `${(minVal / rangeInputvalue[0].max) * 100}%`;
             rangevalue.style.right = `${100 - (maxVal / rangeInputvalue[1].max) * 100}%`;
         }
@@ -149,7 +146,7 @@ $max_price = number_format($max_price, 0, ',', '.');
         const rangeInputvalue = document.querySelectorAll(".range-input input");
 
         // Set the price gap
-        let priceGap = 20;
+        let priceGap = 10;
 
         // Adding event listeners to price input elements
 
