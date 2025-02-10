@@ -5,6 +5,8 @@
 // check if max price is set if not then set to 300
 isset($max_price) ? $max_price : $max_price = 300;
 
+//format max price into price
+$max_price = number_format($max_price, 0, ',', '.');
 ?>
 
 <div class=" main">
