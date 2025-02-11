@@ -74,7 +74,6 @@ $left_bound = (int)ceil($left_bound);
             right: 15%;
             position: absolute;
             border-radius: 5px;
-            background: #01940b;
         }
 
         .range-input {
@@ -115,7 +114,7 @@ $left_bound = (int)ceil($left_bound);
                 </div>
             </div>
             <div class="slider-container">
-                <div class="price-slider">
+                <div class="price-slider bg-emerald-300">
                 </div>
             </div>
         </div>
