@@ -2,11 +2,17 @@
 
 <?php
 
-// check if max price is set if not then set to 300
-isset($max_price) ? $max_price : $max_price = 300;
 
-//round up max_price and convert to integer
+// check if the values are set, if not set them to default values
+isset($max_price) ? $max_price : $max_price = 300;
+isset($left_bound) ? $left_bound : $left_bound = 1;
+isset($right_bound) ? $right_bound : $right_bound = $max_price;
+
+// round up the values
 $max_price = (int)ceil($max_price);
+$right_bound = (int)ceil($right_bound);
+$left_bound = (int)ceil($left_bound);
+
 ?>
 
 <div class=" main">
