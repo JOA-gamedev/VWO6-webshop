@@ -1,9 +1,17 @@
 <?php
 
-// Retrieve the products from the GET request
-//$producten = $_GET['producten'] ?? [];
+// Start the session if not already started
+if (session_status() == PHP_SESSION_NONE) {
+    session_start();
+}
 
-//instead of retrieving the products from the GET request, we will retrieve the products from the session
+// Redirect to login-required page if the user is not logged in
+if (!isset($_SESSION['user'])) {
+    header('Location: /checkout/login-required');
+    exit;
+}
+
+// Initialize the products array and total price
 $producten = [];
 $totaal = 0;
 
@@ -44,3 +52,4 @@ view('checkout/checkout-index', [
     'profile' => $profile,
     'totaalbedrag' => $totaal
 ]);
+?>

@@ -189,7 +189,7 @@ view("parts/navigatie-menu");
                                 <span class="text-gray-700"><?= htmlspecialchars($item['beschrijving']) ?></span><br>
                                 <span class="text-gray-700">Kleur: <?= htmlspecialchars($item['kleur'] ?? '-') ?></span><br>
                                 <span class="text-gray-700">Geslacht: <?= htmlspecialchars($item['geslacht'] ?? '-') ?></span><br>
-                                <span class="text-green-600 font-bold"><?= htmlspecialchars($item['prijs']) ?></span><br>
+                                <span class="text-green-600 font-bold">€<?= htmlspecialchars($item['prijs']) ?></span><br>
                                 <label for="size-<?= $item['id'] ?>" class="block text-sm font-medium text-gray-700">Maat:</label>
                                 <select id="size-<?= $item['id'] ?>" name="size" class="border border-gray-300 rounded-md">
                                     <option value="">Kies uw maat</option>

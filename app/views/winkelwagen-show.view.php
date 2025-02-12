@@ -45,7 +45,11 @@ view("parts/navigatie-menu");
         </div>
         <div class="text-right mt-4">
             <span class="text-xl font-bold">Totaal: €<?= $totaal ?></span><br>
-            <a href="checkout" class="inline-block bg-green-500 text-white px-4 py-2 rounded">Afrekenen</a>
+            <?php if (!isset($_SESSION['user'])): ?>
+                <a href="/checkout/login-required" class="inline-block bg-green-500 text-white px-4 py-2 rounded">Afrekenen</a>
+            <?php else: ?>
+                <a href="/checkout" class="inline-block bg-green-500 text-white px-4 py-2 rounded">Afrekenen</a>
+            <?php endif; ?>
         </div>
     <?php else: ?>
         <p class="text-center text-red-500">Uw winkelwagen is leeg.</p>

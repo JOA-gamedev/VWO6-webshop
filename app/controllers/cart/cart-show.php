@@ -4,12 +4,6 @@ if (session_status() == PHP_SESSION_NONE) {
     session_start();
 }
 
-// Redirect to login-required page if the user is not logged in
-if (!isset($_SESSION['user'])) {
-    header('Location: /cart/login-required');
-    exit;
-}
-
 // Initialize the products array and total price
 $producten = [];
 $totaal = 0;
@@ -37,14 +31,4 @@ view('winkelwagen-show', [
     'producten' => $producten,
     'totaal' => $totaal
 ]);
-
-/*
- * In de view kan je nu de producten array doorlopen en de gegevens tonen
- * De array bevat alle producten uit de winkelwagen met alle kolommen uit de database
- * verrijkt met het aantal en de totaalprijs (totaal)
- * De totaalprijs is opgemaakt met number_format en is het totaalbedrag van de winkelwagen
- *
- * Uiteraard kan je hier nog een mooie kortingscode aan toevoegen
- *
- * */
 ?>

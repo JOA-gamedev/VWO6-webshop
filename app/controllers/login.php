@@ -41,6 +41,13 @@ if (empty($errors)) {
                 exit;
             }
 
+            // Check if the user needs to be redirected to the checkout page
+            if (isset($_SESSION['redirect_to_checkout']) && $_SESSION['redirect_to_checkout']) {
+                unset($_SESSION['redirect_to_checkout']);
+                header('Location: /checkout');
+                exit;
+            }
+
             flash("Welkom terug " . $user['name'], true);
             //doorsturen naar de home pagina (of pas aan)
             header("Location: /");
