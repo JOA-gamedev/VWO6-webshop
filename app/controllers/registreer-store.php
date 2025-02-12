@@ -1,4 +1,7 @@
 <?php
+require "../src/Validator.php";
+
+
 $errors = [];
 
 if (empty($_POST['name'])) {
@@ -42,8 +45,34 @@ if ($_POST != null) {
             $pswrd_hash,
             $_POST['name'],
         ]);
-        flash("u bent aangemeld, u kunt nu inloggen!", true, 3000);
-        view("login");
+
+        // Automatically log in the user
+        $user = $db->query("SELECT * FROM users WHERE email = ? LIMIT 1", [
+            $_POST['email']
+        ])->fetch();
+
+        if ($user) {
+            unset($user['password']);
+            $_SESSION['user'] = $user;
+
+            // Check if the user came from the cart page
+            if (isset($_SESSION['redirect_to_cart']) && $_SESSION['redirect_to_cart']) {
+                unset($_SESSION['redirect_to_cart']);
+                header('Location: /cart');
+                exit;
+            }
+
+            // Check if the user needs to be redirected to the checkout page
+            if (isset($_SESSION['redirect_to_checkout']) && $_SESSION['redirect_to_checkout']) {
+                unset($_SESSION['redirect_to_checkout']);
+                header('Location: /checkout');
+                exit;
+            }
+
+            flash("Welkom " . $user['name'], true);
+            header("Location: /");
+            exit;
+        }
     }
 } else {
     view("registreer");

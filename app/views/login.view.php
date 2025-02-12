@@ -16,9 +16,9 @@ view("parts/navigatie-menu");
 
             <div class="relative">
                 <input id="password" name="password" type="password" placeholder="Wachtwoord" autocomplete="current-password" required class="block w-full rounded-md border border-gray-300 py-1.5 text-gray-900 shadow-sm">
-                <div class="text-sm mt-2">
+                <!-- <div class="text-sm mt-2">
                     <a href="#" class="font-semibold text-indigo-600 hover:text-indigo-500">Forgot password?</a>
-                </div>
+                </div> -->
             </div>
 
             <div>
