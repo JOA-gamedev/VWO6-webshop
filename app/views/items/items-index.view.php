@@ -34,8 +34,8 @@ view("parts/navigatie-menu");
                 }
             </style>
             <label class='radio_color'>
-                <input type='radio' name='filter_color' value='zwart'
-                    <?= !isset($_GET['filter_color']) || $_GET['filter_color'] == 'zwart' ? 'checked' : '' ?>>
+                <input type='radio' name='filter_color' value=''
+                    <?= !isset($_GET['filter_color']) || $_GET['filter_color'] == '' ? 'checked' : '' ?>>
                 <span class='span_color bg-transparent border border-black flex items-center justify-center material-icons'>clear
                 </span>
             </label>
@@ -227,6 +227,19 @@ view("parts/navigatie-menu");
 </div>
 
 <script>
+    document.querySelectorAll('form[id^="addToCartForm-"]').forEach(form => {
+        form.addEventListener('submit', function(event) {
+            const itemId = form.querySelector('input[name="id"]').value;
+            const size = document.getElementById('size-' + itemId).value;
+            if (!size) {
+                event.preventDefault();
+                alert('Kies een maat');
+            } else {
+                document.getElementById('selectedSize-' + itemId).value = size;
+            }
+        });
+    });
+
     document.getElementById('toggleFilters').addEventListener('click', function() {
         const filterForm = document.getElementById('filterForm');
         filterForm.classList.toggle('hidden');

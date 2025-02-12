@@ -42,17 +42,12 @@ view("parts/navigatie-menu");
     <script>
         document.getElementById('addToCartForm').addEventListener('submit', function(event) {
             const size = document.getElementById('size').value;
-            let hasError = false;
             if (!size) {
                 event.preventDefault();
                 document.getElementById('sizeError').classList.remove('hidden');
-                hasError = true;
             } else {
                 document.getElementById('selectedSize').value = size;
                 document.getElementById('sizeError').classList.add('hidden');
-            }
-            if (hasError) {
-                event.preventDefault();
             }
         });
     </script>

@@ -1,5 +1,5 @@
 <?php
-view("parts/header", ['title' => 'about']);
+view("parts/header", ['title' => 'Login']);
 view("parts/navigatie-menu");
 ?>
 <div class="bg-gray-100 min-h-screen flex items-center justify-center">
