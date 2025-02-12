@@ -46,6 +46,8 @@ $route->get('checkout/apply-discount', "controllers/checkout/apply-discount.php"
 $route->get('checkout/confirm', "controllers/checkout/checkout-confirm.php");
 $route->post('checkout/complete', "controllers/checkout/checkout-complete.php");
 
+$route->get('search', "controllers/search.php");
+
 if (auth()) { //alleen als je ingelogd bent kan je dit doen
     $route->get('api/users-search', "controllers/api/users-search.php");
     $route->get('users', "views/users-search.view.php");

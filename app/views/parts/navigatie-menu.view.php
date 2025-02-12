@@ -24,6 +24,15 @@ if (!function_exists('isAdmin')) {
             <?php endif; ?>
         </div>
         <div class="flex items-center space-x-2"> <!-- Reduced space-x-4 to space-x-2 -->
+            <div x-data="{ open: false }" class="relative">
+                <button @click="open = !open" class="ml-2">
+                    <img src="/images/search1.png" alt="Zoeken" class="h-6 w-6">
+                </button>
+                <form method="GET" action="/search" class="absolute top-10 left-[-10rem] bg-white p-2 rounded shadow-md flex items-center" x-show="open" @click.away="open = false">
+                    <input type="text" name="query" placeholder="Zoeken..." class="border p-1 rounded w-48">
+                    <button type="submit" class="bg-blue-500 text-white px-2 py-1 rounded ml-2">Zoeken</button>
+                </form>
+            </div>
             <a href="/cart" class="relative text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md font-medium">
                 <img src="/images/cart1.png" alt="cart" class="h-6 w-6">
                 <span class="absolute top-0 right-0 inline-block w-4 h-4 bg-red-500 text-white text-center rounded-full text-xs leading-4"><?= array_sum($_SESSION['winkelwagen'] ?? []) ?></span>

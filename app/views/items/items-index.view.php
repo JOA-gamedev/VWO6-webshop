@@ -131,11 +131,11 @@ view("parts/navigatie-menu");
         <h1 class="text-3xl my-4 font-bold text-center">Producten</h1>
 
         <!-- Zoekformulier -->
-        <form method="GET" action="" class="mb-4 flex justify-start">
+        <!-- <form method="GET" action="" class="mb-4 flex justify-start">
             <input type="text" name="search" placeholder="Zoek producten..." class="border p-2 rounded w-1/3"
                 value="<?= htmlspecialchars($_GET['search'] ?? '') ?>">
             <button type="submit" class="bg-blue-500 text-white px-4 py-2 rounded ml-2">Zoeken</button>
-        </form>
+        </form> -->
 
         <!-- Filter knop -->
         <button id="toggleFilters" class="bg-blue-500 text-white px-3 py-1 rounded mb-4">Toon filters
@@ -227,19 +227,6 @@ view("parts/navigatie-menu");
 </div>
 
 <script>
-    document.querySelectorAll('form[id^="addToCartForm-"]').forEach(form => {
-        form.addEventListener('submit', function(event) {
-            const itemId = form.querySelector('input[name="id"]').value;
-            const size = document.getElementById('size-' + itemId).value;
-            if (!size) {
-                event.preventDefault();
-                alert('Kies een maat');
-            } else {
-                document.getElementById('selectedSize-' + itemId).value = size;
-            }
-        });
-    });
-
     document.getElementById('toggleFilters').addEventListener('click', function() {
         const filterForm = document.getElementById('filterForm');
         filterForm.classList.toggle('hidden');
