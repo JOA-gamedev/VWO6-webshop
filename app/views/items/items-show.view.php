@@ -5,7 +5,7 @@ view("parts/navigatie-menu");
 <?php if ($item['deleted_at'] === null): ?>
     <div class="container mx-auto p-4">
         <!-- Back to products button -->
-        <a href="<?= isset($_GET['from']) && $_GET['from'] === 'bestel-status' ? '/bestel-status' : '/items/items-index' ?>" class="bg-gray-500 text-white px-4 py-2 rounded mb-2 inline-block">Terug</a>
+        <a href="<?= isset($_GET['from']) && $_GET['from'] === 'bestel-status' ? '/bestel-status' : '/items/items-index' ?>" class="bg-gray-500 text-white px-2 py-1 rounded mb-2 inline-block">Terug</a>
         <h1 class="text-3xl my-4 font-bold text-center"><?= htmlspecialchars($item['naam']) ?></h1>
         <div class="flex flex-col md:flex-row items-center md:items-start">
             <img src="/images/<?= htmlspecialchars($item['afbeelding']) ?>" alt="<?= htmlspecialchars($item['naam']) ?>" class="w-full md:w-1/2 h-64 object-contain mb-4 md:mb-0 md:mr-4 rounded">
@@ -32,7 +32,7 @@ view("parts/navigatie-menu");
                     <input type="hidden" name="color" value="<?= htmlspecialchars($item['kleur'] ?? '-') ?>">
                     <input type="hidden" name="gender" value="<?= htmlspecialchars($item['geslacht'] ?? '-') ?>">
                     <button type="submit" class="bg-gray-500 text-white px-4 py-2 rounded">
-                        <img src="/images/cart.png" alt="Add to Cart" class="inline-block w-6 h-6">
+                        <img src="/images/cart1.png" alt="Add to Cart" class="inline-block w-6 h-6">
                     </button>
                 </form>
                 <p id="sizeError" class="text-red-500 hidden">Kies een maat</p>

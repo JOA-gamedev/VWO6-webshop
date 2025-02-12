@@ -23,9 +23,9 @@ if (!function_exists('isAdmin')) {
                 class="<?= isUri("bestel-status") ? 'underline ' : '' ?>text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md font-medium">Bestelstatus</a>
             <?php endif; ?>
         </div>
-        <div class="flex items-center space-x-4">
+        <div class="flex items-center space-x-2"> <!-- Reduced space-x-4 to space-x-2 -->
             <a href="/cart" class="relative text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md font-medium">
-                <img src="/images/cart.png" alt="cart" class="h-6 w-6">
+                <img src="/images/cart1.png" alt="cart" class="h-6 w-6">
                 <span class="absolute top-0 right-0 inline-block w-4 h-4 bg-red-500 text-white text-center rounded-full text-xs leading-4"><?= array_sum($_SESSION['winkelwagen'] ?? []) ?></span>
             </a>
             <?php if (auth()): ?>
@@ -79,8 +79,9 @@ if (!function_exists('isAdmin')) {
                     </div>
                 </div>
             <?php else: ?>
-                <a href="/registreer-create" class="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md font-medium">Registreren</a>
-                <a href="/login" class="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md font-medium">Login</a>
+                <a href="/login" class="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md font-medium">
+                    <img src="/images/user.png" alt="user" class="h-6 w-6">
+                </a>
             <?php endif; ?>
         </div>
     </div>

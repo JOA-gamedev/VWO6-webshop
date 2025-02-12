@@ -27,6 +27,9 @@ view("parts/navigatie-menu");
                 </button>
             </div>
         </form>
+        <div class="text-sm mt-4 text-center">
+            <p>Geen account? <a href="/registreer" class="font-semibold text-indigo-600 hover:text-indigo-500">Registreer hier</a></p>
+        </div>
     </div>
 </div>
 <?php
