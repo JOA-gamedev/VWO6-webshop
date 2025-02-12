@@ -24,7 +24,7 @@ view("parts/navigatie-menu"); // Laad het navigatiemenu
                         <span class="text-gray-700"><?= htmlspecialchars($item['beschrijving']) ?></span><br>
                         <span class="text-gray-700">Kleur: <?= htmlspecialchars($item['kleur'] ?? '-') ?></span><br>
                         <span class="text-gray-700">Geslacht: <?= htmlspecialchars($item['geslacht'] ?? '-') ?></span><br>
-                        <span class="text-green-600 font-bold"><?= htmlspecialchars($item['prijs']) ?></span><br>
+                        <span class="text-green-600 font-bold">€<?= htmlspecialchars($item['prijs']) ?></span><br>
                     </div>
                 </div>
             <?php endif; ?>

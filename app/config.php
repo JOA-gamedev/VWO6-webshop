@@ -2,7 +2,7 @@
 return [
     'app' => [
         'env' => 'development',
-        'name' => 'Kledingwinkel',
+        'name' => '',
         'email' => 'info@code-winkel.nl',
     ],
     'database' => [
