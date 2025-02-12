@@ -36,7 +36,8 @@ $left_bound = (int)ceil($left_bound);
         .price-field input {
             flex: 1;
             height: 35px;
-            font-size: 15px;
+            width: 80px;
+            font-size: 15px; 
             font-family: "DM Sans", sans-serif;
             border-radius: 9px;
             text-align: center;

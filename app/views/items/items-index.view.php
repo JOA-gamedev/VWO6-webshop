@@ -34,10 +34,9 @@ view("parts/navigatie-menu");
                 }
             </style>
             <label class='radio_color'>
-                <input type='radio' name='filter_color' value=''
-                    <?= !isset($_GET['filter_color']) || $_GET['filter_color'] == '' ? 'checked' : '' ?>>
-                <span
-                    class='span_color bg-transparent border border-black flex items-center justify-center material-icons'>clear
+                <input type='radio' name='filter_color' value='zwart'
+                    <?= !isset($_GET['filter_color']) || $_GET['filter_color'] == 'zwart' ? 'checked' : '' ?>>
+                <span class='span_color bg-transparent border border-black flex items-center justify-center material-icons'>clear
                 </span>
             </label>
             <label class='radio_color'>
@@ -53,7 +52,7 @@ view("parts/navigatie-menu");
             <label class='radio_color'>
                 <input type='radio' name='filter_color' value='beige'
                     <?= isset($_GET['filter_color']) && $_GET['filter_color'] == 'beige' ? 'checked' : '' ?>>
-                <span class='span_color bg-orange-400'></span>
+                <span class='span_color' style='background-color: rgb(220,191,166);'></span>
             </label>
             <label class='radio_color'>
                 <input type='radio' name='filter_color' value='grijs'
@@ -70,6 +69,31 @@ view("parts/navigatie-menu");
                     <?= isset($_GET['filter_color']) && $_GET['filter_color'] == 'wit' ? 'checked' : '' ?>>
                 <span class='span_color bg-white'></span>
             </label>
+            <label class='radio_color'>
+                <input type='radio' name='filter_color' value='groen'
+                    <?= isset($_GET['filter_color']) && $_GET['filter_color'] == 'groen' ? 'checked' : '' ?>>
+                <span class='span_color' style='background-color: rgb(34,139,34);'></span>
+            </label>
+            <label class='radio_color'>
+                <input type='radio' name='filter_color' value='gebroken wit'
+                    <?= isset($_GET['filter_color']) && $_GET['filter_color'] == 'gebroken wit' ? 'checked' : '' ?>>
+                <span class='span_color' style='background-color: rgb(238,235,227);'></span>
+            </label>
+            <label class='radio_color'>
+                <input type='radio' name='filter_color' value='paars'
+                    <?= isset($_GET['filter_color']) && $_GET['filter_color'] == 'paars' ? 'checked' : '' ?>>
+                <span class='span_color' style='background-color: rgb(128, 0, 128);'></span>
+            </label>            
+            <label class='radio_color'>
+                <input type='radio' name='filter_color' value='rood'
+                    <?= isset($_GET['filter_color']) && $_GET['filter_color'] == 'rood' ? 'checked' : '' ?>>
+                <span class='span_color' style='background-color: rgb(255, 0, 0);'></span>
+            </label>        
+            <label class='radio_color'>
+                <input type='radio' name='filter_color' value='blauw'
+                    <?= isset($_GET['filter_color']) && $_GET['filter_color'] == 'blauw' ? 'checked' : '' ?>>
+                <span class='span_color' style='background-color: rgb(0, 0, 255);'></span>
+            </label>
         </div>
 
         <?
@@ -84,11 +108,11 @@ view("parts/navigatie-menu");
         <select name="filter_gender" class="border p-1 rounded ">
             <option value="">Filter op geslacht</option>
             <option value="man"
-                <?= isset($_GET['filter_gender']) && $_GET['filter_gender'] == 'male' ? 'selected' : '' ?>>
+                <?= isset($_GET['filter_gender']) && $_GET['filter_gender'] == 'man' ? 'selected' : '' ?>>
                 Man
             </option>
             <option value="vrouw"
-                <?= isset($_GET['filter_gender']) && $_GET['filter_gender'] == 'female' ? 'selected' : '' ?>>
+                <?= isset($_GET['filter_gender']) && $_GET['filter_gender'] == 'vrouw' ? 'selected' : '' ?>>
                 Vrouw
             </option>
             <option value="unisex"
