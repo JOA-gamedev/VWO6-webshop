@@ -29,6 +29,9 @@ $route->post('cart/remove', "controllers/cart/cart-remove.php");
 $route->post('cart/bestel', "controllers/cart/cart-bestel.php");
 $route->post('cart/update', "controllers/cart/cart-update.php");
 
+// Add routes for cart login requirement
+$route->get('cart/login-required', "controllers/cart/cart-login-required.php");
+
 $route->get('checkout', "controllers/checkout/checkout-index.php");
 $route->post('checkout/process', "controllers/checkout/checkout-process.php");
 $route->get('checkout/apply-discount', "controllers/checkout/apply-discount.php");

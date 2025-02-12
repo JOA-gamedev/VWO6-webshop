@@ -4,6 +4,12 @@ if (session_status() == PHP_SESSION_NONE) {
     session_start();
 }
 
+// Redirect to login-required page if the user is not logged in
+if (!isset($_SESSION['user'])) {
+    header('Location: /cart/login-required');
+    exit;
+}
+
 // Initialize the products array and total price
 $producten = [];
 $totaal = 0;
@@ -41,3 +47,4 @@ view('winkelwagen-show', [
  * Uiteraard kan je hier nog een mooie kortingscode aan toevoegen
  *
  * */
+?>

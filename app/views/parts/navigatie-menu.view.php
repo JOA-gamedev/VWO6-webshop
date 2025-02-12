@@ -24,11 +24,11 @@ if (!function_exists('isAdmin')) {
             <?php endif; ?>
         </div>
         <div class="flex items-center space-x-4">
+            <a href="/cart" class="relative text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md font-medium">
+                <img src="/images/cart.png" alt="cart" class="h-6 w-6">
+                <span class="absolute top-0 right-0 inline-block w-4 h-4 bg-red-500 text-white text-center rounded-full text-xs leading-4"><?= array_sum($_SESSION['winkelwagen'] ?? []) ?></span>
+            </a>
             <?php if (auth()): ?>
-                <a href="/cart" class="relative text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md font-medium">
-                    <img src="/images/cart.png" alt="cart" class="h-6 w-6">
-                    <span class="absolute top-0 right-0 inline-block w-4 h-4 bg-red-500 text-white text-center rounded-full text-xs leading-4"><?= array_sum($_SESSION['winkelwagen'] ?? []) ?></span>
-                </a>
                 <div class="mr-2 py-1" x-data="{open: false}" @click="open = true" @mouseleave="open = false">
                     <div class="relative flex items-center space-x-1 cursor-pointer text-gray-700 hover:bg-pink-500 hover:text-gray-900 px-3 py-2 rounded-md text-sm font-medium">
                         <!-- Items waarop je kan klikken om uit te klappen -->
