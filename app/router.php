@@ -14,6 +14,7 @@ $route->get('items/items-show', "controllers/items/items-show.php");
 $route->get('items/items-show/{id}', "controllers/items/items-show.php");
 $route->get('items/items-index', "controllers/items/items-index.php");
 $route->get('items/product-detail', "controllers/items/product-detail.php");
+$route->get('items/paging', "controllers/items/paging.php");
 
 $route->get('login', "views/login.view.php");
 $route->post('login', "controllers/login.php");

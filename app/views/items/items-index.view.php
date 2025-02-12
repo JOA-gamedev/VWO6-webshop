@@ -96,7 +96,7 @@ view("parts/navigatie-menu");
             </label>
         </div>
 
-        <?
+        <?php
         // include the minmax-slider component and pass through the max price variable, and the left and right bounds
         view("parts/minmax-slider", [
             'max_price' => $max_price,
@@ -141,8 +141,6 @@ view("parts/navigatie-menu");
         <button id="toggleFilters" class="bg-blue-500 text-white px-3 py-1 rounded mb-4">Toon filters
             <span class="material-icons align-middle">filter_alt</span>
         </button>
-
-
 
         <!-- Sorteer menu -->
         <form method="GET" action="" class="mb-4 flex justify-end">
@@ -220,6 +218,9 @@ view("parts/navigatie-menu");
                     <?php endif; ?>
                 <?php endforeach; ?>
             </div>
+
+            <!-- Include pagination view -->
+            <?php view('items/paging', ['total_pages' => $total_pages, 'current_page' => $current_page]); ?>
 
         <?php endif; ?>
     </div>

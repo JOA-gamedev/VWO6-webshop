@@ -106,11 +106,11 @@ $left_bound = (int)ceil($left_bound);
         <div class="price-input-container">
             <div class="price-input">
                 <div class="price-field">
-                    <span>Minimum Price</span>
+                    <span>Minimum prijs</span>
                     <input type="number" class="min-input" value="<?= $left_bound ?? 1 ?>">
                 </div>
                 <div class="price-field">
-                    <span>Maximum Price</span>
+                    <span>Maximum prijs</span>
                     <input type="number" class="max-input" value="<?= $right_bound ?? $max_price ?>">
                 </div>
             </div>

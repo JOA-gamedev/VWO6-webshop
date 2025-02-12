@@ -5,14 +5,11 @@ $db = new Database();
 // Zoek- en filterfunctie
 $search = isset($_GET['search']) ? $_GET['search'] : '';
 $filter_color = isset($_GET['filter_color']) ? $_GET['filter_color'] : '';
-//$filter_price = isset($_GET['filter_price']) ? $_GET['filter_price'] : '';
 $filter_price_min = isset($_GET['filter_price_min']) ? $_GET['filter_price_min'] : '';
 $filter_price_max = isset($_GET['filter_price_max']) ? $_GET['filter_price_max'] : '';
 $filter_gender = isset($_GET['filter_gender']) ? $_GET['filter_gender'] : '';
 $sort = isset($_GET['sort']) ? $_GET['sort'] : 'naam_asc';
 $page = isset($_GET['page']) ? (int)$_GET['page'] : 1;
-//$items_per_page = 12;
-//$offset = ($page - 1) * $items_per_page;
 
 $query = "SELECT * FROM producten WHERE 1=1";
 $params = [];
@@ -25,7 +22,7 @@ if ($filter_color) {
     $params['filter_color'] = '%' . $filter_color . '%';
 }
 if ($filter_price_min && $filter_price_max) {
-        $query .= " AND prijs BETWEEN :price_min AND :price_max";
+    $query .= " AND prijs BETWEEN :price_min AND :price_max";
     $params['price_min'] = $filter_price_min;
     $params['price_max'] = $filter_price_max;
 }
@@ -37,14 +34,28 @@ if ($filter_gender) {
     }
 }
 
-// $total_query = "SELECT COUNT(*) FROM producten WHERE 1=1";
-// $total_params = $params;
-// $total_items = $db->query($total_query, $total_params)->fetchColumn();
+// Pagination logic
+$items_per_page = 12;
+$offset = ($page - 1) * $items_per_page;
 
-// $total_pages = ceil($total_items / $items_per_page);
+$total_query = "SELECT COUNT(*) FROM producten WHERE 1=1";
+$total_params = $params;
+if ($search) {
+    $total_query .= " AND (naam LIKE :search OR kleur LIKE :search OR prijs LIKE :search OR geslacht LIKE :search OR beschrijving LIKE :search)";
+}
+if ($filter_color) {
+    $total_query .= " AND kleur LIKE :filter_color";
+}
+if ($filter_price_min && $filter_price_max) {
+    $total_query .= " AND prijs BETWEEN :price_min AND :price_max";
+}
+if ($filter_gender) {
+    $total_query .= " AND geslacht = :filter_gender";
+}
 
+$total_items = $db->query($total_query, $total_params)->fetchColumn();
 
-
+$total_pages = ceil($total_items / $items_per_page);
 
 switch ($sort) {
     case 'naam_asc':
@@ -76,7 +87,7 @@ switch ($sort) {
         break;
 }
 
-//$query .= " LIMIT $offset, $items_per_page";
+$query .= " LIMIT $offset, $items_per_page";
 
 //get max price of all items
 $max_price = $db->query("SELECT MAX(prijs) as max_price FROM producten")->fetch()["max_price"];
@@ -86,9 +97,7 @@ view('items/items-index', [
     'items' => $db->query($query, $params)->fetchAll(),
     'current_page' => $page,
     'max_price' => $max_price,
-    //weggehaald
-    //'total_items' => $total_items,
-    //'total_pages' => $total_pages
-
+    'total_items' => $total_items,
+    'total_pages' => $total_pages
 ]);
 ?>
