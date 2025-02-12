@@ -23,6 +23,9 @@ $route->get('logout', "controllers/logout.php");
 $route->get('registreer-create', "controllers/registreer-create.php");
 $route->post('registreer-store', "controllers/registreer-store.php");
 
+// Add the route for the registration page
+$route->get('registreer', "views/registreer.view.php");
+
 $route->get('cart', "controllers/cart/cart-show.php");
 $route->post('cart/add', "controllers/cart/cart-add.php");
 $route->post('cart/remove', "controllers/cart/cart-remove.php");

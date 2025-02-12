@@ -34,6 +34,13 @@ if (empty($errors)) {
             unset($user['password']);
             $_SESSION['user'] = $user;
 
+            // Check if the user came from the login-required page
+            if (isset($_SESSION['redirect_to_cart']) && $_SESSION['redirect_to_cart']) {
+                unset($_SESSION['redirect_to_cart']);
+                header('Location: /cart');
+                exit;
+            }
+
             flash("Welkom terug " . $user['name'], true);
             //doorsturen naar de home pagina (of pas aan)
             header("Location: /");

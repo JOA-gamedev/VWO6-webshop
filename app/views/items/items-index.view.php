@@ -199,6 +199,11 @@ view("parts/navigatie-menu");
                                     <option value="l">L</option>
                                     <option value="xl">XL</option>
                                 </select>
+                                <!-- Display error message if no size is selected -->
+                                <?php if (isset($_SESSION['error']) && $_SESSION['error_item_id'] == $item['id']): ?>
+                                    <p class="text-red-500 text-sm mt-1"><?= htmlspecialchars($_SESSION['error']) ?></p>
+                                    <?php unset($_SESSION['error'], $_SESSION['error_item_id']); ?>
+                                <?php endif; ?>
                             </div>
                             <!-- Add to cart form -->
                             <form id="addToCartForm-<?= $item['id'] ?>" action="/cart/add" method="post" class="mt-2">
@@ -211,7 +216,6 @@ view("parts/navigatie-menu");
                                     <img src="/images/add-to-basket.png" alt="Add to Cart" class="inline-block w-6 h-6">
                                 </button>
                             </form>
-                            <p id="sizeError-<?= $item['id'] ?>" class="text-red-500 hidden">Kies een maat</p>
                         </div>
                     <?php endif; ?>
                 <?php endforeach; ?>
