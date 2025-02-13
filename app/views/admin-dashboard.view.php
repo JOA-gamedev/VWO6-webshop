@@ -8,10 +8,32 @@ view("parts/navigatie-menu");
 
         <p class="my-4">Hier komen alle admin functies</p>
         
-        <a href="productbeheer" class="inline-block bg-indigo-600 text-white py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">Productbeheer</a>
-        <a href="admin/bestellingen" class="inline-block bg-indigo-600 text-white py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">Bestellingen beheren</a>
-        <a href="user-management" class="inline-block bg-indigo-600 text-white py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">Beheer gebruikersgegevens</a>
-        <a href="kortingscodes" class="inline-block bg-indigo-600 text-white py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">Kortingscodes beheren</a>
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+            <a href="admin/productbeheer" class="group block p-6 max-w-sm bg-white rounded-lg border border-gray-200 shadow-md hover:bg-indigo-600 hover:text-white transition duration-300">
+                <div class="flex items-center justify-center mb-4 w-12 h-12 bg-indigo-100 rounded-full group-hover:bg-white">
+                    <i class="fas fa-box-open text-indigo-600 group-hover:text-indigo-600"></i>
+                </div>
+                <h5 class="mb-2 text-2xl font-bold tracking-tight">Productbeheer</h5>
+            </a>
+            <a href="admin/bestellingen" class="group block p-6 max-w-sm bg-white rounded-lg border border-gray-200 shadow-md hover:bg-indigo-600 hover:text-white transition duration-300">
+                <div class="flex items-center justify-center mb-4 w-12 h-12 bg-indigo-100 rounded-full group-hover:bg-white">
+                    <i class="fas fa-receipt text-indigo-600 group-hover:text-indigo-600"></i>
+                </div>
+                <h5 class="mb-2 text-2xl font-bold tracking-tight">Bestellingen beheren</h5>
+            </a>
+            <a href="user-management" class="group block p-6 max-w-sm bg-white rounded-lg border border-gray-200 shadow-md hover:bg-indigo-600 hover:text-white transition duration-300">
+                <div class="flex items-center justify-center mb-4 w-12 h-12 bg-indigo-100 rounded-full group-hover:bg-white">
+                    <i class="fas fa-user-cog text-indigo-600 group-hover:text-indigo-600"></i>
+                </div>
+                <h5 class="mb-2 text-2xl font-bold tracking-tight">Beheer gebruikersgegevens</h5>
+            </a>
+            <a href="kortingscodes" class="group block p-6 max-w-sm bg-white rounded-lg border border-gray-200 shadow-md hover:bg-indigo-600 hover:text-white transition duration-300">
+                <div class="flex items-center justify-center mb-4 w-12 h-12 bg-indigo-100 rounded-full group-hover:bg-white">
+                    <i class="fas fa-percentage text-indigo-600 group-hover:text-indigo-600"></i>
+                </div>
+                <h5 class="mb-2 text-2xl font-bold tracking-tight">Kortingscodes beheren</h5>
+            </a>
+        </div>
     </div>
 
 <?php

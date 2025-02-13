@@ -5,7 +5,7 @@ view("parts/navigatie-menu");
 
 <div class="sm:mx-10">
     <h1 class="text-3xl my-4">Item <?= htmlspecialchars($item['naam'] ?? '') ?> wijzigen</h1>
-    <a href="/productbeheer" class="bg-gray-500 text-white px-2 py-1 rounded">Terug</a>
+    <a href="/admin/productbeheer" class="bg-gray-500 text-white px-2 py-1 rounded">Terug</a>
 </div>
 
 <div class="max-w-4xl mx-auto bg-white p-8 rounded-lg shadow-md">
