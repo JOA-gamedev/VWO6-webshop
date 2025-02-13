@@ -1,4 +1,13 @@
 <?php
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    if ($_POST['new_password'] !== $_POST['new_password_confirmation']) {
+        $_SESSION['flash_message'] = 'Nieuw wachtwoord en bevestiging komen niet overeen.';
+        $_SESSION['flash_message_type'] = 'error';
+        header('Location: /wachtwoord-aanpassen');
+        exit;
+    }
+}
+
 view("parts/header", ["title" => "Wachtwoord aanpassen"]);
 view("parts/navigatie-menu");
 ?>
@@ -8,10 +17,20 @@ view("parts/navigatie-menu");
 </div>
 
 <?php if (isset($_SESSION['flash_message'])): ?>
-    <div class="max-w-md mx-auto bg-green-100 border border-green-400 text-green-700 px-4 py-3 rounded relative" role="alert">
+    <?php 
+        $flash_type = $_SESSION['flash_message_type'] ?? 'success';
+        $flash_classes = [
+            'success' => 'bg-green-100 border-green-400 text-green-700',
+            'error' => 'bg-red-100 border-red-400 text-red-700',
+            'warning' => 'bg-yellow-100 border-yellow-400 text-yellow-700',
+            'info' => 'bg-blue-100 border-blue-400 text-blue-700'
+        ];
+        $flash_class = $flash_classes[$flash_type] ?? $flash_classes['success'];
+    ?>
+    <div class="max-w-md mx-auto <?= $flash_class ?> px-4 py-3 rounded relative" role="alert">
         <span class="block sm:inline"><?= $_SESSION['flash_message'] ?></span>
     </div>
-    <?php unset($_SESSION['flash_message']); ?>
+    <?php unset($_SESSION['flash_message'], $_SESSION['flash_message_type']); ?>
 <?php endif; ?>
 
 <form method="post" action="/wachtwoord-aanpassen" class="max-w-md mx-auto bg-white p-8 rounded-lg shadow-md">

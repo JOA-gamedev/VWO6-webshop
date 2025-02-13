@@ -24,15 +24,19 @@ if ($user && isset($user['id'])) {
                 $db->query('UPDATE users SET password = ? WHERE id = ?', [$newPasswordHash, $userId]);
 
                 $_SESSION['flash_message'] = 'Wachtwoord succesvol aangepast.';
+                $_SESSION['flash_message_type'] = 'success';
             } else {
                 $_SESSION['flash_message'] = 'Nieuw wachtwoord en bevestiging komen niet overeen.';
+                $_SESSION['flash_message_type'] = 'error';
             }
         } else {
             $_SESSION['flash_message'] = 'Huidig wachtwoord is onjuist.';
+            $_SESSION['flash_message_type'] = 'error';
         }
     }
 } else {
     $_SESSION['flash_message'] = 'Gebruiker niet ingelogd.';
+    $_SESSION['flash_message_type'] = 'error';
 }
 
 // Redirect naar wachtwoord aanpassen pagina
