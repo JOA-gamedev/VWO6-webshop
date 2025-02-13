@@ -8,13 +8,22 @@ if (isset($_SESSION['order'])) {
     $database = new Database();
 
     // Calculate the total amount with discount if applicable
-    $totalAmount = $order['totaalbedrag'];
+    $totalAmount = 0;
     $kortingscode = $order['kortingcode'] ?? null;
 
-    if ($kortingscode) {
-        $percentage = $kortingscode['percentage'] / 100;
-        $totalAmount = $totalAmount * (1 - $percentage);
-        unset($_SESSION['kortingscode']); // Ensure the discount code is applied only once
+    // Loop through the cart items and calculate the total amount
+    foreach ($_SESSION['winkelwagen'] as $key => $aantal) {
+        list($id, $size) = explode('-', $key);
+        $product = $database->query('SELECT prijs FROM producten WHERE id = ?', [$id])->fetch();
+        $prijs = $product['prijs'];
+        
+        // Apply the discount to each product price if a valid kortingcode is provided
+        if ($kortingscode) {
+            $percentage = $kortingscode['percentage'] / 100;
+            $prijs *= (1 - $percentage);
+        }
+
+        $totalAmount += $prijs * $aantal;
     }
 
     // Create a new order
@@ -62,7 +71,7 @@ if (isset($_SESSION['order'])) {
     unset($_SESSION['kortingscode']); // Clear the discount code from the session
 
     // Provide a confirmation to the user
-    flash('Bedankt voor uw bestelling. Totaal bedrag: €' . number_format($totaalbedrag, 2, ',', '.'));
+    flash('Bedankt voor uw bestelling. Totaal bedrag: €' . number_format($totalAmount, 2, ',', '.'));
 
     // Redirect the user to the order status page
     redirect('/bestel-status');
@@ -70,3 +79,4 @@ if (isset($_SESSION['order'])) {
     // If no order details are available, redirect to the checkout page
     redirect('/checkout');
 }
+?>

@@ -174,7 +174,7 @@ view("parts/navigatie-menu");
                 <!-- loop door alle items heen -->
                 <?php foreach ($items as $item) : ?>
                     <?php if ($item['deleted_at'] === null): ?>
-                        <div class="mb-2 p-4 border rounded shadow-sm flex flex-col justify-between">
+                        <div class="mb-2 p-4 border rounded shadow-sm flex flex-col justify-between h-full">
                             <div>
                                 <a href="/items/items-show/<?= htmlspecialchars($item['id']) ?>">
                                     <img src="/images/<?= htmlspecialchars($item['afbeelding']) ?>"
