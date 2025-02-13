@@ -83,12 +83,12 @@ view("parts/navigatie-menu");
                 <input type='radio' name='filter_color' value='paars'
                     <?= isset($_GET['filter_color']) && $_GET['filter_color'] == 'paars' ? 'checked' : '' ?>>
                 <span class='span_color' style='background-color: rgb(128, 0, 128);'></span>
-            </label>            
+            </label>
             <label class='radio_color'>
                 <input type='radio' name='filter_color' value='rood'
                     <?= isset($_GET['filter_color']) && $_GET['filter_color'] == 'rood' ? 'checked' : '' ?>>
                 <span class='span_color' style='background-color: rgb(255, 0, 0);'></span>
-            </label>        
+            </label>
             <label class='radio_color'>
                 <input type='radio' name='filter_color' value='blauw'
                     <?= isset($_GET['filter_color']) && $_GET['filter_color'] == 'blauw' ? 'checked' : '' ?>>
@@ -189,28 +189,31 @@ view("parts/navigatie-menu");
                                 <span class="text-gray-700">Geslacht: <?= htmlspecialchars($item['geslacht'] ?? '-') ?></span><br>
                                 <span class="text-green-600 font-bold">€<?= htmlspecialchars($item['prijs']) ?></span><br>
                                 <label for="size-<?= $item['id'] ?>" class="block text-sm font-medium text-gray-700">Maat:</label>
-                                <select id="size-<?= $item['id'] ?>" name="size" class="border border-gray-300 rounded-md">
-                                    <option value="">Kies uw maat</option>
-                                    <option value="xs">XS</option>
-                                    <option value="s">S</option>
-                                    <option value="m">M</option>
-                                    <option value="l">L</option>
-                                    <option value="xl">XL</option>
-                                </select>
-                                <!-- Display error message if no size is selected -->
-                                <?php if (isset($_SESSION['error']) && $_SESSION['error_item_id'] == $item['id']): ?>
-                                    <p class="text-red-500 text-sm mt-1"><?= htmlspecialchars($_SESSION['error']) ?></p>
-                                    <?php unset($_SESSION['error'], $_SESSION['error_item_id']); ?>
-                                <?php endif; ?>
-                                <!-- Add to cart form -->
-                                <form id="addToCartForm-<?= $item['id'] ?>" action="/cart/add" method="post" class="mt-2">
-                                    <?= csrf() ?>
-                                    <input type="hidden" name="id" value="<?= $item['id'] ?>">
-                                    <input type="hidden" name="size" id="selectedSize-<?= $item['id'] ?>">
-                                    <button type="submit" class="bg-gray-500 text-white px-4 py-2 rounded">
-                                        <img src="/images/cart1.png" alt="Add to Cart" class="inline-block w-6 h-6">
-                                    </button>
-                                </form>
+                                <div class="flex flex-row justify justify-between w-full">
+                                    <select id="size-<?= $item['id'] ?>" name="size" class="border border-gray-300 rounded-md">
+                                        <option value="">Kies uw maat</option>
+                                        <option value="xs">XS</option>
+                                        <option value="s">S</option>
+                                        <option value="m">M</option>
+                                        <option value="l">L</option>
+                                        <option value="xl">XL</option>
+                                    </select>
+                                    <!-- Display error message if no size is selected -->
+                                    <?php if (isset($_SESSION['error']) && $_SESSION['error_item_id'] == $item['id']): ?>
+                                        <p class="text-red-500 text-sm mt-1"><?= htmlspecialchars($_SESSION['error']) ?></p>
+                                        <?php unset($_SESSION['error'], $_SESSION['error_item_id']); ?>
+                                    <?php endif; ?>
+                                    <!-- Add to cart form -->
+                                    <form id="addToCartForm-<?= $item['id'] ?>" action="/cart/add" method="post" class="mt-2">
+                                        <?= csrf() ?>
+                                        <input type="hidden" name="id" value="<?= $item['id'] ?>">
+                                        <input type="hidden" name="size" id="selectedSize-<?= $item['id'] ?>">
+                                        <button type="submit" class="bg-gray-500 text-white px-4 py-2 rounded">
+                                            <span class="material-icons align-middle">add_shopping_cart</span>
+                                        </button>
+                                    </form>
+                                </div>
+
                                 <p id="sizeError-<?= $item['id'] ?>" class="text-red-500 hidden">Kies een maat</p>
                             </div>
                         </div>
@@ -223,28 +226,28 @@ view("parts/navigatie-menu");
 
         <?php endif; ?>
     </div>
-</div>
+    </>
 
-<script>
-    document.getElementById('toggleFilters').addEventListener('click', function() {
-        const filterForm = document.getElementById('filterForm');
-        filterForm.classList.toggle('hidden');
-    });
+    <script>
+        document.getElementById('toggleFilters').addEventListener('click', function() {
+            const filterForm = document.getElementById('filterForm');
+            filterForm.classList.toggle('hidden');
+        });
 
-    <?php foreach ($items as $item): ?>
-    document.getElementById('addToCartForm-<?= $item['id'] ?>').addEventListener('submit', function(event) {
-        const size = document.getElementById('size-<?= $item['id'] ?>').value;
-        if (!size) {
-            event.preventDefault();
-            document.getElementById('sizeError-<?= $item['id'] ?>').classList.remove('hidden');
-        } else {
-            document.getElementById('selectedSize-<?= $item['id'] ?>').value = size;
-            document.getElementById('sizeError-<?= $item['id'] ?>').classList.add('hidden');
-        }
-    });
-    <?php endforeach; ?>
-</script>
+        <?php foreach ($items as $item): ?>
+            document.getElementById('addToCartForm-<?= $item['id'] ?>').addEventListener('submit', function(event) {
+                const size = document.getElementById('size-<?= $item['id'] ?>').value;
+                if (!size) {
+                    event.preventDefault();
+                    document.getElementById('sizeError-<?= $item['id'] ?>').classList.remove('hidden');
+                } else {
+                    document.getElementById('selectedSize-<?= $item['id'] ?>').value = size;
+                    document.getElementById('sizeError-<?= $item['id'] ?>').classList.add('hidden');
+                }
+            });
+        <?php endforeach; ?>
+    </script>
 
-<?php
-view("parts/footer");
-?>
+    <?php
+    view("parts/footer");
+    ?>
