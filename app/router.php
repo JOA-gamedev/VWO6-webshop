@@ -75,7 +75,7 @@ if (hasRole('admin')) {
     $route->get('admin-dashboard', "views/admin-dashboard.view.php");
 
     $route->get('api/productbeheer-search', "controllers/api/productbeheer-search.php");
-    $route->get('productbeheer', "views/productbeheer.view.php");
+    $route->get('admin/productbeheer', "views/admin/productbeheer.view.php");
 
     //ADMIN-only "items" bestanden
     $route->get('items/items-edit', "controllers/items/items-edit.php");
