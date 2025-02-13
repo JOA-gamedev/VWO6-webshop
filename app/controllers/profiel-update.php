@@ -2,16 +2,8 @@
 // Verbind met de database
 $db = new Database();
 
-// Start de sessie (indien nog niet gestart)
-if (session_status() === PHP_SESSION_NONE) {
-    session_start();
-}
-
 // Controleer of de aanvraag een POST-verzoek is
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    // Controleer het CSRF-token
-   
-
     // Haal het ingelogde gebruikers-ID op (bijvoorbeeld uit de sessie)
     $user = $_SESSION['user'] ?? null;
 
@@ -38,8 +30,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                     'huisnr' => htmlspecialchars($huisnr),
                     'postcode' => htmlspecialchars($postcode),
                     'plaats' => htmlspecialchars($plaats)
-                ],
-                'csrfToken' => $_SESSION['csrf_token']
+                ]
             ]);
             die();
         }
