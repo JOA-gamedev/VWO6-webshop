@@ -26,7 +26,7 @@ if (!function_exists('isAdmin')) {
         <div class="flex items-center space-x-2"> <!-- Reduced space-x-4 to space-x-2 -->
             <div x-data="{ open: false }" class="relative">
                 <button @click="open = !open" class="ml-2">
-                    <img src="/images/search1.png" alt="Zoeken" class="h-6 w-6">
+                    <span class="material-icons-outlined align-middle">search</span>
                 </button>
                 <form method="GET" action="/search" class="absolute top-10 left-[-10rem] bg-white p-2 rounded shadow-md flex items-center" x-show="open" @click.away="open = false">
                     <input type="text" name="query" placeholder="Zoeken..." class="border p-1 rounded w-48">
@@ -34,7 +34,7 @@ if (!function_exists('isAdmin')) {
                 </form>
             </div>
             <a href="/cart" class="relative text-black hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md font-medium">
-                <img src="/images/cart1.png" alt="cart" class="h-6 w-6">
+                <span class="material-icons-outlined align-middle">shopping_bag</span>
                 <span class="absolute top-0 right-0 inline-block w-4 h-4 bg-red-500 text-white text-center rounded-full text-xs leading-4"><?= array_sum($_SESSION['winkelwagen'] ?? []) ?></span>
             </a>
             <?php if (auth()): ?>
@@ -43,53 +43,39 @@ if (!function_exists('isAdmin')) {
                         <!-- Items waarop je kan klikken om uit te klappen -->
                         <div class="flex items-center">
                             <span><?= user()->name ?></span>
-                            <svg xmlns="http://www.w3.org/2000/svg" class="pl-1 h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
-                            </svg>
+                            <span class="material-icons-outlined">expand_more</span>
                         </div>
                         <!-- Uitklap blok dat verschijnt bij klikken -->
                         <div class="origin-top-right absolute top-10 right-0 w-48 rounded-md shadow-lg py-1 bg-white ring-1 ring-black ring-opacity-5 focus:outline-none z-50" x-show="open" x-cloak role="menu" aria-orientation="vertical" aria-labelledby="user-menu-button" tabindex="-1">
                             <!-- Active: "bg-gray-100", Not Active: "" -->
-                            <a href="/profiel-edit" class="block px-4 py-2 text-sm text-black hover:bg-gray-100  w-full inline-flex items-center" role="menuitem" tabindex="-1" id="user-menu-item-0">
-                                <svg xmlns="http://www.w3.org/2000/svg" class="-ml-1 mr-2 h-5 w-5 text-gray-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"/>
-                                </svg>
+                            <a href="/profiel-edit" class="p-2 gap-2 text-sm text-black hover:bg-gray-100  w-full inline-flex items-center" role="menuitem" tabindex="-1" id="user-menu-item-0">
+                                <span class="material-icons-outlined align-middle">account_circle</span>
                                 Profiel aanpassen</a>
-                            <a href="/wachtwoord-aanpassen" class="block px-4 py-2 text-sm text-black hover:bg-gray-100  w-full inline-flex items-center" role="menuitem" tabindex="-1" id="user-menu-item-1">
-                                <svg xmlns="http://www.w3.org/2000/svg" class="-ml-1 mr-2 h-5 w-5 text-gray-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 7a2 2 0 012 2m4 0a6 6 0 01-7.743 5.743L11 17H9v2H7v2H4a1 1 0 01-1-1v-2.586a1 1 0 01.293-.707l5.964-5.964A6 6 0 1121 9z"/>
-                                </svg>
+                            <a href="/wachtwoord-aanpassen" class="p-2 gap-2 text-sm text-black hover:bg-gray-100  w-full inline-flex items-center" role="menuitem" tabindex="-1" id="user-menu-item-1">
+                                <span class="material-icons-outlined align-middle">password</span>
                                 Wachtwoord aanpassen</a>
-                            <a href="/berichten-klant" class="block px-4 py-2 text-sm text-black hover:bg-gray-100 w-full inline-flex items-center" role="menuitem" tabindex="-1" id="user-menu-item-2">
-                                <svg xmlns="http://www.w3.org/2000/svg" class="-ml-1 mr-2 h-5 w-5 text-gray-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/>
-                                </svg>
+                            <a href="/berichten-klant" class="p-2 gap-2 text-sm text-black hover:bg-gray-100 w-full inline-flex items-center" role="menuitem" tabindex="-1" id="user-menu-item-2">
+                                <span class="material-icons-outlined align-middle">chat</span>
                                 Berichten</a>
                             <?php if (isAdmin()): ?>
-                                <a href="/admin/berichten" class="block px-4 py-2 text-sm text-black hover:bg-gray-100 w-full inline-flex items-center" role="menuitem" tabindex="-1" id="user-menu-item-3">
-                                    <svg xmlns="http://www.w3.org/2000/svg" class="-ml-1 mr-2 h-5 w-5 text-gray-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 8h10M7 12h4m-4 4h10M5 6h14a2 2 0 012 2v12a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2z"/>
-                                    </svg>
-                                    Admin Berichten
+                                <a href="/admin/berichten" class="p-2 gap-2 text-sm text-black hover:bg-gray-100 w-full inline-flex items-center" role="menuitem" tabindex="-1" id="user-menu-item-3">
+                                    <span class="material-icons-outlined align-middle">inbox</span>
+                                    Inbox
                                 </a>
-                                <a href="/admin-dashboard" class="block px-4 py-2 text-sm text-black hover:bg-gray-100 w-full inline-flex items-center" role="menuitem" tabindex="-1" id="user-menu-item-4">
-                                    <svg xmlns="http://www.w3.org/2000/svg" class="-ml-1 mr-2 h-5 w-5 text-gray-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 3h18M3 9h18M3 15h18M3 21h18"/>
-                                    </svg>
+                                <a href="/admin-dashboard" class="p-2 gap-2 text-sm text-black hover:bg-gray-100 w-full inline-flex items-center" role="menuitem" tabindex="-1" id="user-menu-item-4">
+                                    <span class="material-icons-outlined align-middle">dashboard</span>
                                     Dashboard
                                 </a>
                             <?php endif; ?>
-                            <a href="/logout" class="block px-4 py-2 text-sm text-black hover:bg-gray-100 w-full inline-flex items-center" role="menuitem" tabindex="-1" id="user-menu-item-5">
-                                <svg xmlns="http://www.w3.org/2000/svg" class="-ml-1 mr-2 h-5 w-5 text-gray-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1"/>
-                                </svg>
+                            <a href="/logout" class="p-2 gap-2 text-sm text-black hover:bg-gray-100 w-full inline-flex items-center" role="menuitem" tabindex="-1" id="user-menu-item-5">
+                                <span class="material-icons-outlined align-middle">logout</span>
                                 Uitloggen</a>
                         </div>
                     </div>
                 </div>
             <?php else: ?>
                 <a href="/login" class="text-black hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md font-medium">
-                    <img src="/images/user.png" alt="user" class="h-6 w-6">
+                    <span class="material-icons-outlined align-middle">account_circle</span>
                 </a>
             <?php endif; ?>
         </div>
