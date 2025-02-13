@@ -32,6 +32,12 @@ view("parts/navigatie-menu");
                     height: 1.5rem;
                     border-radius: 0.5rem;
                 }
+
+                /* Make the filter form scrollable */
+                #filterForm {
+                    overflow-y: auto;
+                    max-height: 100vh;
+                }
             </style>
             <label class='radio_color'>
                 <input type='radio' name='filter_color' value=''
