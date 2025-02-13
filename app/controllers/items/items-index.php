@@ -15,22 +15,22 @@ $query = "SELECT * FROM producten WHERE 1=1";
 $params = [];
 if ($search) {
     $query .= " AND (naam LIKE :search OR kleur LIKE :search OR prijs LIKE :search OR geslacht LIKE :search OR beschrijving LIKE :search)";
-    $params['search'] = '%' . $search . '%';
+    $params[':search'] = '%' . $search . '%';
 }
 if ($filter_color) {
     $query .= " AND kleur LIKE :filter_color";
-    $params['filter_color'] = '%' . $filter_color . '%';
+    $params[':filter_color'] = '%' . $filter_color . '%';
 }
 if ($filter_price_min && $filter_price_max) {
     $query .= " AND prijs BETWEEN :price_min AND :price_max";
-    $params['price_min'] = $filter_price_min;
-    $params['price_max'] = $filter_price_max;
+    $params[':price_min'] = $filter_price_min;
+    $params[':price_max'] = $filter_price_max;
 }
 if ($filter_gender) {
-    $allowed_genders = ['male', 'female', 'unisex'];
+    $allowed_genders = ['man', 'vrouw', 'unisex'];
     if (in_array($filter_gender, $allowed_genders)) {
         $query .= " AND geslacht = :filter_gender";
-        $params['filter_gender'] = $filter_gender;
+        $params[':filter_gender'] = $filter_gender;
     }
 }
 
