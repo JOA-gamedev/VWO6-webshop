@@ -32,12 +32,6 @@ view("parts/navigatie-menu");
                     height: 1.5rem;
                     border-radius: 0.5rem;
                 }
-
-                /* Make the filter form scrollable */
-                #filterForm {
-                    overflow-y: auto;
-                    max-height: 100vh;
-                }
             </style>
             <label class='radio_color'>
                 <input type='radio' name='filter_color' value=''
@@ -208,18 +202,17 @@ view("parts/navigatie-menu");
                                     <p class="text-red-500 text-sm mt-1"><?= htmlspecialchars($_SESSION['error']) ?></p>
                                     <?php unset($_SESSION['error'], $_SESSION['error_item_id']); ?>
                                 <?php endif; ?>
+                                <!-- Add to cart form -->
+                                <form id="addToCartForm-<?= $item['id'] ?>" action="/cart/add" method="post" class="mt-2">
+                                    <?= csrf() ?>
+                                    <input type="hidden" name="id" value="<?= $item['id'] ?>">
+                                    <input type="hidden" name="size" id="selectedSize-<?= $item['id'] ?>">
+                                    <button type="submit" class="bg-gray-500 text-white px-4 py-2 rounded">
+                                        <img src="/images/cart1.png" alt="Add to Cart" class="inline-block w-6 h-6">
+                                    </button>
+                                </form>
+                                <p id="sizeError-<?= $item['id'] ?>" class="text-red-500 hidden">Kies een maat</p>
                             </div>
-                            <!-- Add to cart form -->
-                            <form id="addToCartForm-<?= $item['id'] ?>" action="/cart/add" method="post" class="mt-2">
-                                <?= csrf() ?>
-                                <input type="hidden" name="id" value="<?= $item['id'] ?>">
-                                <input type="hidden" name="size" id="selectedSize-<?= $item['id'] ?>">
-                                <input type="hidden" name="color" value="<?= htmlspecialchars($item['kleur'] ?? '-') ?>">
-                                <input type="hidden" name="gender" value="<?= htmlspecialchars($item['geslacht'] ?? '-') ?>">
-                                <button type="submit" class="bg-gray-500 text-white px-4 py-2 rounded">
-                                    <img src="/images/cart1.png" alt="Add to Cart" class="inline-block w-6 h-6">
-                                </button>
-                            </form>
                         </div>
                     <?php endif; ?>
                 <?php endforeach; ?>
@@ -237,6 +230,19 @@ view("parts/navigatie-menu");
         const filterForm = document.getElementById('filterForm');
         filterForm.classList.toggle('hidden');
     });
+
+    <?php foreach ($items as $item): ?>
+    document.getElementById('addToCartForm-<?= $item['id'] ?>').addEventListener('submit', function(event) {
+        const size = document.getElementById('size-<?= $item['id'] ?>').value;
+        if (!size) {
+            event.preventDefault();
+            document.getElementById('sizeError-<?= $item['id'] ?>').classList.remove('hidden');
+        } else {
+            document.getElementById('selectedSize-<?= $item['id'] ?>').value = size;
+            document.getElementById('sizeError-<?= $item['id'] ?>').classList.add('hidden');
+        }
+    });
+    <?php endforeach; ?>
 </script>
 
 <?php
