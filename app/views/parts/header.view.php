@@ -10,6 +10,9 @@
     <script src="/scripts/tailwind.min.js"></script>
     <script defer src="/scripts/alpine.min.js"></script>
     <script src="/scripts/axios.min.js"></script>
+    <!-- script voor dynamisch zoeken, misschien dubbel? -->
+    <script defer src="https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js"></script>
+    <script src="https://unpkg.com/axios@1.1.2/dist/axios.min.js"></script>
     <link rel="stylesheet" href="style.css">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Outlined" rel="stylesheet">

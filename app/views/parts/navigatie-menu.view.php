@@ -11,7 +11,6 @@ if (!function_exists('isAdmin')) {
         <div class="flex justify-start items-center text-xl space-x-4">
             <a href="/" class="flex items-center">
                 <img src="/images/logo1.png" alt="Logo" class="h-10 p-2">
-                <span class="font-bold text-black"><?= config("app.name") ?></span>
             </a>
             <a href="/" class="<?= isUri("") ? 'underline ' : '' ?>text-black hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md font-medium">Home</a>
             <a href="/contact" class="<?= isUri("contact") ? 'underline ' : '' ?>text-black hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md font-medium">Contact</a>
@@ -60,7 +59,7 @@ if (!function_exists('isAdmin')) {
                             <?php if (isAdmin()): ?>
                                 <a href="/admin/berichten" class="p-2 gap-2 text-sm text-black hover:bg-gray-100 w-full inline-flex items-center" role="menuitem" tabindex="-1" id="user-menu-item-3">
                                     <span class="material-icons-outlined align-middle">inbox</span>
-                                    Inbox
+                                    Admin inbox
                                 </a>
                                 <a href="/admin-dashboard" class="p-2 gap-2 text-sm text-black hover:bg-gray-100 w-full inline-flex items-center" role="menuitem" tabindex="-1" id="user-menu-item-4">
                                     <span class="material-icons-outlined align-middle">dashboard</span>
