@@ -32,7 +32,7 @@ view("parts/navigatie-menu");
                     <input type="hidden" name="color" value="<?= htmlspecialchars($item['kleur'] ?? '-') ?>">
                     <input type="hidden" name="gender" value="<?= htmlspecialchars($item['geslacht'] ?? '-') ?>">
                     <button type="submit" class="bg-gray-500 text-white px-4 py-2 rounded">
-                        <img src="/images/cart1.png" alt="Add to Cart" class="inline-block w-6 h-6">
+                        <span class="material-icons align-middle">add_shopping_cart</span>
                     </button>
                 </form>
                 <p id="sizeError" class="text-red-500 hidden">Kies een maat</p>
