@@ -5,22 +5,36 @@ require "../src/Validator.php";
 $errors = [];
 
 if (empty($_POST['name'])) {
-    $errors[] = 'Name is required';
+    $errors['name'] = 'Naam is verplicht';
 }
 
 if (empty($_POST['email'])) {
-    $errors[] = 'Email is required';
+    $errors['email'] = 'E-mailadres is verplicht';
 }
 
 if (empty($_POST['password'])) {
-    $errors[] = 'Password is required';
+    $errors['password'] = 'Wachtwoord is verplicht';
+}
+
+if (empty($_POST['straat'])) {
+    $errors['straat'] = 'Straat is verplicht';
+}
+
+if (empty($_POST['huisnr'])) {
+    $errors['huisnr'] = 'Huisnummer is verplicht';
+}
+
+if (empty($_POST['postcode'])) {
+    $errors['postcode'] = 'Postcode is verplicht';
+}
+
+if (empty($_POST['plaats'])) {
+    $errors['plaats'] = 'Plaats is verplicht';
 }
 
 if (!empty($errors)) {
-    // Handle errors (e.g., display them to the user)
-    foreach ($errors as $error) {
-        echo $error . '<br>';
-    }
+    // Return errors to the view
+    view("registreer", ['errors' => $errors]);
     exit;
 }
 
@@ -35,15 +49,19 @@ if ($_POST != null) {
     if ($existingUser) {
         // Set a flash message and redirect back to the registration form
         flash("E-mail adres is al in gebruik.", false, 3000);
-        view("registreer");
+        view("registreer", ['errors' => $errors]);
     } else {
         // wachtwoord hashen
         $pswrd_hash = password_hash($_POST['password'], PASSWORD_BCRYPT);
         // gegevens toevoegen aan de database
-        $db->query("INSERT INTO users (email, password, name) VALUES (?, ?, ?)", [
+        $db->query("INSERT INTO users (email, password, name, straat, huisnr, postcode, plaats, created_at, updated_at) VALUES (?, ?, ?, ?, ?, ?, ?, NOW(), NOW())", [
             $_POST['email'],
             $pswrd_hash,
             $_POST['name'],
+            $_POST['straat'],
+            $_POST['huisnr'],
+            $_POST['postcode'],
+            $_POST['plaats'],
         ]);
 
         // Automatically log in the user
@@ -75,5 +93,5 @@ if ($_POST != null) {
         }
     }
 } else {
-    view("registreer");
+    view("registreer", ['errors' => $errors]);
 }
