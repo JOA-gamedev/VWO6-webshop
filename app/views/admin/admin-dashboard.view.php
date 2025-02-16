@@ -4,7 +4,6 @@ view("parts/navigatie-menu");
 ?>
 <div class="sm:mx-10">
     <h1 class="text-3xl my-4">Dashboard</h1>
-    <p class="my-4">Hier komen alle admin functies</p>
     <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
         <a href="admin/productbeheer" class="group block p-6 max-w-sm bg-white rounded-lg border border-gray-200 shadow-md hover:bg-indigo-600 hover:text-white transition duration-300">
             <div class="flex items-center justify-center mb-4 w-12 h-12 bg-indigo-100 rounded-full group-hover:bg-white">

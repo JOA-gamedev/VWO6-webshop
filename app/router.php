@@ -73,7 +73,7 @@ if (hasRole('admin')) {
     $route->get('admin/user-edit', "controllers/admin/user-edit.controller.php");
     $route->post('admin/user-delete', "controllers/admin/user-delete.controller.php");
     // dashboard voor de admin
-    $route->get('admin-dashboard', "views/admin/admin-dashboard.view.php");
+    $route->get('admin/admin-dashboard', "views/admin/admin-dashboard.view.php");
     // dynamic search routes
     $route->get('api/productbeheer-search', "controllers/api/productbeheer-search.php");
     $route->get('admin/productbeheer', "views/admin/productbeheer.view.php");
