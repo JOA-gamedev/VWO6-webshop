@@ -40,20 +40,13 @@ view("parts/navigatie-menu");
                         <td class="p-4" x-text="user.name"></td>
                         <td class="p-4" x-text="user.email"></td>
                         <td class="p-4 flex space-x-2">
-                            <template x-if="!user.deleted_at">
-                                <form method="POST" action="/admin/user-delete" style="display:inline;">
-                                    <?= csrf() ?>
-                                    <input type="hidden" name="id" :value="user.id">
-                                    <button type="submit" class="bg-red-500 text-white px-2 py-1 rounded">Verwijderen</button>
-                                </form>
-                            </template>
-                            <template x-if="user.deleted_at">
-                                <form method="POST" action="/admin/user-restore" style="display:inline;">
-                                    <?= csrf() ?>
-                                    <input type="hidden" name="id" :value="user.id">
-                                    <button type="submit" class="bg-green-500 text-white px-2 py-1 rounded">Herstellen</button>
-                                </form>
-                            </template>
+                            <form method="POST" :action="user.deleted_at ? '/admin/user-restore' : '/admin/user-delete'" style="display:inline;">
+                                <?= csrf() ?>
+                                <input type="hidden" name="id" :value="user.id">
+                                <button type="submit" :class="user.deleted_at ? 'bg-green-500' : 'bg-red-500'" class="text-white px-2 py-1 rounded">
+                                    <span x-text="user.deleted_at ? 'Herstellen' : 'Verwijderen'"></span>
+                                </button>
+                            </form>
                         </td>
                     </tr>
                 </template>

@@ -24,23 +24,28 @@ view("parts/navigatie-menu");
                     <th class="font-bold text-left p-2">Id</th>
                     <th class="font-bold text-left p-2">Prijs</th>
                     <th class="font-bold text-left p-2">Beschrijving</th>
+                    <th class="font-bold text-left p-2">Acties</th>
                 </tr>
             </thead>
             <tbody>
                 <!-- Loop door alle gevonden products -->
                 <template x-for="product in products">
-
-                    <tr @click="goto(product.id)" class="bg-slate-200 hover:bg-slate-400 border border-slate-300">
-
+                    <tr class="bg-slate-200 hover:bg-slate-400 border border-slate-300 cursor-pointer" onclick="window.location.href='/admin/product-edit?id=' + product.id">
                         <td class="p-4" x-text="product.naam"></td>
                         <td class="p-4" x-text="product.id"></td>
                         <td class="p-4" x-text="product.prijs"></td>
-
-                        <td x-text="product.beschrijving.length >= 50 ? product.beschrijving.substring(0, 50) + '...' : product.beschrijving"
-                            class="p-4">
+                        <td x-text="product.beschrijving.length >= 50 ? product.beschrijving.substring(0, 50) + '...' : product.beschrijving" class="p-4"></td>
+                        <td class="p-4">
+                            <a :href="'/admin/product-edit?id=' + product.id" class="bg-indigo-600 text-white py-1 px-3 rounded-md hover:bg-indigo-700 mr-2">Wijzigen</a>
+                            <form :action="product.deleted_at ? '/items/items-restore' : '/items/items-destroy'" method="post" style="display:inline;">
+                                <?= csrf() ?>
+                                <input type="hidden" name="id" :value="product.id">
+                                <button type="submit" :class="product.deleted_at ? 'bg-green-600 hover:bg-green-700' : 'bg-red-600 hover:bg-red-700'" class="text-white py-1 px-3 rounded-md mr-2">
+                                    <span x-text="product.deleted_at ? 'Herstellen' : 'Verwijderen'"></span>
+                                </button>
+                            </form>
                         </td>
                     </tr>
-
                 </template>
             </tbody>
         </table>
@@ -72,8 +77,7 @@ view("parts/navigatie-menu");
                     })
             },
             goto(id) {
-                //Deze url bestaat nog niet maar kan je zelf aanmaken
-                location.href = '/items/items-edit?id=' + id;
+                window.location.href = '/admin/product-edit?id=' + id;
             },
             // dlt(id) { //afkorting want delete werkt niet
             //     //Deze url bestaat nog niet maar kan je zelf aanmaken                delete functionaleit kan beter verwerkt worden in de productpagina

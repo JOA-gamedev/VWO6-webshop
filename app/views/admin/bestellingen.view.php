@@ -22,14 +22,13 @@ view("parts/navigatie-menu");
         </thead>
         <tbody>
             <?php foreach ($bestellingen as $bestelling): ?>
-                <tr class="bg-slate-200 hover:bg-slate-400 border border-slate-300">
+                <tr class="bg-slate-200 hover:bg-slate-400 border border-slate-300 cursor-pointer" onclick="window.location.href='/admin/bestellingen-edit?id=<?= $bestelling['id'] ?>'">
                     <td class="p-4"><?= htmlspecialchars($bestelling['id']) ?></td>
                     <td class="p-4"><?= htmlspecialchars($bestelling['klant_id']) ?></td>
                     <td class="p-4"><?= htmlspecialchars(implode(', ', $bestelling['product_ids'] ?? [])) ?></td>
                     <td class="p-4"><?= htmlspecialchars(implode(', ', $bestelling['prijzen'] ?? [])) ?></td>
                     <td class="p-4"><?= htmlspecialchars($bestelling['deleted_at'] ? 'verwijderd' : $bestelling['status']) ?></td>
                     <td class="p-4">
-                        <a href="/admin/bestellingen-edit?id=<?= $bestelling['id'] ?>" class="bg-indigo-600 text-white py-1 px-3 rounded-md hover:bg-indigo-700">Wijzigen</a>
                         <?php if (!$bestelling['deleted_at']): ?>
                             <form action="/admin/bestellingen-delete" method="post" style="display:inline;">
                             <?= csrf() ?>

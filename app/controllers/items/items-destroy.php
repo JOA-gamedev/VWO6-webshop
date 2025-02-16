@@ -1,9 +1,9 @@
 <?php
 
 $db = new Database();
-$db->query("DELETE FROM items WHERE id = :id", [
+$db->query("UPDATE producten SET deleted_at = NOW() WHERE id = :id", [
     'id' => $_POST['id']
 ]);
-flash("Item is verwijderd");
-//doorsturen naar de index pagina
-header("location: /items");
+flash("Product is succesvol verwijderd");
+//doorsturen naar de productbeheer pagina
+header("location: /admin/productbeheer");

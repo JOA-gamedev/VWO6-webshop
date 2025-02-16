@@ -83,6 +83,8 @@ if (hasRole('admin')) {
     //ADMIN-only "items" bestanden
     $route->get('items/items-edit', "controllers/items/items-edit.php");
     $route->post('items/items-update', "controllers/items/items-update.php");
+    $route->post('items/items-destroy', "controllers/items/items-destroy.php");
+    $route->post('items/items-restore', "controllers/items/items-restore.php");
     
     //prod
     $route->get('prod-img-edit', "controllers/images/prod-img-edit.php");
@@ -107,6 +109,9 @@ if (hasRole('admin')) {
     // Product toevoegen routes
     $route->get('admin/product-add', "views/admin/product-add.view.php");
     $route->post('admin/product-add', "controllers/admin/product-add.php");
+
+    // Product edit route
+    $route->get('admin/product-edit', "controllers/admin/product-edit.controller.php");
 
     $route->get('admin/berichten', "controllers/admin/berichten.php");
     $route->post('admin/berichten-reply', "controllers/admin/berichten-reply.php");

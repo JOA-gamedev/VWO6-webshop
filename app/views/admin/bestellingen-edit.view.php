@@ -15,12 +15,22 @@ $bestelling = $bestelling ?? [];
     <input type="hidden" name="id" value="<?= htmlspecialchars($bestelling['id'] ?? '') ?>">
     <input type="hidden" name="deleted_at" value="<?= htmlspecialchars($bestelling['deleted_at'] ?? '') ?>">
     <div class="mb-4">
+        <label for="bestelling_id" class="block text-sm font-medium text-gray-700">Bestelling ID:</label>
+        <input type="text" id="bestelling_id" name="bestelling_id" value="<?= htmlspecialchars($bestelling['id'] ?? '') ?>" readonly class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm bg-gray-100">
+    </div>
+    <div class="mb-4">
         <label for="klant_id" class="block text-sm font-medium text-gray-700">Klant ID:</label>
         <input type="text" id="klant_id" name="klant_id" value="<?= htmlspecialchars($bestelling['klant_id'] ?? '') ?>" required class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
     </div>
     <div class="mb-4">
         <label for="status" class="block text-sm font-medium text-gray-700">Status:</label>
-        <input type="text" id="status" name="status" value="<?= htmlspecialchars($bestelling['status'] ?? '') ?>" required class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
+        <select id="status" name="status" required class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
+            <option value="aangemaakt" <?= isset($bestelling['status']) && $bestelling['status'] === 'aangemaakt' ? 'selected' : '' ?>>Aangemaakt</option>
+            <option value="betaald" <?= isset($bestelling['status']) && $bestelling['status'] === 'betaald' ? 'selected' : '' ?>>Betaald</option>
+            <option value="verzonden" <?= isset($bestelling['status']) && $bestelling['status'] === 'verzonden' ? 'selected' : '' ?>>Verzonden</option>
+            <option value="afgehandeld" <?= isset($bestelling['status']) && $bestelling['status'] === 'afgehandeld' ? 'selected' : '' ?>>Afgehandeld</option>
+            <option value="verwijderd" <?= isset($bestelling['status']) && $bestelling['status'] === 'verwijderd' ? 'selected' : '' ?>>Verwijderd</option>
+        </select>
     </div>
     <div class="mb-4">
         <label for="product_ids" class="block text-sm font-medium text-gray-700">Product IDs (comma separated):</label>
