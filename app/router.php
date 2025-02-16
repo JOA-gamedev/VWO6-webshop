@@ -4,7 +4,7 @@ $route = new Route();
 // Hier doen we een controle of een bepaalde URL bestaat en we verwijzen door naar een controller of een view
 
 $route->get('ui', "views/ui.view.php");
-
+// algemene routes
 $route->get('', "controllers/home.php");
 $route->get('index', "controllers/home.php");
 $route->get('contact', "controllers/contact.php");
@@ -15,6 +15,7 @@ $route->get('items/items-show/{id}', "controllers/items/items-show.php");
 $route->get('items/items-index', "controllers/items/items-index.php");
 $route->get('items/product-detail', "controllers/items/product-detail.php");
 $route->get('items/paging', "controllers/items/paging.php");
+
 
 $route->get('login', "views/login.view.php");
 $route->post('login', "controllers/login.php");
@@ -27,6 +28,7 @@ $route->post('registreer-store', "controllers/registreer-store.php");
 // Add the route for the registration page
 $route->get('registreer', "views/registreer.view.php");
 
+// routes for cart
 $route->get('cart', "controllers/cart/cart-show.php");
 $route->post('cart/add', "controllers/cart/cart-add.php");
 $route->post('cart/remove', "controllers/cart/cart-remove.php");
@@ -71,11 +73,13 @@ if (hasRole('admin')) {
     $route->post('user-management/update', "controllers/admin/user-update.php");
     $route->get('admin/user-edit', "controllers/admin/user-edit.controller.php");
     $route->post('admin/user-delete', "controllers/admin/user-delete.controller.php");
-
+    // dashboard voor de admin
     $route->get('admin-dashboard', "views/admin-dashboard.view.php");
-
+    // dynamic search routes
     $route->get('api/productbeheer-search', "controllers/api/productbeheer-search.php");
     $route->get('admin/productbeheer', "views/admin/productbeheer.view.php");
+    $route->get('api/-search', "controllers/api/users-search.php");
+    $route->get('admin/user-management', "views/users-management.view.php");
 
     //ADMIN-only "items" bestanden
     $route->get('items/items-edit', "controllers/items/items-edit.php");

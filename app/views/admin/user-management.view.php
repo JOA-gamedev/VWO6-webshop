@@ -7,7 +7,64 @@ view("parts/navigatie-menu");
     <h1 class="text-3xl my-4">Gebruikersbeheer</h1>
     <a href="/admin-dashboard" class="bg-gray-500 text-white px-2 py-1 rounded">Terug</a>
 </div>
+<!-- user search -->
+<div x-data="searchUsers()" class="m-10">
+        Zoek gebruikers: <input type="text" @keyup="fetchUsers()" x-model="searchfield">
+        <!-- indien er resultaten gevonden zijn dan tonen -->
+        <template x-if="users.length">
+            <table class="w-1/2">
+                <tr>
+                    <td class="font-bold">Email</td>
+                    <td class="font-bold">Naam</td>
+                </tr>
+                <!-- Loop door alle gevonden users -->
+                <template x-for="user in users">
+                    <tr @click="goto(user.id)" class="hover:cursor-pointer hover:bg-blue-50">
+                        <td x-text="user.email"></td>
+                        <td x-text="user.name"></td>
+                    </tr>
+                </template>
+            </table>
+        </template>
+        <!-- Geen resultaten -->
+        <template x-if="!users.length">
+            <div class="mt-10">Geen gebruikers gevonden</div>
+        </template>
+    </div>
 
+    <script>
+
+        function searchUsers() {
+            return {
+                searchfield: '', //inhoud van het zoekveld
+                users: [], //dit wordt gevuld met de resultaten afkomstig van api/users.search.php
+                ok: false, //gaat alles goed?
+
+                fetchUsers() {
+                    axios.get('/api/users-search?name=' + this.searchfield)
+                        .then((response) => {
+                            this.ok = true;
+                            this.users = response.data;
+                            setTimeout(() => {
+                                this.ok = false;
+                            }, 5000);
+
+                        }).catch((e) => {
+                        console.log(e);
+                    })
+                },
+                goto(id) {
+                    //Deze url bestaat nog niet maar kan je zelf aanmaken
+                    location.href = '/user-profile?id=' + id;
+                }
+            }
+        }
+
+    </script>
+
+
+
+<!-- oude code -->
 <div class="max-w-4xl mx-auto bg-white p-8 rounded-lg shadow-md">
     <?php if (isset($_SESSION['flash'])): ?>
         <div class="max-w-md mx-auto bg-green-100 border border-green-400 text-green-700 px-4 py-3 rounded relative mb-4" role="alert">
