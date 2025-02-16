@@ -3,6 +3,7 @@
 class User extends Model
 {
     protected $table = 'users';
+    protected $id;
 
     public function posts()
     {
