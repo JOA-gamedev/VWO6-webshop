@@ -61,7 +61,7 @@ if (!function_exists('isAdmin')) {
                                     <span class="material-icons-outlined align-middle">inbox</span>
                                     Admin inbox
                                 </a>
-                                <a href="/admin-dashboard" class="p-2 gap-2 text-sm text-black hover:bg-gray-100 w-full inline-flex items-center" role="menuitem" tabindex="-1" id="user-menu-item-4">
+                                <a href="/admin/admin-dashboard" class="p-2 gap-2 text-sm text-black hover:bg-gray-100 w-full inline-flex items-center" role="menuitem" tabindex="-1" id="user-menu-item-4">
                                     <span class="material-icons-outlined align-middle">dashboard</span>
                                     Dashboard
                                 </a>
