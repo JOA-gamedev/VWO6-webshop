@@ -11,7 +11,7 @@ $users = $db->query(
       "%" . $_GET['search'] . "%", 
       "%" . $_GET['search'] . "%", 
       "%" . $_GET['search'] . "%", 
-      "%" . $_GET['search'] . "%"    //zoeken naar alles wat er op lijkt
+      "%" . $_GET['search'] . "%",   //zoeken naar alles wat er op lijkt
     ]
 )->fetchAll();
 

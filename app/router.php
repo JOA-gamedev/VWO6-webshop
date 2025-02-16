@@ -16,7 +16,6 @@ $route->get('items/items-index', "controllers/items/items-index.php");
 $route->get('items/product-detail', "controllers/items/product-detail.php");
 $route->get('items/paging', "controllers/items/paging.php");
 
-
 $route->get('login', "views/login.view.php");
 $route->post('login', "controllers/login.php");
 $route->get('logout', "controllers/logout.php");
@@ -78,8 +77,8 @@ if (hasRole('admin')) {
     // dynamic search routes
     $route->get('api/productbeheer-search', "controllers/api/productbeheer-search.php");
     $route->get('admin/productbeheer', "views/admin/productbeheer.view.php");
-    $route->get('api/-search', "controllers/api/users-search.php");
-    $route->get('admin/user-management', "views/users-management.view.php");
+    $route->get('api/users-search', "controllers/api/users-search.php");
+    $route->get('admin/user-management', "views/admin/user-management.view.php");
 
     //ADMIN-only "items" bestanden
     $route->get('items/items-edit', "controllers/items/items-edit.php");

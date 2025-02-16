@@ -22,6 +22,8 @@ if ($id) {
     header('Location: /admin/user-management');
     exit;
 } else {
-    echo 'Invalid input.';
+    $_SESSION['flash'] = 'Ongeldige invoer.';
+    header('Location: /admin/user-management');
+    exit;
 }
 ?>

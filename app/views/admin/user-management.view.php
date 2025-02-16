@@ -7,6 +7,18 @@ view("parts/navigatie-menu");
     <h1 class="text-3xl my-4">Gebruikersbeheer</h1>
     <a href="/admin-dashboard" class="bg-gray-500 text-white px-2 py-1 rounded">Terug</a>
 </div>
+
+<!-- Flash message -->
+<?php if (isset($_SESSION['flash'])): ?>
+    <div class="max-w-md mx-auto bg-green-100 border border-green-400 text-green-700 px-4 py-3 rounded relative mb-4" role="alert">
+        <span class="block sm:inline"><?= htmlspecialchars($_SESSION['flash']) ?></span>
+        <span class="absolute top-0 bottom-0 right-0 px-4 py-3" onclick="this.parentElement.style.display='none';">
+            <svg class="fill-current h-6 w-6 text-green-500" role="button" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><title>Close</title><path d="M14.348 5.652a1 1 0 00-1.414 0L10 8.586 7.066 5.652a1 1 0 10-1.414 1.414L8.586 10l-2.934 2.934a1 1 0 101.414 1.414L10 11.414l2.934 2.934a1 1 0 001.414-1.414L11.414 10l2.934-2.934a1 1 0 000-1.414z"/></svg>
+        </span>
+    </div>
+    <?php unset($_SESSION['flash']); ?>
+<?php endif; ?>
+
 <!-- user search -->
 <div x-data="searchUsers()" class="m-10">
     <div class="mb-4">
@@ -112,3 +124,4 @@ function searchUsers() {
 
 <?php
 view("parts/footer");
+?>

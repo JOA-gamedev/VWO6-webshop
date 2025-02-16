@@ -24,7 +24,6 @@ view("parts/navigatie-menu");
                     <th class="font-bold text-left p-2">Id</th>
                     <th class="font-bold text-left p-2">Prijs</th>
                     <th class="font-bold text-left p-2">Beschrijving</th>
-                    <th class="font-bold text-left p-2">Maat</th>
                 </tr>
             </thead>
             <tbody>
@@ -39,15 +38,6 @@ view("parts/navigatie-menu");
 
                         <td x-text="product.beschrijving.length >= 50 ? product.beschrijving.substring(0, 50) + '...' : product.beschrijving"
                             class="p-4">
-                        </td>
-                        <td class="p-4">
-                            <select x-model="product.maat" class="border border-gray-300 rounded-md">
-                                <option value="xs">XS</option>
-                                <option value="s">S</option>
-                                <option value="m">M</option>
-                                <option value="l">L</option>
-                                <option value="xl">XL</option>
-                            </select>
                         </td>
                     </tr>
 
