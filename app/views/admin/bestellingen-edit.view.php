@@ -7,7 +7,7 @@ $bestelling = $bestelling ?? [];
 
 <div class="sm:mx-10">
     <h1 class="text-3xl my-4">Bestelling wijzigen</h1>
-    <a href="/admin/bestellingen" class="bg-gray-500 text-white px-2 py-1 rounded">Terug</a>
+    <a href="/admin/bestellingen" class="bg-gray-600 text-white px-2 py-1 rounded">Terug</a>
 </div>
 
 <form method="post" action="/admin/bestellingen" class="max-w-md mx-auto bg-white p-8 rounded-lg shadow-md">

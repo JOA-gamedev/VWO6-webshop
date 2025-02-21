@@ -48,7 +48,7 @@ if (empty($errors)) {
                 exit;
             }
 
-            flash("Welkom terug " . $user['name'], true);
+            flash("Welkom terug " . $user['name']);
             //doorsturen naar de home pagina (of pas aan)
             header("Location: /");
             exit;
