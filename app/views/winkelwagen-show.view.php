@@ -3,7 +3,7 @@ view("parts/header", ['title' => 'Winkelwagen']);
 view("parts/navigatie-menu");
 ?>
 <div class="container mx-auto p-4">
-<a href="/items/items-index" class="bg-gray-500 text-white px-2 py-1 rounded">Terug</a>
+<a href="/items/items-index" class="bg-gray-500 text-white px-2 py-1 rounded">Verder winkelen</a>
     <h1 class="text-3xl my-4 font-bold text-center">Winkelwagen</h1>
     <?php if (!empty($producten)): ?>
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
