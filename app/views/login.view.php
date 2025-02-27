@@ -1,5 +1,6 @@
 <?php
 view("parts/header", ['title' => 'Login']);
+view("parts/topbar"); // Laad de topbar ticker
 view("parts/navigatie-menu");
 ?>
 <div class="bg-gray-100 min-h-screen flex items-center justify-center">
