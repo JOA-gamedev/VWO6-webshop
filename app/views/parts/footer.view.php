@@ -34,7 +34,5 @@
     </div>
 <?php endif ?>
 <?php unset($_SESSION['flash']); //verwijderen zodat het volgende keer niet nog eens wordt getoond ?>
-
-
 </body>
 </html>
