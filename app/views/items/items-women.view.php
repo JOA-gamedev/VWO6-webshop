@@ -1,11 +1,11 @@
 <?php
-view("parts/header", ['title' => 'Producten']);
+view("parts/header", ['title' => 'Producten - Vrouw']);
 view("parts/navigatie-menu");
 ?>
 <div class="flex flex-row justify-evenly gap-4">
     <!-- Filteropties -->
     <form id="filterForm" method="GET" action=""
-        class="p-4 pt-20 flex flex-col sticky top-0 gap-10 w-1/4 h-screen justify-start hidden bg-gray-100 shadow-gray-400 shadow-md overflow-y-auto">
+        class="p-4 pt-20 flex flex-col sticky top-0 gap-10 w-1/4 h-screen justify-start hidden bg-gray-100 shadow-md overflow-y-auto">
         <h2 class="text-2xl font-bold">Filters</h2>
         <div class="flex flex-wrap gap-2">
             <span class="w-full">Filter op kleur:</span>
@@ -33,116 +33,16 @@ view("parts/navigatie-menu");
                     border-radius: 0.5rem;
                 }
             </style>
-            <label class='radio_color'>
-                <input type='radio' name='filter_color' value=''
-                    <?= !isset($_GET['filter_color']) || $_GET['filter_color'] == '' ? 'checked' : '' ?>>
-                <span class='span_color bg-transparent border border-black flex items-center justify-center material-icons'>clear
-                </span>
-            </label>
-            <label class='radio_color'>
-                <input type='radio' name='filter_color' value='bruin'
-                    <?= isset($_GET['filter_color']) && $_GET['filter_color'] == 'bruin' ? 'checked' : '' ?>>
-                <span class='span_color bg-yellow-700'></span>
-            </label>
-            <label class='radio_color'>
-                <input type='radio' name='filter_color' value='roze'
-                    <?= isset($_GET['filter_color']) && $_GET['filter_color'] == 'roze' ? 'checked' : '' ?>>
-                <span class='span_color bg-rose-500'></span>
-            </label>
-            <label class='radio_color'>
-                <input type='radio' name='filter_color' value='beige'
-                    <?= isset($_GET['filter_color']) && $_GET['filter_color'] == 'beige' ? 'checked' : '' ?>>
-                <span class='span_color' style='background-color: rgb(220,191,166);'></span>
-            </label>
-            <label class='radio_color'>
-                <input type='radio' name='filter_color' value='grijs'
-                    <?= isset($_GET['filter_color']) && $_GET['filter_color'] == 'grijs' ? 'checked' : '' ?>>
-                <span class='span_color bg-gray-500'></span>
-            </label>
-            <label class='radio_color'>
-                <input type='radio' name='filter_color' value='zwart'
-                    <?= isset($_GET['filter_color']) && $_GET['filter_color'] == 'zwart' ? 'checked' : '' ?>>
-                <span class='span_color bg-black'></span>
-            </label>
-            <label class='radio_color'>
-                <input type='radio' name='filter_color' value='wit'
-                    <?= isset($_GET['filter_color']) && $_GET['filter_color'] == 'wit' ? 'checked' : '' ?>>
-                <span class='span_color bg-white'></span>
-            </label>
-            <label class='radio_color'>
-                <input type='radio' name='filter_color' value='groen'
-                    <?= isset($_GET['filter_color']) && $_GET['filter_color'] == 'groen' ? 'checked' : '' ?>>
-                <span class='span_color' style='background-color: rgb(34,139,34);'></span>
-            </label>
-            <label class='radio_color'>
-                <input type='radio' name='filter_color' value='gebroken wit'
-                    <?= isset($_GET['filter_color']) && $_GET['filter_color'] == 'gebroken wit' ? 'checked' : '' ?>>
-                <span class='span_color' style='background-color: rgb(238,235,227);'></span>
-            </label>
-            <label class='radio_color'>
-                <input type='radio' name='filter_color' value='paars'
-                    <?= isset($_GET['filter_color']) && $_GET['filter_color'] == 'paars' ? 'checked' : '' ?>>
-                <span class='span_color' style='background-color: rgb(128, 0, 128);'></span>
-            </label>
-            <label class='radio_color'>
-                <input type='radio' name='filter_color' value='rood'
-                    <?= isset($_GET['filter_color']) && $_GET['filter_color'] == 'rood' ? 'checked' : '' ?>>
-                <span class='span_color' style='background-color: rgb(255, 0, 0);'></span>
-            </label>
-            <label class='radio_color'>
-                <input type='radio' name='filter_color' value='blauw'
-                    <?= isset($_GET['filter_color']) && $_GET['filter_color'] == 'blauw' ? 'checked' : '' ?>>
-                <span class='span_color' style='background-color: rgb(0, 0, 255);'></span>
-            </label>
         </div>
-
-        <?php
-        // include the minmax-slider component and pass through the max price variable, and the left and right bounds
-        view("parts/minmax-slider", [
-            'max_price' => $max_price,
-            'left_bound' => $_GET['filter_price_min'] ?? 1,
-            'right_bound' => $_GET['filter_price_max'] ?? $max_price
-        ]);
-        ?>
-
-        <select name="filter_gender" class="border p-1 rounded ">
-            <option value="">Filter op geslacht</option>
-            <option value="man"
-                <?= isset($_GET['filter_gender']) && $_GET['filter_gender'] == 'man' ? 'selected' : '' ?>>
-                Man
-            </option>
-            <option value="vrouw"
-                <?= isset($_GET['filter_gender']) && $_GET['filter_gender'] == 'vrouw' ? 'selected' : '' ?>>
-                Vrouw
-            </option>
-            <option value="unisex"
-                <?= isset($_GET['filter_gender']) && $_GET['filter_gender'] == 'unisex' ? 'selected' : '' ?>>
-                Unisex
-            </option>
-        </select>
-        <button type="submit" class="bg-blue-500 text-white px-2 py-1 rounded ml-2">Filteren</button>
-        <?php if (!empty($_GET['filter_color']) || !empty($_GET['filter_price_min']) || !empty($_GET['filter_price_max']) || !empty($_GET['filter_gender'])) : ?>
-            <a href="/items/items-index" class="bg-red-500 text-center text-white px-2 py-1 rounded ml-2">Verwijder
-                filters</a>
-        <?php endif; ?>
     </form>
 
     <div class="container mx-auto p-4">
         <?php
-        $filter_gender = $_GET['filter_gender'] ?? '';
-        $filtered_items = array_filter($items, function($item) use ($filter_gender) {
-            return $filter_gender === '' || $item['geslacht'] === $filter_gender;
+        $filtered_items = array_filter($items, function($item) {
+            return $item['geslacht'] === 'vrouw';
         });
-        $gender_title = $filter_gender ? " - " . ucfirst($filter_gender) : "";
         ?>
-        <h1 class="text-3xl my-4 font-bold text-center">Producten<?= $gender_title ?></h1>
-
-        <!-- Zoekformulier -->
-        <!-- <form method="GET" action="" class="mb-4 flex justify-start">
-            <input type="text" name="search" placeholder="Zoek producten..." class="border p-2 rounded w-1/3"
-                value="<?= htmlspecialchars($_GET['search'] ?? '') ?>">
-            <button type="submit" class="bg-blue-500 text-white px-4 py-2 rounded ml-2">Zoeken</button>
-        </form> -->
+        <h1 class="text-3xl my-4 font-bold text-center">Producten - Vrouw</h1>
 
         <!-- Filter knop -->
         <button id="toggleFilters" class="bg-blue-500 text-white px-3 py-1 rounded mb-4">Toon filters

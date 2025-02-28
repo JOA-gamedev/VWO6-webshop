@@ -1,11 +1,11 @@
 <?php
-view("parts/header", ['title' => 'Producten']);
+view("parts/header", ['title' => 'Producten - Man']);
 view("parts/navigatie-menu");
 ?>
 <div class="flex flex-row justify-evenly gap-4">
     <!-- Filteropties -->
     <form id="filterForm" method="GET" action=""
-        class="p-4 pt-20 flex flex-col sticky top-0 gap-10 w-1/4 h-screen justify-start hidden bg-gray-100 shadow-gray-400 shadow-md overflow-y-auto">
+        class="p-4 pt-20 flex flex-col sticky top-0 gap-10 w-1/4 h-screen justify-start hidden bg-gray-100 shadow-md overflow-y-auto">
         <h2 class="text-2xl font-bold">Filters</h2>
         <div class="flex flex-wrap gap-2">
             <span class="w-full">Filter op kleur:</span>
@@ -105,7 +105,7 @@ view("parts/navigatie-menu");
         ]);
         ?>
 
-        <select name="filter_gender" class="border p-1 rounded ">
+        <select name="filter_gender" class="border p-1 rounded">
             <option value="">Filter op geslacht</option>
             <option value="man"
                 <?= isset($_GET['filter_gender']) && $_GET['filter_gender'] == 'man' ? 'selected' : '' ?>>
@@ -129,20 +129,11 @@ view("parts/navigatie-menu");
 
     <div class="container mx-auto p-4">
         <?php
-        $filter_gender = $_GET['filter_gender'] ?? '';
-        $filtered_items = array_filter($items, function($item) use ($filter_gender) {
-            return $filter_gender === '' || $item['geslacht'] === $filter_gender;
+        $filtered_items = array_filter($items, function($item) {
+            return $item['geslacht'] === 'man';
         });
-        $gender_title = $filter_gender ? " - " . ucfirst($filter_gender) : "";
         ?>
-        <h1 class="text-3xl my-4 font-bold text-center">Producten<?= $gender_title ?></h1>
-
-        <!-- Zoekformulier -->
-        <!-- <form method="GET" action="" class="mb-4 flex justify-start">
-            <input type="text" name="search" placeholder="Zoek producten..." class="border p-2 rounded w-1/3"
-                value="<?= htmlspecialchars($_GET['search'] ?? '') ?>">
-            <button type="submit" class="bg-blue-500 text-white px-4 py-2 rounded ml-2">Zoeken</button>
-        </form> -->
+        <h1 class="text-3xl my-4 font-bold text-center">Producten - Man</h1>
 
         <!-- Filter knop -->
         <button id="toggleFilters" class="bg-blue-500 text-white px-3 py-1 rounded mb-4">Toon filters

@@ -16,6 +16,10 @@ $route->get('items/items-index', "controllers/items/items-index.php");
 $route->get('items/product-detail', "controllers/items/product-detail.php");
 $route->get('items/paging', "controllers/items/paging.php");
 
+$route->get('items/items-men', "controllers/items/items-men.php");
+$route->get('items/items-women', "controllers/items/items-women.php");
+$route->get('items/items-unisex', "controllers/items/items-unisex.php");
+
 $route->get('login', "views/login.view.php");
 $route->post('login', "controllers/login.php");
 $route->get('logout', "controllers/logout.php");
