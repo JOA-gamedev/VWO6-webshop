@@ -6,7 +6,7 @@ view("parts/navigatie-menu"); // Laad het navigatiemenu
 
 $shop_name = "Jofi";
 $headline = "De kleding winkel van morgen";
-$subtext = "De stijl van de toekomst, vandaag. Stap binnen en ontdek een wereld waar stijl en innovatie samenkomen.";
+$subtext = "De stijl van de toekomst, vandaag. neem een kijkje en ontdek een wereld waar stijl en innovatie samenkomen.";
 $button_text = "Shop nu!";
 $button_link = "/items/items-index";
 ?>
