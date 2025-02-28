@@ -2,8 +2,8 @@
 return [
     'app' => [
         'env' => 'development',
-        'name' => 'JFJ-Clothing Store',
-        'email' => 'info@JFJ-clothing.nl',
+        'name' => 'Jofi®',
+        'email' => 'info@jofi.nl',
     ],
     'database' => [
         'user' => 'root',

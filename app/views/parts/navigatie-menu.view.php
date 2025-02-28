@@ -13,7 +13,9 @@ if (!function_exists('isAdmin')) {
             <!-- <a href="/" class="flex items-center">
                 <img src="/images/logo1.png" alt="Logo" class="h-10 p-2">
             </a> -->
-            <h1 class=" font-bold text-[#111111] text-[31px] font-['inter'] tracking-[-2.1px]">Jofi ®</h1>
+            <h1 class=" font-bold text-[#111111] text-[31px] font-['inter'] tracking-[-2.1px]">
+                <a href="/index">Jofi®</a>
+            </h1>
             <a href="/"
                 class="<?= isUri("") ? 'underline ' : '' ?>text-black hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md font-medium">Home</a>
             <a href="/contact"
