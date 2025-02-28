@@ -135,7 +135,7 @@ view("parts/navigatie-menu");
         });
         $gender_title = $filter_gender ? " - " . ucfirst($filter_gender) : "";
         ?>
-        <h1 class="text-3xl my-4 font-bold text-center">Producten<?= $gender_title ?></h1>
+        <h1 class="text-3xl my-4 font-bold text-center">Producten - Unisex<?= $gender_title ?></h1>
 
         <!-- Zoekformulier -->
         <!-- <form method="GET" action="" class="mb-4 flex justify-start">

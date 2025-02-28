@@ -26,10 +26,10 @@ if (!function_exists('isAdmin')) {
             <div x-data="{ open: false }" class="relative">
                 <button @click="open = !open" class="text-black hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md font-medium">Producten</button>
                 <div x-show="open" @click.away="open = false" class="absolute bg-white shadow-md rounded-md mt-2 w-48">
+                    <a href="/items/items-index" class="block px-4 py-2 text-black hover:bg-gray-100">Alle producten</a>
                     <a href="/items/items-men" class="block px-4 py-2 text-black hover:bg-gray-100">Man</a>
                     <a href="/items/items-women" class="block px-4 py-2 text-black hover:bg-gray-100">Vrouw</a>
                     <a href="/items/items-unisex" class="block px-4 py-2 text-black hover:bg-gray-100">Unisex</a>
-                    <a href="/items/items-index" class="block px-4 py-2 text-black hover:bg-gray-100">Alle producten</a>
                 </div>
             </div>
             <?php if (auth()): ?>
