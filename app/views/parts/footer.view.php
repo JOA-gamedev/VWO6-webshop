@@ -2,7 +2,7 @@
 <?php if ($_SESSION['flash'] ?? false): ?>
     <div x-data="{ nofifiction: true }"
          x-init="setTimeout(function(){ nofifiction=false; }, <?= $_SESSION['flash']['duration']; ?>)"
-         class="fixed top-12 w-5/6 ml-6 z-20">
+         class="fixed top-24 w-5/6 ml-6 z-20"> <!-- Adjusted top position to 24 -->
         <div x-show="nofifiction"
              x-transition
              class="flex items-center justify-between gap-6 p-4 w-full bg-white border rounded-md shadow-sm <?= ($_SESSION['flash']['error'] ?? false) ? 'bg-red-100' : 'bg-green-50' ?>">
