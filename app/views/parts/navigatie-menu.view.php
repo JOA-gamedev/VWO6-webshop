@@ -9,32 +9,85 @@ if (!function_exists('isAdmin')) {
 ?>
 <nav class="bg-white flex p-[20px] border-b-2">
     <div class="flex justify-between items-center w-full">
-        <div class="flex justify-start items-center text-xl space-x-4">
+        <h1 class=" font-bold text-[#111111] text-[31px] font-['inter'] tracking-[-2.1px]">
+            <a href="/index">Jofi®</a>
+        </h1>
+        <div
+            class="absolute left-1/2 transform -translate-x-1/2 flex justify-start items-center text-xl space-x-4 gap-2">
             <!-- <a href="/" class="flex items-center">
-                <img src="/images/logo1.png" alt="Logo" class="h-10 p-2">
+            <img src="/images/logo1.png" alt="Logo" class="h-10 p-2">
             </a> -->
-            <h1 class=" font-bold text-[#111111] text-[31px] font-['inter'] tracking-[-2.1px]">
-                <a href="/index">Jofi®</a>
-            </h1>
-            <a href="/"
-                class="<?= isUri("") ? 'underline ' : '' ?>text-black hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md font-medium">Home</a>
-            <a href="/contact"
-                class="<?= isUri("contact") ? 'underline ' : '' ?>text-black hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md font-medium">Contact</a>
-            <a href="/about"
-                class="<?= isUri("about") ? 'underline ' : '' ?>text-black hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md font-medium">Over
-                ons</a>
+            <style>
+                .fancy-link {
+                    color: #666666;
+                    display: flex;
+                    flex-direction: row;
+                    gap: 0.25rem;
+                    transition: color 0.2s, gap 0.2s, transform 0.2s;
+                }
+
+                .fancy-link span {
+                    opacity: 0;
+                    transform: translateX(5px);
+                    transition: opacity 0.2s, transform 0.2s;
+                }
+
+                .fancy-link:hover {
+                    color: #111111;
+                    gap: 0.5rem;
+                }
+
+                .fancy-link:hover span {
+                    opacity: 1;
+                    transform: translateX(0);
+                }
+
+                .arrow {
+                    vertical-align: baseline;
+                }
+
+                .selected {
+                    color: #111111;
+                }
+            </style>
+
+            <a href="/" class="fancy-link">
+                <span class="material-icons arrow <?= isUri("/") ? 'selected ' : '' ?>">arrow_forward</span>
+                Home
+            </a>
+            <a href="/contact" class="fancy-link <?= isUri("contact") ? 'selected ' : '' ?>">
+                <span class="material-icons arrow">arrow_forward</span>
+                Contact
+            </a>
+            <a href="/about" class="fancy-link <?= isUri("about") ? 'selected' : '' ?>">
+                <span class="material-icons arrow">arrow_forward</span>
+                Over ons
+            </a>
+
             <div x-data="{ open: false }" class="relative">
-                <button @click="open = !open" class="text-black hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md font-medium">Producten</button>
-                <div x-show="open" @click.away="open = false" class="absolute bg-white shadow-md rounded-md mt-2 w-48">
-                    <a href="/items/items-index" class="block px-4 py-2 text-black hover:bg-gray-100">Alle producten</a>
-                    <a href="/items/items-men" class="block px-4 py-2 text-black hover:bg-gray-100">Man</a>
-                    <a href="/items/items-women" class="block px-4 py-2 text-black hover:bg-gray-100">Vrouw</a>
-                    <a href="/items/items-unisex" class="block px-4 py-2 text-black hover:bg-gray-100">Unisex</a>
+                <button @click="open = !open"
+                    class="fancy-link <?= isUri("items/items-index") ? 'selected ' : '' ?></button>">
+                    <span class="material-icons arrow">arrow_forward</span>
+                    Producten
+                </button>
+                <div x-show="open" @click.away="open = false"
+                    class="absolute bg-[var(--main-blue)] shadow-md rounded-md mt-4 p-4 min-w-max">
+                    <a href="/items/items-index" class="fancy-link block px-4 py-2 ">
+                        <span class="material-icons arrow">arrow_forward</span>Alle
+                        producten</a>
+                    <a href="/items/items-men" class="fancy-link block px-4 py-2 ">
+                        <span class="material-icons arrow">arrow_forward</span>Man</a>
+                    <a href="/items/items-women" class="fancy-link block px-4 py-2 ">
+                        <span class="material-icons arrow">arrow_forward</span>Vrouw<spa></a>
+                    <a href="/items/items-unisex" class="fancy-link block px-4 py-2 ">
+                        <span class="material-icons arrow ">arrow_forward</span>Unisex</a>
                 </div>
             </div>
             <?php if (auth()): ?>
-                <a href="/bestel-status"
-                    class="<?= isUri("bestel-status") ? 'underline ' : '' ?>text-black hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md font-medium">Bestelstatus</a>
+                <a href="/bestel-status" class="fancy-link <?= isUri("bestel-status") ? 'selected' : '' ?>">
+                    <span class="material-icons arrow">arrow_forward</span>
+                    Bestelstatus</a>
+
             <?php endif; ?>
         </div>
         <div class="flex items-center space-x-4">
@@ -58,7 +111,7 @@ if (!function_exists('isAdmin')) {
             <?php if (auth()): ?>
                 <div class="mr-2 py-1" x-data="{open: false}" @click="open = true" @mouseleave="open = false">
                     <div
-                        class="relative flex items-center space-x-1 cursor-pointer text-black hover:bg-pink-500 hover:text-gray-900 px-3 py-2 rounded-md text-sm font-medium">
+                        class="relative flex items-center space-x-1 cursor-pointer text-black bg-[var(--primary-default)] hover:text-gray-900 px-3 py-2 rounded-md text-sm font-medium">
                         <!-- Items waarop je kan klikken om uit te klappen -->
                         <div class="flex items-center">
                             <span><?= user()->name ?></span>
@@ -107,8 +160,9 @@ if (!function_exists('isAdmin')) {
                     </div>
                 </div>
             <?php else: ?>
-                <a href="/login" class="text-black hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md font-medium">
-                    <span class="material-icons-outlined align-middle">account_circle</span>
+                <a href="/login"
+                    class="text-black hover:bg-gray-700 hover:text-white px-3 py-1 rounded-md font-medium bg-primary">
+                    <span class="material-icons-outlined align-middle">account_circle</span> Log in
                 </a>
             <?php endif; ?>
         </div>

@@ -11,11 +11,12 @@ $button_text = "Shop nu!";
 $button_link = "/items/items-index";
 ?>
 
-<section class="flex items-center justify-between p-12 bg-gray-100">
+<section class="flex items-center justify-between p-12 bg-[var(--main-blue)]">
     <div class="max-w-lg">
         <h1 class="text-3xl font-bold text-black"><?php echo $headline; ?></h1>
         <p class="text-lg text-gray-700 mt-4"><?php echo $subtext; ?></p>
-        <a href="<?php echo $button_link; ?>" class="inline-block mt-6 px-6 py-3 bg-white text-black font-bold rounded-full shadow-md hover:bg-gray-200">
+        <a href="<?php echo $button_link; ?>"
+            class="inline-block mt-6 px-6 py-3 bg-white text-black font-bold rounded-full shadow-md hover:bg-gray-200">
             <?php echo $button_text; ?>
         </a>
     </div>
@@ -31,7 +32,8 @@ $button_link = "/items/items-index";
             <div class="mb-2 p-4 border rounded shadow-sm flex flex-col justify-between bg-white">
                 <div>
                     <a href="/items/items-show/<?= htmlspecialchars($item['id']) ?>">
-                        <img src="/images/<?= htmlspecialchars($item['afbeelding']) ?>" alt="<?= htmlspecialchars($item['naam']) ?>" class="w-full h-48 object-contain mb-2 rounded">
+                        <img src="/images/<?= htmlspecialchars($item['afbeelding']) ?>"
+                            alt="<?= htmlspecialchars($item['naam']) ?>" class="w-full h-48 object-contain mb-2 rounded">
                     </a>
                     <a href="/items/items-show/<?= htmlspecialchars($item['id']) ?>" class="font-semibold">
                         <?= htmlspecialchars($item['naam']) ?>
