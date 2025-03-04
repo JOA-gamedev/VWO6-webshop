@@ -4,6 +4,17 @@
 */
 
 :root {
+    --primary-light: #95E8E8;
+        --primary-default: #52EBEB;
+        --primary-dark: #1CB3D9;
+    
+        --secondary-light: #52EBEB;
+        --secondary-default: #1CB3D9;
+        --secondary-dark: #0A6A8A;
+    
+        --accent-light: #1CB3D9;
+        --accent-default: #95E8E8;
+        --accent-dark: #5A9FAF;
     --main-blue: #90caf9;
     --main-white: #fff;
     --main-grey: rgba(255, 255, 255, 0.23);
@@ -11,11 +22,22 @@
     --main-ease: cubic-bezier(.65, .05, .36, 1);
 }
 
+/* Example usage of custom properties */
+.bg-primary {
+    background-color: var(--primary-default);
+}
+
+.text-primary {
+    color: var(--primary-default);
+}
+
+/* Add more styles as needed */
 /* body {
     /* font-family: "Roboto", "Helvetica", "Arial", sans-serif;
     background-color: #E5F5F2
     color: var(--main-white);
 } */
+
 
 .page-wrapper {
     display: flex;
