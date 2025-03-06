@@ -3,7 +3,7 @@ view("parts/header", ['title' => 'Bevestiging']);
 view("parts/navigatie-menu");
 ?>
 <div class="container mx-auto p-4">
-    <a href="javascript:history.back()" class="bg-gray-500 text-white px-2 py-1 rounded mb-4 inline-block">Terug</a>
+    <a href="javascript:history.back()" class="bg-gray-500 text-white px-2 py-1 rounded">Terug</a>
     <h1 class="text-3xl my-4 font-bold text-center">Bevestiging</h1>
     <div class="mt-4 flex flex-col md:flex-row justify-between">
         <div class="md:w-1/2">
@@ -60,7 +60,7 @@ view("parts/navigatie-menu");
     <div class="text-right mt-4">
         <form action="/checkout/complete" method="post" class="inline-block">
             <?= csrf() ?>
-            <button type="submit" class="bg-green-500 text-white px-4 py-2 rounded">Bestelling bevestigen</button>
+            <button type="submit" class="bg-[#52EBEB] text-white px-4 py-2 rounded">Bestelling bevestigen</button>
         </form>
     </div>
 </div>

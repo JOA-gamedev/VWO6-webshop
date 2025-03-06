@@ -18,7 +18,7 @@ view("parts/navigatie-menu");
         <textarea id="content" name="content" required class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"></textarea>
     </div>
     <input type="hidden" name="csrf_token" value="<?= $_SESSION['csrf_token'] ?>">
-    <button type="submit" class="w-full bg-indigo-600 text-white py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">Verzenden</button>
+    <button type="submit" class="w-full bg-[#52EBEB] text-white py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium hover:bg-[#3BBDBD] focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">Verzenden</button>
 </form>
 
 <?php

@@ -16,7 +16,7 @@ $messages = getCustomerMessages(); // Assume this function fetches messages for 
     <div class="sm:mx-10">
         <h1 class="text-3xl my-4">Mijn Berichten</h1>
         <div class="flex justify-center mb-4">
-            <a href="/contact" class="inline-block px-4 py-2 bg-blue-500 text-white rounded-md">Nieuw bericht</a>
+            <a href="/contact" class="inline-block px-4 py-2 bg-[#52EBEB] text-white rounded-md hover:bg-[#3BBDBD]">Nieuw bericht</a>
         </div>
         <?php if (empty($messages)): ?>
             <div class="bg-gray-100 border border-gray-400 text-gray-700 px-4 py-3 rounded relative" role="alert">

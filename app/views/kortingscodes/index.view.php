@@ -53,7 +53,7 @@ view("parts/navigatie-menu"); // Laad het navigatiemenu
 
                         <td class="px-6 py-4 whitespace-nowrap">
                             <button type="submit"
-                                class="bg-blue-500 hover:bg-blue-400 text-white font-bold py-2 px-4 rounded">Opslaan</button>
+                                class="bg-[#52EBEB] hover:bg-[#3BBDBD] text-white font-bold py-2 px-4 rounded">Opslaan</button>
                         </td>
 
                     </form>
@@ -63,7 +63,7 @@ view("parts/navigatie-menu"); // Laad het navigatiemenu
                             <?= csrf() ?>
                             <input type="hidden" name="id" value="<?= $kortingscode['id'] ?>">
                             <button type="submit"
-                                class="bg-red-500 hover:bg-red-400 text-white font-bold py-2 px-4 rounded">Verwijderen</button>
+                                class="bg-[#52EBEB] hover:bg-[#3BBDBD] text-white font-bold py-2 px-4 rounded">Verwijderen</button>
                         </form>
                     </td>
                 </tr>
@@ -97,7 +97,7 @@ view("parts/navigatie-menu"); // Laad het navigatiemenu
 
 
             <button type="submit"
-                class="bg-blue-500 hover:bg-blue-400 text-white font-bold py-2 px-4 rounded">Opslaan</button>
+                class="bg-[#52EBEB] hover:bg-[#3BBDBD] text-white font-bold py-2 px-4 rounded">Opslaan</button>
         </div>
 
     </form>

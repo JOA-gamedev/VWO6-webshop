@@ -137,13 +137,6 @@ view("parts/navigatie-menu");
         ?>
         <h1 class="text-3xl my-4 font-bold text-center">Producten - Unisex<?= $gender_title ?></h1>
 
-        <!-- Zoekformulier -->
-        <!-- <form method="GET" action="" class="mb-4 flex justify-start">
-            <input type="text" name="search" placeholder="Zoek producten..." class="border p-2 rounded w-1/3"
-                value="<?= htmlspecialchars($_GET['search'] ?? '') ?>">
-            <button type="submit" class="bg-blue-500 text-white px-4 py-2 rounded ml-2">Zoeken</button>
-        </form> -->
-
         <!-- Filter knop -->
         <button id="toggleFilters" class="bg-blue-500 text-white px-3 py-1 rounded mb-4">Toon filters
             <span class="material-icons align-middle">filter_alt</span>

@@ -7,16 +7,16 @@ if (!function_exists('isAdmin')) {
     }
 }
 ?>
-<nav class="bg-white flex p-[20px] border-b-2">
+<nav class="bg-white flex p-[10px] border-b-2">
     <div class="flex justify-between items-center w-full">
         <h1 class=" font-bold text-[#111111] text-[31px] font-['inter'] tracking-[-2.1px]">
             <a href="/index">Jofi®</a>
         </h1>
         <div
             class="absolute left-1/2 transform -translate-x-1/2 flex justify-start items-center text-xl space-x-4 gap-2">
-            <!-- <a href="/" class="flex items-center">
-            <img src="/images/logo1.png" alt="Logo" class="h-10 p-2">
-            </a> -->
+            <a href="/" class="flex items-center">
+            <img src="/images/logo1.png" alt="Logo" class="h-8 p-2">
+            </a>
             <style>
                 .fancy-link {
                     color: #666666;
@@ -33,7 +33,7 @@ if (!function_exists('isAdmin')) {
                 }
 
                 .fancy-link:hover {
-                    color: #111111;
+                    color: #52EBEB;
                     gap: 0.5rem;
                 }
 
@@ -48,6 +48,11 @@ if (!function_exists('isAdmin')) {
 
                 .selected {
                     color: #111111;
+                }
+
+                .dropdown-link:hover {
+                    background-color: #52EBEB;
+                    color: white;
                 }
             </style>
 
@@ -123,36 +128,36 @@ if (!function_exists('isAdmin')) {
                             tabindex="-1">
                             <!-- Active: "bg-gray-100", Not Active: "" -->
                             <a href="/profiel-edit"
-                                class="p-2 gap-2 text-sm text-black hover:bg-gray-100  w-full inline-flex items-center"
+                                class="dropdown-link p-2 gap-2 text-sm text-black hover:bg-[#52EBEB] w-full inline-flex items-center"
                                 role="menuitem" tabindex="-1" id="user-menu-item-0">
                                 <span class="material-icons-outlined align-middle">account_circle</span>
                                 Profiel aanpassen</a>
                             <a href="/wachtwoord-aanpassen"
-                                class="p-2 gap-2 text-sm text-black hover:bg-gray-100  w-full inline-flex items-center"
+                                class="dropdown-link p-2 gap-2 text-sm text-black hover:bg-[#52EBEB] w-full inline-flex items-center"
                                 role="menuitem" tabindex="-1" id="user-menu-item-1">
                                 <span class="material-icons-outlined align-middle">password</span>
                                 Wachtwoord aanpassen</a>
                             <a href="/berichten-klant"
-                                class="p-2 gap-2 text-sm text-black hover:bg-gray-100 w-full inline-flex items-center"
+                                class="dropdown-link p-2 gap-2 text-sm text-black hover:bg-[#52EBEB] w-full inline-flex items-center"
                                 role="menuitem" tabindex="-1" id="user-menu-item-2">
                                 <span class="material-icons-outlined align-middle">chat</span>
                                 Berichten</a>
                             <?php if (isAdmin()): ?>
                                 <a href="/admin/berichten"
-                                    class="p-2 gap-2 text-sm text-black hover:bg-gray-100 w-full inline-flex items-center"
+                                    class="dropdown-link p-2 gap-2 text-sm text-black hover:bg-[#52EBEB] w-full inline-flex items-center"
                                     role="menuitem" tabindex="-1" id="user-menu-item-3">
                                     <span class="material-icons-outlined align-middle">inbox</span>
                                     Admin inbox
                                 </a>
                                 <a href="/admin/admin-dashboard"
-                                    class="p-2 gap-2 text-sm text-black hover:bg-gray-100 w-full inline-flex items-center"
+                                    class="dropdown-link p-2 gap-2 text-sm text-black hover:bg-[#52EBEB] w-full inline-flex items-center"
                                     role="menuitem" tabindex="-1" id="user-menu-item-4">
                                     <span class="material-icons-outlined align-middle">dashboard</span>
                                     Dashboard
                                 </a>
                             <?php endif; ?>
                             <a href="/logout"
-                                class="p-2 gap-2 text-sm text-black hover:bg-gray-100 w-full inline-flex items-center"
+                                class="dropdown-link p-2 gap-2 text-sm text-black hover:bg-[#52EBEB] w-full inline-flex items-center"
                                 role="menuitem" tabindex="-1" id="user-menu-item-5">
                                 <span class="material-icons-outlined align-middle">logout</span>
                                 Uitloggen</a>

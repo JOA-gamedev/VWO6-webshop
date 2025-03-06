@@ -9,7 +9,7 @@ $user = isset($_SESSION['user']) ? $_SESSION['user'] : null; // Replace with act
         <h1 class="text-3xl my-4">Contact</h1>
         <?php if ($user): ?>
         <div class="text-center">
-            <a href="/berichten-klant" class="bg-blue-500 text-white rounded-md px-4 py-2 hover:bg-blue-600">Mijn Berichten</a>
+            <a href="/berichten-klant" class="bg-[#52EBEB] text-white rounded-md px-4 py-2 hover:bg-[#3BBDBD]">Mijn Berichten</a>
         </div>
         <?php endif; ?>
     </div>
@@ -40,7 +40,7 @@ $user = isset($_SESSION['user']) ? $_SESSION['user'] : null; // Replace with act
         </div>
         
         <div class="text-center">
-            <input type="submit" value="Verstuur" name="save" class="bg-blue-500 text-white rounded-md px-4 py-2 hover:bg-blue-600 cursor-pointer">
+            <input type="submit" value="Verstuur" name="save" class="bg-[#52EBEB] text-white rounded-md px-4 py-2 hover:bg-[#3BBDBD] cursor-pointer">
         </div>
     </form>
 

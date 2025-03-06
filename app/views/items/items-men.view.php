@@ -120,7 +120,7 @@ view("parts/navigatie-menu");
                 Unisex
             </option>
         </select>
-        <button type="submit" class="bg-blue-500 text-white px-2 py-1 rounded ml-2">Filteren</button>
+        <button type="submit" class="bg-[#52EBEB] text-white px-2 py-1 rounded ml-2 hover:bg-[#3FBFBF]">Filteren</button>
         <?php if (!empty($_GET['filter_color']) || !empty($_GET['filter_price_min']) || !empty($_GET['filter_price_max']) || !empty($_GET['filter_gender'])) : ?>
             <a href="/items/items-index" class="bg-red-500 text-center text-white px-2 py-1 rounded ml-2">Verwijder
                 filters</a>
@@ -136,7 +136,7 @@ view("parts/navigatie-menu");
         <h1 class="text-3xl my-4 font-bold text-center">Producten - Man</h1>
 
         <!-- Filter knop -->
-        <button id="toggleFilters" class="bg-blue-500 text-white px-3 py-1 rounded mb-4">Toon filters
+        <button id="toggleFilters" class="bg-[#52EBEB] text-white px-3 py-1 rounded mb-4 hover:bg-[#3FBFBF]">Toon filters
             <span class="material-icons align-middle">filter_alt</span>
         </button>
 
@@ -162,7 +162,7 @@ view("parts/navigatie-menu");
                     <?= isset($_GET['sort']) && $_GET['sort'] == 'prijs_desc' ? 'selected' : '' ?>>
                     Prijs (€€€-€)</option>
             </select>
-            <button type="submit" class="bg-blue-500 text-white px-1 py-0.5 rounded ml-2">Sorteren</button>
+            <button type="submit" class="bg-[#52EBEB] text-white px-1 py-0.5 rounded ml-2 hover:bg-[#3FBFBF]">Sorteren</button>
         </form>
 
         <?php if (empty($filtered_items)) : ?>
