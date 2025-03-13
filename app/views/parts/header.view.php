@@ -13,7 +13,7 @@
     <!-- script voor dynamisch zoeken, misschien dubbel? -->
     <script defer src="https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js"></script>
     <script src="https://unpkg.com/axios@1.1.2/dist/axios.min.js"></script>
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="/style.css">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Outlined" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap" rel="stylesheet">
