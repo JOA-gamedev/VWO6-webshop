@@ -21,7 +21,7 @@ function getProductImage($productId) {
     <?php if (empty($orders)) : ?>
         <p class="text-center text-lg text-red-500">U heeft nog geen bestellingen.</p>
         <div class="text-center mt-4">
-            <a href="/items/items-index" class="bg-blue-500 text-white px-4 py-2 rounded">Nu winkelen</a>
+            <a href="/items/items-index" class="bg-[#52EBEB] text-white px-4 py-2 rounded">Nu winkelen</a>
         </div>
     <?php else : ?>
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">

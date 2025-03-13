@@ -50,7 +50,7 @@ $messages = getMessages(); // Assume this function fetches messages from the dat
                                 <textarea id="reply" name="reply" placeholder="Typ je reactie hier" class="border border-gray-300 rounded-md p-2 w-full" required></textarea>
                             </div>
                             <div class="text-center">
-                                <input type="submit" value="Verstuur" class="bg-blue-500 text-white rounded-md px-4 py-2 hover:bg-blue-600 cursor-pointer">
+                                <input type="submit" value="Verstuur" class="bg-[#52EBEB] text-white rounded-md px-4 py-2 hover:bg-[#3ACBCB] cursor-pointer">
                             </div>
                         </form>
                     </li>

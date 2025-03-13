@@ -38,7 +38,7 @@ view("parts/navigatie-menu");
                         <?= csrf() ?>
                         <input type="hidden" name="id" value="<?= $product['id'] ?>">
                         <input type="hidden" name="size" value="<?= $product['maat'] ?>">
-                        <button type="submit" class="bg-red-500 text-white px-4 py-2 rounded">Verwijderen</button>
+                        <button type="submit" class="bg-red-500 text-white px-4 py-2 rounded hover:bg-red-600">Verwijderen</button>
                     </form>
                 </div>
             <?php endforeach; ?>
@@ -46,9 +46,9 @@ view("parts/navigatie-menu");
         <div class="text-right mt-4">
             <span class="text-xl font-bold">Totaal: €<?= $totaal ?></span><br>
             <?php if (!isset($_SESSION['user'])): ?>
-                <a href="/checkout/login-required" class="inline-block bg-green-500 text-white px-4 py-2 rounded">Afrekenen</a>
+                <a href="/checkout/login-required" class="inline-block bg-[#52EBEB] text-white px-4 py-2 rounded hover:bg-[#3bbcbc]">Afrekenen</a>
             <?php else: ?>
-                <a href="/checkout" class="inline-block bg-green-500 text-white px-4 py-2 rounded">Afrekenen</a>
+                <a href="/checkout" class="inline-block bg-[#52EBEB] text-white px-4 py-2 rounded hover:bg-[#3bbcbc]">Afrekenen</a>
             <?php endif; ?>
         </div>
     <?php else: ?>

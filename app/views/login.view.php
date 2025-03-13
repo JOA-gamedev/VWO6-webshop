@@ -23,13 +23,13 @@ view("parts/navigatie-menu");
             </div>
 
             <div>
-                <button type="submit" class="w-full rounded-md bg-indigo-600 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-indigo-500 focus:ring-2 focus:ring-indigo-600">
+                <button type="submit" class="w-full rounded-md bg-[#52EBEB] px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-[#3FBFBF] focus:ring-2 focus:ring-[#3FBFBF]">
                     Inloggen
                 </button>
             </div>
         </form>
         <div class="text-sm mt-4 text-center">
-            <p>Geen account? <a href="/registreer" class="font-semibold text-indigo-600 hover:text-indigo-500">Registreer hier</a></p>
+            <p>Geen account? <a href="/registreer" class="font-semibold text-[#52EBEB] hover:text-[#3FBFBF]">Registreer hier</a></p>
         </div>
     </div>
 </div>

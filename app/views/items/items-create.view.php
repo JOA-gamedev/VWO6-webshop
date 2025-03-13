@@ -27,7 +27,7 @@ view("parts/navigatie-menu");
     <p class="text-red-500 text-sm my-2"><?= $errors['prijs'] ?></p>
 <?php endif; ?>
 
-    <input type="submit" value="Toevoegen" class="border b-gray-600 rounded py-1 px-2 hover:bg-gray-100 cursor-pointer">
+    <input type="submit" value="Toevoegen" class="border b-gray-600 rounded py-1 px-2 hover:bg-[#3FBFBF] cursor-pointer">
 
 <?php
 view("parts/footer");
