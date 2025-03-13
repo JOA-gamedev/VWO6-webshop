@@ -2,6 +2,11 @@
     Dit bestand is voor het maken van universele styles die overal op de site voorkomen.
     Pas us op met het declareren van een stijl.
 */
+@import "tailwindcss";
+
+@theme {
+    --color-mint-500: oklch(0.72 0.11 178);
+}
 
 :root {
     --primary-light: #95E8E8;
