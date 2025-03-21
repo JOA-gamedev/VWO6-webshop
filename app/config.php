@@ -2,8 +2,8 @@
 return [
     'app' => [
         'env' => 'development',
-        'name' => 'Jofi®',
-        'email' => 'info@jofi.nl',
+        'name' => 'Jofis®',
+        'email' => 'info@jofis.nl',
     ],
     'database' => [
         'user' => 'root',
