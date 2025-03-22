@@ -2,7 +2,7 @@
 return [
     'app' => [
         'env' => 'development',
-        'name' => 'Jofis®',
+        'name' => "Jofi's®",
         'email' => 'info@jofis.nl',
     ],
     'database' => [

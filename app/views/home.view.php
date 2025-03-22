@@ -4,7 +4,7 @@ view("parts/header", ['title' => 'Home']); // Laad de header
 view("parts/topbar"); // Laad de topbar ticker
 view("parts/navigatie-menu"); // Laad het navigatiemenu
 
-$shop_name = "Jofi";
+$shop_name = "Jofi's®";
 $headline = "De kleding winkel van morgen";
 $subtext = "De stijl van de toekomst, vandaag. neem een kijkje en ontdek een wereld waar stijl en innovatie samenkomen.";
 $button_text = "Shop nu!";

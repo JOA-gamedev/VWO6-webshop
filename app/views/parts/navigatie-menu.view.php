@@ -7,15 +7,15 @@ if (!function_exists('isAdmin')) {
     }
 }
 ?>
-<nav class="bg-white flex p-[10px] border-b-2">
+<nav class="bg-white flex p-[20px] border-b-2">
     <div class="flex justify-between items-center w-full">
         <h1 class=" font-bold text-[#111111] text-[31px] font-['inter'] tracking-[-2.1px]">
-            <a href="/index">Jofi®</a>
+            <a href="/index">Jofi's®</a>
         </h1>
         <div
             class="absolute left-1/2 transform -translate-x-1/2 flex justify-start items-center text-xl space-x-4 gap-2">
             <a href="/" class="flex items-center">
-            <img src="/images/logo1.png" alt="Logo" class="h-8 p-2">
+                <img src="/images/logo1.png" alt="Logo" class="h-8 p-2">
             </a>
             <style>
                 .fancy-link {
