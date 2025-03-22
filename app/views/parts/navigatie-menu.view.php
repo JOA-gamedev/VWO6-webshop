@@ -15,7 +15,7 @@ if (!function_exists('isAdmin')) {
         <div
             class="absolute left-1/2 transform -translate-x-1/2 flex justify-start items-center text-xl space-x-4 gap-2">
             <a href="/" class="flex items-center">
-                <img src="/images/logo1.png" alt="Logo" class="h-8 p-2">
+                <img src="/images/logo1.jpg" alt="Logo" class="h-70 p-2">
             </a>
             <style>
                 .fancy-link {
