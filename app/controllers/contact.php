@@ -28,9 +28,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $params = [$klant_id, $subject, $message];
 
     if ($db->query($query, $params)) {
-        $_SESSION['flash_message'] = "Bericht succesvol verstuurd!";
+        flash("Bericht succesvol verstuurd!", true);
     } else {
-        $_SESSION['flash_message'] = "Er is een fout opgetreden bij het versturen van het bericht.";
+        flash("Er is een fout opgetreden bij het versturen van het bericht.", false);
     }
 
     header("Location: /contact");
@@ -38,4 +38,3 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 }
 
 view("contact");
-?>
