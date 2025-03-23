@@ -9,14 +9,16 @@ if (!function_exists('isAdmin')) {
 ?>
 <nav class="bg-white flex p-[20px] border-b-2">
     <div class="flex justify-between items-center w-full">
-        <h1 class=" font-bold text-[#111111] text-[31px] font-['inter'] tracking-[-2.1px]">
+        <!-- <h1 class=" font-bold text-[#111111] text-[31px] font-['inter'] tracking-[-2.1px]">
             <a href="/index">Jofi's®</a>
-        </h1>
+        </h1> -->
+        <span class="h-10 w-auto">
+            <a href="/" class="flex items-center absolute">
+                <img src="/images/image.png" alt="Logo" class="h-12 w-auto">
+            </a>
+        </span>
         <div
             class="absolute left-1/2 transform -translate-x-1/2 flex justify-start items-center text-xl space-x-4 gap-2">
-            <a href="/" class="flex items-center">
-                <img src="/images/logo1.jpg" alt="Logo" class="h-70 p-2">
-            </a>
             <style>
                 .fancy-link {
                     color: #666666;
