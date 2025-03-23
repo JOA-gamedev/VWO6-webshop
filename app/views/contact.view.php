@@ -14,11 +14,11 @@ $user = isset($_SESSION['user']) ? $_SESSION['user'] : null; // Replace with act
         <?php endif; ?>
     </div>
 
-    <?php if (isset($_SESSION['flash_message'])): ?>
+    <?php if (isset($_SESSION['flash_message']) && isset($_SESSION['flash_message_type']) && $_SESSION['flash_message_type'] === 'contact'): ?>
         <div class="bg-green-100 border border-green-400 text-green-700 px-4 py-3 rounded relative" role="alert">
             <span class="block sm:inline"><?php echo $_SESSION['flash_message']; ?></span>
         </div>
-        <?php unset($_SESSION['flash_message']); ?>
+        <?php unset($_SESSION['flash_message']); unset($_SESSION['flash_message_type']); ?>
     <?php endif; ?>
 
     <form action="/contact" method="post" class="max-w-lg mx-auto bg-white p-8 rounded-lg shadow-md space-y-4">
@@ -45,5 +45,14 @@ $user = isset($_SESSION['user']) ? $_SESSION['user'] : null; // Replace with act
     </form>
 
 <?php
+if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['save'])) {
+    // Assuming $db is the database connection and $query, $params are defined
+    if ($db->query($query, $params)) {
+        $_SESSION['flash_message'] = "Bericht succesvol verstuurd!";
+        $_SESSION['flash_message_type'] = 'contact';
+    }
+    header("Location: /contact");
+    exit;
+}
 view("parts/footer");
 ?>
