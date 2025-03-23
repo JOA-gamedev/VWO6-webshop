@@ -9,36 +9,14 @@ view("parts/navigatie-menu");
         <h2 class="text-2xl font-bold">Filters</h2>
         <div class="flex flex-wrap gap-2">
             <span class="w-full">Filter op kleur:</span>
-            <style>
-                label:has(input[type="radio"]:checked) {
-                    outline: 2px solid black;
-                }
-
-                .radio_color input[type="radio"] {
-                    display: none;
-                }
-
-                .radio_color {
-                    display: flex;
-                    flex-direction: column;
-                    align-items: center;
-                    padding: 0.5rem;
-                    border-radius: 0.5rem;
-                }
-
-                .span_color {
-                    display: inline-block;
-                    width: 1.5rem;
-                    height: 1.5rem;
-                    border-radius: 0.5rem;
-                }
-            </style>
+            <!-- we hadden ook gewoon parameters voor mannen en vrouwen filter opties naar de main product view kunnen sturen
+  ipv 3 verschillen de views te hebben voor producten maar ik heb dit niet geschreven -->
         </div>
     </form>
 
     <div class="container mx-auto p-4">
         <?php
-        $filtered_items = array_filter($items, function($item) {
+        $filtered_items = array_filter($items, function ($item) {
             return $item['geslacht'] === 'vrouw';
         });
         ?>

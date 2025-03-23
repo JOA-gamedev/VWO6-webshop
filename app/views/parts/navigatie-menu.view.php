@@ -19,44 +19,6 @@ if (!function_exists('isAdmin')) {
         </span>
         <div
             class="absolute left-1/2 transform -translate-x-1/2 flex justify-start items-center text-xl space-x-4 gap-2">
-            <style>
-                .fancy-link {
-                    color: #666666;
-                    display: flex;
-                    flex-direction: row;
-                    gap: 0.25rem;
-                    transition: color 0.2s, gap 0.2s, transform 0.2s;
-                }
-
-                .fancy-link span {
-                    opacity: 0;
-                    transform: translateX(5px);
-                    transition: opacity 0.2s, transform 0.2s;
-                }
-
-                .fancy-link:hover {
-                    color: #52EBEB;
-                    gap: 0.5rem;
-                }
-
-                .fancy-link:hover span {
-                    opacity: 1;
-                    transform: translateX(0);
-                }
-
-                .arrow {
-                    vertical-align: baseline;
-                }
-
-                .selected {
-                    color: #111111;
-                }
-
-                .dropdown-link:hover {
-                    background-color: #52EBEB;
-                    color: white;
-                }
-            </style>
 
             <a href="/" class="fancy-link">
                 <span class="material-icons arrow <?= isUri("/") ? 'selected ' : '' ?>">arrow_forward</span>

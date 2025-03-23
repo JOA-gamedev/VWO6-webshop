@@ -1,5 +1,5 @@
 <!-- slider component -->
-
+<!-- ik heb de comments hier geschreven in het engels omdat de github engels is niet omdat het is geschreven door copilot lol -->
 <?php
 
 
@@ -16,92 +16,6 @@ $left_bound = (int)ceil($left_bound);
 ?>
 
 <div class=" main">
-    <style>
-        /* Styles for the price input container */
-        .price-input-container {
-            width: 100%;
-        }
-
-        .price-input .price-field {
-            display: flex;
-            margin-bottom: 22px;
-        }
-
-        .price-field span {
-            margin-right: 10px;
-            margin-top: 6px;
-            font-size: 17px;
-        }
-
-        .price-field input {
-            flex: 1;
-            height: 35px;
-            width: 80px;
-            font-size: 15px; 
-            font-family: "DM Sans", sans-serif;
-            border-radius: 9px;
-            text-align: center;
-            border: 0px;
-            background: #e4e4e4;
-        }
-
-        .price-input {
-            width: 100%;
-            font-size: 19px;
-            color: #555;
-        }
-
-        /* Remove Arrows/Spinners */
-        input::-webkit-outer-spin-button,
-        input::-webkit-inner-spin-button {
-            -webkit-appearance: none;
-            margin: 0;
-        }
-
-        .slider-container {
-            width: 100%;
-        }
-
-        .slider-container {
-            height: 6px;
-            position: relative;
-            background: #e4e4e4;
-            border-radius: 5px;
-        }
-
-        .slider-container .price-slider {
-            height: 100%;
-            left: 25%;
-            right: 15%;
-            position: absolute;
-            border-radius: 5px;
-        }
-
-        .range-input {
-            position: relative;
-        }
-
-        .range-input input {
-            position: absolute;
-            width: 100%;
-            height: 5px;
-            background: none;
-            top: -5px;
-            pointer-events: none;
-            cursor: pointer;
-            -webkit-appearance: none;
-        }
-
-        /* Styles for the range thumb in WebKit browsers */
-        input[type="range"]::-webkit-slider-thumb {
-            height: 18px;
-            width: 18px;
-            border-radius: 70%;
-            background: #555;
-            pointer-events: auto;
-            -webkit-appearance: none;
-        }
-    </style>
     <div class="custom-wrapper">
         <div class="price-input-container">
             <div class="price-input">

@@ -52,6 +52,9 @@ function view(string $file, array $vars = [])
 function flash(string $msg, bool $succes = true, $duration = 2500): void
 {
     try {
+        if (!isset($_SESSION['flash']) || !is_array($_SESSION['flash'])) {
+            $_SESSION['flash'] = [];
+        }
         $_SESSION['flash']['msg'] = $msg;
         $_SESSION['flash']['duration'] = $duration;
     } catch (Exception $e) {
@@ -137,7 +140,8 @@ function redirect($url, $statusCode = 303)
 
 
 
-function errors($field) {
+function errors($field)
+{
     $errors = $_SESSION['errors'] ?? [];
     return $errors[$field] ?? null;
 }
