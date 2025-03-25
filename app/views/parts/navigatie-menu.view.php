@@ -40,15 +40,15 @@ if (!function_exists('isAdmin')) {
                     Producten
                 </button>
                 <div x-show="open" @click.away="open = false"
-                    class="absolute bg-[var(--main-blue)] shadow-md rounded-md mt-4 p-4 min-w-max">
+                    class="absolute bg-slate-100 shadow-md rounded-md mt-4 p-4 min-w-max">
                     <a href="/items/items-index" class="fancy-link block px-4 py-2 ">
                         <span class="material-icons arrow">arrow_forward</span>Alle
                         producten</a>
-                    <a href="/items/items-men" class="fancy-link block px-4 py-2 ">
+                    <a href="/items/items-index?filter_gender=man" class="fancy-link block px-4 py-2 ">
                         <span class="material-icons arrow">arrow_forward</span>Man</a>
-                    <a href="/items/items-women" class="fancy-link block px-4 py-2 ">
+                    <a href="/items/items-index?filter_gender=vrouw" class="fancy-link block px-4 py-2 ">
                         <span class="material-icons arrow">arrow_forward</span>Vrouw<spa></a>
-                    <a href="/items/items-unisex" class="fancy-link block px-4 py-2 ">
+                    <a href="/items/items-index?filter_gender=unisex" class="fancy-link block px-4 py-2 ">
                         <span class="material-icons arrow ">arrow_forward</span>Unisex</a>
                 </div>
             </div>
